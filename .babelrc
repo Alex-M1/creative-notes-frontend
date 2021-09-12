@@ -12,6 +12,13 @@
               "./src"
             ]
           }
+        ],
+        [
+          "styled-components",
+          {
+            "ssr": false,
+            "preprocess": false
+          }
         ]
       ]
     }
