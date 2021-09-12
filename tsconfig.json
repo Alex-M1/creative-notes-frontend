@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "jsx": "react", // Опции компилятора TS -> JS
+    "module": "esnext", // Способ компиляции модулей (на выходе)
+    "target": "es5", // В JS какого века компилировать
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // Какие библиотеки включать,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node", // Формат модулей (на входе)
+    "sourceMap": false, // Нужно ли юзать удобные для дебага source map'ы (да, нужно)
+    "baseUrl": ".", // Где сам проект находится
+    "paths": {
+      "*": [
+        "node_modules/*",
+      ],
+      "constants/*": [
+        "./src/constants/*"
+      ],
+      "store/*": [
+        "./src/store/*"
+      ],
+      "src/*": [
+        "./src/*"
+      ],
+      "helpers/*": [
+        "./src/helpers/*"
+      ],
+      "common/*": [
+        "./src/components/_common_/*"
+      ],
+      "tests/*": [
+        "./src/__tests__/*"
+      ]
+    },
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+  ], // Что именно компилировать
+  "exclude": [
+    "node_modules",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.test.jsx",
+    "**/*.test.js",
+  ],
+}
