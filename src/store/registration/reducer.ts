@@ -13,7 +13,7 @@ export const initialState: TInitialState = {
   confirm: '',
 };
 
-export const reducer: Reducer<TInitialState, TActionsRegistration> = (state = initialState, action) => {
+export const registrationReducer: Reducer<TInitialState, TActionsRegistration> = (state = initialState, action) => {
   switch (action.type) {
   case AT.SET_VALUE: return { ...state, [action.payload.name]: action.payload.value };
   case AT.CLEAR_INPUTS_VALUES:

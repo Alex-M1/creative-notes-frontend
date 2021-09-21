@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { all, fork } from '@redux-saga/core/effects';
-import { reducer as registrationReducer } from './registration/reducer';
+import { registrationReducer } from './registration/reducer';
 import { watcherRegistration } from './registration/sagas';
 
 const sagas = [
