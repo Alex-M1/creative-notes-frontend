@@ -1,4 +1,4 @@
-export const APP_ROUTES = {
-  REGISTRATION: '/registration',
-  LOGIN: '/login',
-};
+export enum APP_ROUTES {
+  REGISTRATION = '/registration',
+  LOGIN = '/login',
+}
