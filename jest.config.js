@@ -21,7 +21,7 @@ module.exports = {
     'json',
     'lcov',
   ],
-  setupFilesAfterEnv: ['<rootDir>/src/__tests__/config.ts'],
+  setupFilesAfterEnv: ['<rootDir>/__tests__/setup.ts'],
   coveragePathIgnorePatterns: [
     '/server/',
     '/node_modules/',
@@ -42,7 +42,7 @@ module.exports = {
     '^constants/(.*)$': '<rootDir>/src/constants/$1',
     '^helpers/(.*)$': '<rootDir>/src/helpers/$1',
     '^common/(.*)$': '<rootDir>/src/components/_common_/$1',
-    '^tests/(.*)$': '<rootDir>/src/__tests__/$1',
+    '^tests/(.*)$': '<rootDir>/__tests__/$1',
   },
   testEnvironment: 'jsdom',
   resetModules: true,

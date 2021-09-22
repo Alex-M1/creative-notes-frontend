@@ -19,3 +19,20 @@ export const mountSmart = (component: React.FC, store: Store): ReactWrapper => {
   const test = <Router>{core}</Router>;
   return mount(test);
 };
+
+export const testHelper = (funcs: Array<() => any>): void => {
+  describe('to be defined', () => {
+    it.each([
+      ...funcs.map(func => [func]),
+    ])('%# case', (func) => {
+      expect(typeof func).toBeDefined();
+    });
+  });
+  describe('to be function', () => {
+    it.each([
+      ...funcs.map(func => [func]),
+    ])('%# case', (func) => {
+      expect(typeof func).toBe('function');
+    });
+  });
+};

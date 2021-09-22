@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { all, fork } from '@redux-saga/core/effects';
 import { SagaIterator } from '@redux-saga/types';
-import { registrationReducer } from './registration/reducer';
-import { watcherRegistration } from './registration/sagas';
+import { authReducer } from './auth/reducer';
+import { watcherRegistration } from './auth/sagas';
 
 const sagas = [
   watcherRegistration,
@@ -13,5 +13,5 @@ export function* rootSaga(): SagaIterator {
 }
 
 export const rootReducer = combineReducers({
-  registration: registrationReducer,
+  auth: authReducer,
 });
