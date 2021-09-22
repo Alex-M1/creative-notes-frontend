@@ -20,7 +20,7 @@ export const mountSmart = (component: React.FC, store: Store): ReactWrapper => {
   return mount(test);
 };
 
-export const testHelper = (funcs: Array<() => any>): void => {
+export const testHelper = (funcs: Array<any>): void => {
   describe('to be defined', () => {
     it.each([
       ...funcs.map(func => [func]),
