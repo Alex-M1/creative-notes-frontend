@@ -7,3 +7,18 @@ export const regValues = createSelector(
   registrationStore,
   ({ login, password, confirm }: TInitialState): IRegValue => ({ login, password, confirm }),
 );
+
+export const regLogin = createSelector(
+  regValues,
+  ({ login }): string => login,
+); 
+
+export const regPassword = createSelector(
+  regValues,
+  ({ password }): string => password,
+);
+
+export const regConfirm = createSelector(
+  regValues,
+  ({ confirm }): string => confirm,
+);
