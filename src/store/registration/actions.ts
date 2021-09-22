@@ -1,9 +1,10 @@
+import { IReturnedAction } from 'store/types';
 import { action } from 'typesafe-actions';
-import { actionTypes as AT } from './actionTypes';
-import { TRegistartionPayload, TRegistrationAction } from './types';
+import { ActionTypes as AT } from './actionTypes';
+import { TRegistartionPayload } from './types';
 
-export const setRegistrationValue = (
-  payload: TRegistartionPayload,
-): TRegistrationAction => action(AT.SET_VALUE, payload);
-export const sendRegistrationRequest = (): TRegistrationAction => action(AT.SEND_REGISTRATION_REQUEST);
-export const clearRegistrationInputs = (): TRegistrationAction => action(AT.CLEAR_INPUTS_VALUES);
+export const setRegistrationValue = (payload: TRegistartionPayload): IReturnedAction<TRegistartionPayload> => (
+  action(AT.SET_VALUE, payload)
+);
+export const sendRegistrationRequest = (): IReturnedAction => action(AT.SEND_REGISTRATION_REQUEST);
+export const clearRegistrationInputs = (): IReturnedAction => action(AT.CLEAR_INPUTS_VALUES);

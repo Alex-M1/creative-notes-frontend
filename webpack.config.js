@@ -85,14 +85,14 @@ const plugins = () => {
       },
     }),
     new CleanWebpackPlugin(),
-    // new CopyWebpackPlugin(
-    //     [
-    //         {
-    //             from: path.resolve(__dirname, 'src/assets/img'),
-    //             to: path.resolve(__dirname, 'dist/assets/img')
-    //         }
-    //     ]
-    // ),
+    new CopyWebpackPlugin(
+      [
+        {
+          from: path.resolve(__dirname, 'src/assets/img'),
+          to: path.resolve(__dirname, 'dist/assets/img'),
+        },
+      ],
+    ),
 
     new MiniCssExtractPlugin({
       filename: filename('css'),

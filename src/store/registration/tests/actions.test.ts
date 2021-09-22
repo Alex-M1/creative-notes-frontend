@@ -1,5 +1,5 @@
 import * as actions from '../actions';
-import { actionTypes } from '../actionTypes';
+import { ActionTypes as AT } from '../actionTypes';
 
 describe('registration actions', () => {
   describe('actions.setRegistrationValue', () => {
@@ -11,7 +11,7 @@ describe('registration actions', () => {
     });
     it('should return value', () => {
       const payload = { name: 'login', value: 'newLogin' };
-      expect(actions.setRegistrationValue(payload)).toEqual({ type: actionTypes.SET_VALUE, payload });
+      expect(actions.setRegistrationValue(payload)).toEqual({ type: AT.SET_VALUE, payload });
     });
   });
   describe('actions.sendRegistrationRequest', () => {
@@ -23,7 +23,7 @@ describe('registration actions', () => {
     });
     it('should return value', () => {
       expect(actions.sendRegistrationRequest())
-        .toEqual({ type: actionTypes.SEND_REGISTRATION_REQUEST });
+        .toEqual({ type: AT.SEND_REGISTRATION_REQUEST });
     });
   });
   describe('actions.clearRegistrationInputs', () => {
@@ -35,7 +35,7 @@ describe('registration actions', () => {
     });
     it('should return value', () => {
       expect(actions.clearRegistrationInputs())
-        .toEqual({ type: actionTypes.CLEAR_INPUTS_VALUES });
+        .toEqual({ type: AT.CLEAR_INPUTS_VALUES });
     });
   });
 });

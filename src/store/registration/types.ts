@@ -8,13 +8,8 @@ export interface TInitialState {
     confirm: string;
 }
 
-export interface IRegValue{
+export interface IRegValue {
     login: string;
     password: string;
     confirm: string;
-}
-
-export interface TRegistrationAction {
-    type: string;
-    payload?: TRegistartionPayload;
 }
