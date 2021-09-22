@@ -2,13 +2,7 @@ export interface TRegistartionPayload {
     name: string;
     value: string | boolean;
 }
-export interface TInitialState {
-    login: string;
-    password: string;
-    confirm: string;
-}
-
-export interface IRegValue {
+export interface TRegistrationState {
     login: string;
     password: string;
     confirm: string;
