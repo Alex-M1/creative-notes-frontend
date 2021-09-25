@@ -68,7 +68,10 @@
     "semi": "off",
     "typescript/no-var-requires": "error",
     "jsx-quotes": "off",
-    "quotes": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
     "camelcase": "off",
     "arrow-body-style": "off",
     "arrow-spacing": "error",

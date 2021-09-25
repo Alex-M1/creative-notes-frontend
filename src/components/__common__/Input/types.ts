@@ -1,10 +1,10 @@
-export interface IStyledLabel{
+export interface IStyledLabel {
     margin?: string;
     cursor?: string;
     display?: string;
     fontWeight?: string;
 }
-export interface IStyledInput{
+export interface IStyledInput {
     inputHeight?: string;
     padding?: string;
     margin?: string;
@@ -21,16 +21,16 @@ export interface IStyledInput{
     focusColor?: string;
     bgFocusColor?: string;
 }
-export interface IStyledContainer{
+export interface IStyledContainer {
     width?: string;
     height?: string;
 }
-export type TInputChangeArg = {
+export interface IInputChangeArg {
     name: string;
     value: string;
-};
+}
 
-export interface IInput{
+export interface IInput {
     id: string;
     name?: string;
     type?: string;
@@ -44,7 +44,7 @@ export interface IInput{
     fontSizeInp?: string;
     borderColor?: string;
     inputHeight?: string;
-    onChange: (arg: TInputChangeArg) => void;
+    onChange: (arg: IInputChangeArg) => void;
     borderRadius?: string;
     placeholder: string;
     errorMessage?: string;

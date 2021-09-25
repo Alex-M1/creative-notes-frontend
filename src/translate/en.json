@@ -1,0 +1,10 @@
+{
+  "sign_in": "Sign In",
+  "sign_up": "Sign Up",
+  "login_label": "Login",
+  "password_label": "Password",
+  "confirm_label": "Confirm password",
+  "login_plh": "Enter your login...",
+  "password_plh": "Enter your password...",
+  "confirm_plh": "Confirm password..."
+}

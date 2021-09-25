@@ -84,16 +84,15 @@ const plugins = () => {
         collapseWhitespace: isProd,
       },
     }),
-    new CleanWebpackPlugin(),
-    // new CopyWebpackPlugin(
-    //     [
-    //         {
-    //             from: path.resolve(__dirname, 'src/assets/img'),
-    //             to: path.resolve(__dirname, 'dist/assets/img')
-    //         }
-    //     ]
-    // ),
-
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets/img'),
+          to: path.resolve(__dirname, 'dist/assets/img'),
+          noErrorOnMissing: true,
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
