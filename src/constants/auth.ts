@@ -3,3 +3,7 @@ export enum AuthInputType {
   password = 'password',
   confirm = 'confirm'
 }
+export enum AuthPages {
+  registration = 'registration',
+  auth = 'authorization'
+}

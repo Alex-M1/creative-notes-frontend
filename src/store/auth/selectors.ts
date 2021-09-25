@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { TAuthInput } from '@src/components/__common__/types/commonTypes';
+import { TAuthInput } from '@src/components/__common__/types/authTypes';
 import { ApplicationState } from '../types';
 import { IAuthState } from './types';
 
