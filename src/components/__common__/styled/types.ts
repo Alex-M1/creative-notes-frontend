@@ -11,7 +11,6 @@ export interface IStGrid extends SizesProps, ColorsProps, PositionProps, BorderP
 
 export interface SizesProps {
   width?: string | number;
-  width1366?: string | number;
   padding?: string | number;
   margin?: string | number;
   top?: string | number;
