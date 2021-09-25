@@ -119,11 +119,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx', '.jsx'],
     alias: {
-      constants: path.resolve(__dirname, 'src/constants'),
-      store: path.resolve(__dirname, 'src/store'),
-      src: path.resolve(__dirname, 'src'),
-      helpers: path.resolve(__dirname, 'src/helpers'),
-      common: path.resolve(__dirname, 'src/components/_common_'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@store': path.resolve(__dirname, 'src/store'),
+      '@src': path.resolve(__dirname, 'src'),
+      '@helpers': path.resolve(__dirname, 'src/helpers'),
+      '@common': path.resolve(__dirname, 'src/components/__common__'),
     },
   },
   optimization: optimization(),

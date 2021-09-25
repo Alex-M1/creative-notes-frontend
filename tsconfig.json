@@ -18,22 +18,22 @@
       "*": [
         "node_modules/*",
       ],
-      "constants/*": [
+      "@constants/*": [
         "./src/constants/*"
       ],
-      "store/*": [
+      "@store/*": [
         "./src/store/*"
       ],
-      "src/*": [
+      "@src/*": [
         "./src/*"
       ],
-      "helpers/*": [
+      "@helpers/*": [
         "./src/helpers/*"
       ],
-      "common/*": [
+      "@common/*": [
         "./src/components/__common__/*"
       ],
-      "tests/*": [
+      "@tests/*": [
         "./__tests__/*"
       ]
     },

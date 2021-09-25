@@ -5,7 +5,6 @@ import { IInput } from './types';
 
 const Input: React.FC<IInput> = ({
   id,
-  name,
   width,
   type = 'text',
   label,
@@ -26,14 +25,13 @@ const Input: React.FC<IInput> = ({
 }) => {
   const { t } = useTranslation();
   const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    onChange({ name: e.target.name, value: e.target.value });
+    onChange(e.target.value);
   };
   return (
     <StInputContainer width={width} height={height}>
       {!!label && <StLabel htmlFor={id}>{t(label)}</StLabel>}
       <StInput
         id={id}
-        name={name}
         type={type}
         value={value}
         margin={margin}

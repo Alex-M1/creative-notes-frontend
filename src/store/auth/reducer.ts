@@ -1,4 +1,4 @@
-import { TReducer } from 'store/types';
+import { TReducer } from '@store/types';
 import { ActionTypes as AT } from './actionTypes';
 import { IAuthState } from './types';
 import * as actions from './actions';

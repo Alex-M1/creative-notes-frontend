@@ -1,18 +1,18 @@
 import React from 'react';
-import { Input } from 'src/components/__common__';
-import { IInputChangeArg } from 'common/Input/types';
-import { TAuthInput } from 'common/types/commonTypes';
-import { typeOfInput } from 'src/helpers/authHelpers';
+import { Input } from '@src/components/__common__';
+import { TAuthInput } from '@common/types/commonTypes';
+import { typeOfInput } from '@src/helpers/authHelpers';
+import { IAuthInputPld } from '@store/auth/types';
 
-interface IProps {
+export interface IProps {
   type: TAuthInput;
   value: string;
-  onChange: (value: string) => void;
+  onChange: ({ name, value }: IAuthInputPld) => void;
 }
 
 export const AuthInput: React.FC<IProps> = ({ type, value, onChange }) => {
-  const handleChangeInput = (arg: IInputChangeArg) => {
-    onChange(arg.value);
+  const handleChangeInput = (value: string) => {
+    onChange({ name: type, value });
   };
 
   return (

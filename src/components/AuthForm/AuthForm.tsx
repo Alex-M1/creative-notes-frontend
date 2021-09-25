@@ -1,14 +1,18 @@
 import React from 'react';
-import { Input, Title } from 'src/components/__common__';
+import { AuthInputType } from '@constants/auth';
+import { Title } from '@src/components/__common__';
+import { StFlex } from '@common/styled/Blocs';
+import AuthInput from './AuthInput';
 
-interface IProps {
-
-}
-
-export const AuthForm: React.FC<IProps> = ({ }) => {
+export const AuthForm: React.FC = () => {
   return (
-    <div>
+    <StFlex flexDirection="column" >
       <Title translateKey="sign_up" />
-    </div>
+      {
+        Object.values(AuthInputType).map(type => (
+          <AuthInput key={type} type={type} />
+        ))
+      }
+    </StFlex>
   );
 };
