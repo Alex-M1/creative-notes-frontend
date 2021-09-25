@@ -34,7 +34,7 @@
         "./src/components/_common_/*"
       ],
       "tests/*": [
-        "./src/__tests__/*"
+        "./__tests__/*"
       ]
     },
   },

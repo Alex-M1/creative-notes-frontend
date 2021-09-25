@@ -134,7 +134,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "react/jsx-props-no-spreading": "off",
     "typescript/rule-name": "off",
     "@typescript-eslint/rule-name": "off",
