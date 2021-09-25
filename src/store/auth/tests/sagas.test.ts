@@ -1,6 +1,6 @@
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import * as sagas from '../sagas';
-import { actionTypes as AT } from '../actionTypes';
+import { ActionTypes as AT } from '../actionTypes';
 
 describe('registrationSaga', () => {
   describe('watchers', () => {

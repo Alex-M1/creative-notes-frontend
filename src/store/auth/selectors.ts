@@ -1,17 +1,17 @@
 import { createSelector } from 'reselect';
 import { ApplicationState } from '../types';
-import { TInitialState, IRegValue } from './types';
+import { IAuthState } from './types';
 
-export const registrationStore = (state: ApplicationState): TInitialState => state.registration;
+export const authStore = (state: ApplicationState): IAuthState => state.auth;
 export const regValues = createSelector(
-  registrationStore,
-  ({ login, password, confirm }: TInitialState): IRegValue => ({ login, password, confirm }),
+  authStore,
+  ({ login, password, confirm }): IAuthState => ({ login, password, confirm }),
 );
 
 export const regLogin = createSelector(
   regValues,
   ({ login }): string => login,
-); 
+);
 
 export const regPassword = createSelector(
   regValues,

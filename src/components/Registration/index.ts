@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { setRegistrationValue } from 'store/registration/actions';
-import { regConfirm, regLogin, regPassword } from 'store/registration/selectors';
+import { setRegistrationValue } from 'store/auth/actions';
+import { regConfirm, regLogin, regPassword } from 'store/auth/selectors';
 import { createStructuredSelector } from 'reselect';
-import { TRegistartionPayload } from 'store/registration/types';
+import { TRegistartionPayload } from 'store/auth/types';
 import { Dispatch } from 'redux';
 import Registration from './Registration';
 

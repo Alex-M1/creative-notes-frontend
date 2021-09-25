@@ -84,6 +84,7 @@ const plugins = () => {
         collapseWhitespace: isProd,
       },
     }),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
