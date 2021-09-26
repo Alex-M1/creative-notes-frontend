@@ -18,23 +18,23 @@
       "*": [
         "node_modules/*",
       ],
-      "constants/*": [
+      "@constants/*": [
         "./src/constants/*"
       ],
-      "store/*": [
+      "@store/*": [
         "./src/store/*"
       ],
-      "src/*": [
+      "@src/*": [
         "./src/*"
       ],
-      "helpers/*": [
+      "@helpers/*": [
         "./src/helpers/*"
       ],
-      "common/*": [
-        "./src/components/_common_/*"
+      "@common/*": [
+        "./src/components/__common__/*"
       ],
-      "tests/*": [
-        "./src/__tests__/*"
+      "@tests/*": [
+        "./__tests__/*"
       ]
     },
   },

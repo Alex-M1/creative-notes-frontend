@@ -85,15 +85,15 @@ const plugins = () => {
       },
     }),
     new CleanWebpackPlugin(),
-    // new CopyWebpackPlugin(
-    //     [
-    //         {
-    //             from: path.resolve(__dirname, 'src/assets/img'),
-    //             to: path.resolve(__dirname, 'dist/assets/img')
-    //         }
-    //     ]
-    // ),
-
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets/img'),
+          to: path.resolve(__dirname, 'dist/assets/img'),
+          noErrorOnMissing: true,
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
@@ -118,11 +118,19 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx', '.jsx'],
+    alias: {
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@store': path.resolve(__dirname, 'src/store'),
+      '@src': path.resolve(__dirname, 'src'),
+      '@helpers': path.resolve(__dirname, 'src/helpers'),
+      '@common': path.resolve(__dirname, 'src/components/__common__'),
+    },
   },
   optimization: optimization(),
   devServer: {
     port: 4200,
     hot: isDev,
+    historyApiFallback: true,
   },
   devtool: isDev ? 'source-map' : '',
   plugins: plugins(),

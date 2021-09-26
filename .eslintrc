@@ -40,7 +40,10 @@
   "rules": {
     "indent": [
       "error",
-      2
+      2,
+      {
+        "SwitchCase": 1
+      }
     ],
     "react/jsx-indent": [
       "error",
@@ -68,7 +71,10 @@
     "semi": "off",
     "typescript/no-var-requires": "error",
     "jsx-quotes": "off",
-    "quotes": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
     "camelcase": "off",
     "arrow-body-style": "off",
     "arrow-spacing": "error",
@@ -134,7 +140,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "react/jsx-props-no-spreading": "off",
     "typescript/rule-name": "off",
     "@typescript-eslint/rule-name": "off",
