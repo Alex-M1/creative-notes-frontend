@@ -1,9 +1,9 @@
 import { IReturnedAction } from 'store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { TRegistartionPayload } from './types';
+import { IAuthInputPld } from './types';
 
-export const setRegistrationValue = (payload: TRegistartionPayload): IReturnedAction<TRegistartionPayload> => (
+export const setRegistrationValue = (payload: IAuthInputPld): IReturnedAction<IAuthInputPld> => (
   action(AT.SET_VALUE, payload)
 );
 export const sendRegistrationRequest = (): IReturnedAction => action(AT.SEND_REGISTRATION_REQUEST);

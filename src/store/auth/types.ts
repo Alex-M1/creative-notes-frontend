@@ -1,6 +1,6 @@
-export interface TRegistartionPayload {
+export interface IAuthInputPld {
     name: string;
-    value: string | boolean;
+    value: string;
 }
 export interface IAuthState {
     login: string;

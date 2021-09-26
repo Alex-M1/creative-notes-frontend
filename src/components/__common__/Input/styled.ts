@@ -4,7 +4,7 @@ import {
   INPUT_BORDER_COLOR_DEFAULT,
   INPUT_BACKGROUND_COLOR_DEFAULT,
   INPUT_BORDER_FOCUS_COLOR_DEFAULT,
-} from 'constants/colors';
+} from '@constants/colors';
 import { IStyledLabel, IStyledInput, IStyledContainer } from './types';
 
 export const StLabel = styled.label < IStyledLabel >`

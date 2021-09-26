@@ -1,3 +1,4 @@
+import './translate';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -14,7 +15,7 @@ export const store = createStore(rootReducer, composeWithDevTools(applyMiddlewar
 saga.run(rootSaga);
 
 render(
-  <Provider store={store}>  
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root'),
