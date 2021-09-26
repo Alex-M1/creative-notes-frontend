@@ -1,7 +1,7 @@
-import { TAuthInput } from 'src/components/__common__/types/commonTypes';
-import { ApplicationState } from 'store/types';
-import { mockStore } from 'tests/mockStore';
-import { testHelper } from 'tests/testHelper';
+import { TAuthInput } from '@common/types/authTypes';
+import { ApplicationState } from '@store/types';
+import { mockStore } from '@tests/mockStore';
+import { testHelper } from '@tests/testHelper';
 import * as selectors from '../selectors';
 
 describe('registration selectors', () => {

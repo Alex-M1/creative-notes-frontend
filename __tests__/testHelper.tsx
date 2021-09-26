@@ -25,7 +25,7 @@ export const testHelper = (funcs: Array<any>): void => {
     it.each([
       ...funcs.map(func => [func]),
     ])('%# case', (func) => {
-      expect(typeof func).toBeDefined();
+      expect(func).toBeDefined();
     });
   });
   describe('to be function', () => {
