@@ -16,11 +16,12 @@ export const AuthForm: React.FC<IProps> = ({ page }) => {
     <StFlex
       ai="center"
       flexDirection="column"
+      height="80vh"
     >
       <Title translateKey={authProps.title} />
       {
         Object.values(authProps.inputKey).map(type => (
-          <AuthInput key={type} type={type} />
+          <AuthInput key={type} type={type}/>
         ))
       }
       <AuthButton translateKey={`${authProps.title}_btn`} />

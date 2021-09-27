@@ -1,4 +1,4 @@
-import { IReturnedAction } from 'store/types';
+import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
 import { IAuthInputPld } from './types';
