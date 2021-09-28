@@ -5,10 +5,11 @@ export type TAuthPages = AuthPages.auth | AuthPages.registration;
 
 export interface IAuthFormValues {
   title: 'sign_in' | 'sign_up';
-  inputKey: IInputKey
+  inputKey: IInputKey,
+  page: TAuthPages,
 }
 export interface IInputKey {
   login: 'login',
   password: 'password',
-  confirm?: 'confirm'
+  confirm?: 'confirm',
 }

@@ -1,5 +1,5 @@
 export enum ActionTypes {
-    SEND_REGISTRATION_REQUEST = '@@registration/SEND_REGISTRATION_REQUEST',
-    CLEAR_INPUTS_VALUES = '@@registration/CLEAR_INPUTS_VALUES',
-    SET_VALUE = '@@registration/SET_VALUE',
+    CLEAR_AUTH_INPUTS_VALUES = '@@auth/CLEAR_AUTH_INPUTS_VALUES',
+    SET_VALUE = '@@auth/SET_VALUE',
+    AUTH_SUBMIT = '@@auth/AUTH_SUBMIT',
 }

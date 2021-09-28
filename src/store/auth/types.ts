@@ -7,3 +7,8 @@ export interface IAuthState {
     password: string;
     confirm: string;
 }
+
+export interface IAuthSumbitPayload{
+    currentPage: string;
+    push: (arg: string) => void
+}

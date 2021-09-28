@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63b00059-1e82-4777-a7fb-0bfaf9c2aac6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Logo/Logo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Logo/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Logo/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/notifications" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthPage/AuthForm/AuthForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthPage/AuthForm/AuthForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/__common__/Button/styled.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__common__/Button/styled.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/__common__/Input/tests/Input.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__common__/Input/tests/Input.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/__common__/Title/Title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__common__/Title/Title.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/__common__/Title/styled.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__common__/Title/styled.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/colors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Logo/Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Logo/styled.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Logo/styled.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +74,8 @@
       <workItem from="1632667723986" duration="4254000" />
       <workItem from="1632687435356" duration="872000" />
       <workItem from="1632769464224" duration="140000" />
-      <workItem from="1632769817242" duration="6677000" />
+      <workItem from="1632769817242" duration="6748000" />
+      <workItem from="1632855199034" duration="321000" />
     </task>
     <servers />
   </component>

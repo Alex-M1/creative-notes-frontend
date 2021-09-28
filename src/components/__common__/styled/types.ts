@@ -39,7 +39,7 @@ export interface BorderProps {
   boxShadow?: string;
   hasGreyBorder?: boolean;
 }
-type ColorType = keyof typeof DEFAULT_COLORS;
+type ColorType = keyof typeof DEFAULT_COLORS | string;
 export interface ColorsProps {
   backgroundColor?: ColorType;
   color?: ColorType;

@@ -5,7 +5,7 @@ export enum APP_ROUTES {
 
 export const API_ROUTES = {
   auth: {
-    registration: '',
-    authorization: '',
+    registration: '/registration',
+    authorization: '/login',
   },
 };

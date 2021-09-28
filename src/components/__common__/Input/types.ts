@@ -20,6 +20,7 @@ export interface IStyledInput {
   transition?: string;
   focusColor?: string;
   bgFocusColor?: string;
+  borderWidth?: string;
 }
 export interface IStyledContainer {
   width?: string;
@@ -46,4 +47,6 @@ export interface IInput {
   bgFocusColor?: string;
   'data-at'?: string;
   color?: string;
+  borderWidth?: string;
+  textAlignInput?: string;
 }

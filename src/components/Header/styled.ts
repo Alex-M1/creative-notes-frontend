@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const StHeader = styled.div`
-  height: 20vh;
+  min-height: 10vh;
   width: 100%;
-  border: 1px solid black;
   color: white;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  font-size: 40px;
 `;

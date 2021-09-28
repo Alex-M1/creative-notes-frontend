@@ -1,10 +1,14 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { IAuthInputPld } from './types';
+import { IAuthInputPld, IAuthSumbitPayload } from './types';
 
-export const setRegistrationValue = (payload: IAuthInputPld): IReturnedAction<IAuthInputPld> => (
-  action(AT.SET_VALUE, payload)
-);
-export const sendRegistrationRequest = (): IReturnedAction => action(AT.SEND_REGISTRATION_REQUEST);
-export const clearRegistrationInputs = (): IReturnedAction => action(AT.CLEAR_INPUTS_VALUES);
+export const setRegistrationValue = (
+  payload: IAuthInputPld,
+): IReturnedAction<IAuthInputPld> => action(AT.SET_VALUE, payload);
+
+export const authSubmit = (
+  payload: IAuthSumbitPayload,
+): IReturnedAction<IAuthSumbitPayload> => action(AT.AUTH_SUBMIT, payload);
+
+export const clearAuthInputsValues = (): IReturnedAction => action(AT.CLEAR_AUTH_INPUTS_VALUES);

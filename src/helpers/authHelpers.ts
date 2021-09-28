@@ -13,12 +13,14 @@ export const typeOfInput = (type: TAuthInput): string => {
 export const setAuthPageProps = (page: TAuthPages): IAuthFormValues => {
   if (page === AuthPages.registration) {
     return {
+      page,
       title: 'sign_up',
       inputKey: AuthInputType,
     };
   }
   if (page === AuthPages.auth) {
     return {
+      page,
       title: 'sign_in',
       inputKey: <IInputKey>Object.values(AuthInputType).reduce((acc, current) => (
         current === AuthInputType.confirm ? { ...acc } : { ...acc, [current]: current }

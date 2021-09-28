@@ -22,6 +22,12 @@ export const AuthInput: React.FC<IProps> = ({ type, value, onChange }) => {
         value={value}
         onChange={handleChangeInput}
         placeholder={`${type}_plh`}
+        width="300px"
+        borderRadius="15px"
+        borderWidth="10px"
+        textAlignInput="center"
+        color='white'
+        inputHeight="60px"
       />
     </div>
   );

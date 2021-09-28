@@ -1,14 +1,15 @@
-import React, {FC} from 'react';
-import {StHeader} from './styled';
-import StLogo from './Logo';
+import React, { FC } from 'react';
+import { StHeader } from './styled';
+import Logo from './Logo';
+import HeaderControlPanel from './HeaderControlPanel';
 
 const Header: FC = () => {
-    return (
-        <StHeader>
-            <StLogo/>
-        </StHeader>
-    );
+  return (
+    <StHeader>
+      <Logo />
+      <HeaderControlPanel/>
+    </StHeader>
+  );
 };
-
 
 export default Header;

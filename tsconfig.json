@@ -33,6 +33,9 @@
       "@common/*": [
         "./src/components/__common__/*"
       ],
+      "@hoc/*": [
+        "./src/components/hoc/*"
+      ],
       "@tests/*": [
         "./__tests__/*"
       ]
