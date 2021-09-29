@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { TAuthInput } from '@src/components/__common__/types/authTypes';
 import { ApplicationState } from '../types';
-import { IAuthState, IAuthSubmitPayload, ILoginPassword } from './types';
+import { IAuthState, ILoginPassword } from './types';
 
 export const authStore = (state: ApplicationState): IAuthState => state.auth;
 export const regValues = createSelector(
