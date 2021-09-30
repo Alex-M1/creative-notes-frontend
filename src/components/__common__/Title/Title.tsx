@@ -10,5 +10,5 @@ export const Title: React.FC<IProps> = ({
   translateKey,
 }) => {
   const { t } = useTranslation();
-  return <STTitle>{t(translateKey)}</STTitle>;
+  return <STTitle fontSize="68px" color='white'>{t(translateKey)}</STTitle>;
 };

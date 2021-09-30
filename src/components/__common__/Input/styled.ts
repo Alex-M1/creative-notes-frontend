@@ -23,7 +23,7 @@ export const StInput = styled.input < IStyledInput >`
     ${({ margin }) => margin && `margin: ${margin}`};
     ${({ borderColor = INPUT_BORDER_COLOR_DEFAULT }) => borderColor && `border: 1px solid ${borderColor}`};
     box-sizing: border-box;
-     font-family: 'Play', sans-serif;
+    text-align: ${({ textAlignInput = 'left' }) => (textAlignInput)};
     ${({ brRadius }) => brRadius && `border-radius: ${brRadius}`};
     background-color: ${({ bgColor = INPUT_BACKGROUND_COLOR_DEFAULT }) => (bgColor)};
     ${({ outlineInput = 'none' }) => outlineInput && `outline: ${outlineInput}`};
@@ -32,8 +32,8 @@ export const StInput = styled.input < IStyledInput >`
     ${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
     color: ${({ color = INPUT_COLOR_DEFAULT }) => color};
     font-size: ${({ fontSizeInp = '14px' }) => fontSizeInp};
-    ${({ textAlignInput }) => textAlignInput && `text-align: ${textAlignInput}`}
-    
+    ${({ textAlignInput }) => textAlignInput && `text-align: ${textAlignInput}`};
+    border-width: ${({ borderWidth = 'medium' }) => borderWidth};;
     ${({ transition = 'all 1000ms ease-in-out' }) => transition && `transition: ${transition}`};
     &:focus {
       ${({ borderColor = INPUT_BORDER_FOCUS_COLOR_DEFAULT }) => borderColor && `border: 1px solid ${borderColor}`};

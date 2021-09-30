@@ -15,12 +15,14 @@ const Input: React.FC<IInput> = ({
   inputHeight,
   borderRadius,
   bgColor,
+  borderWidth,
   padding,
   color,
   bgFocusColor,
   fontSizeInp,
   borderColor,
   placeholder,
+  textAlignInput,
   errorMessage,
 }) => {
   const { t } = useTranslation();
@@ -33,10 +35,12 @@ const Input: React.FC<IInput> = ({
       <StInput
         id={id}
         type={type}
+        borderWidth={borderWidth}
         value={value}
         margin={margin}
         color={color}
         onChange={handleOnchange}
+        textAlignInput={textAlignInput}
         borderRadius={borderRadius}
         inputHeight={inputHeight}
         placeholder={t(placeholder)}

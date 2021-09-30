@@ -11,19 +11,21 @@ export interface IProps {
 }
 
 export const AuthForm: React.FC<IProps> = ({ page }) => {
-  const authProps = setAuthPageProps(page);
+  const { title, inputKey, page: currentPage } = setAuthPageProps(page);
   return (
     <StFlex
       ai="center"
       flexDirection="column"
+      justifyContent="space-evenly"
+      height="80vh"
     >
-      <Title translateKey={authProps.title} />
+      <Title translateKey={title} />
       {
-        Object.values(authProps.inputKey).map(type => (
-          <AuthInput key={type} type={type} />
+        Object.values(inputKey).map(type => (
+          <AuthInput key={type} type={type}/>
         ))
       }
-      <AuthButton translateKey={`${authProps.title}_btn`} />
+      <AuthButton currentPage={currentPage} translateKey={`${title}_btn`} />
     </StFlex>
   );
 };

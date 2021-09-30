@@ -8,7 +8,6 @@ describe('Input', () => {
   beforeEach(() => {
     props = {
       id: 'id',
-      name: 'name',
       width: '100px',
       value: 'value',
       onChange: jest.fn(),

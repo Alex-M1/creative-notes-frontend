@@ -124,6 +124,7 @@ module.exports = {
       '@src': path.resolve(__dirname, 'src'),
       '@helpers': path.resolve(__dirname, 'src/helpers'),
       '@common': path.resolve(__dirname, 'src/components/__common__'),
+      '@hoc': path.resolve(__dirname, 'src/components/hoc'),
     },
   },
   optimization: optimization(),
