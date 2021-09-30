@@ -16,6 +16,7 @@ import { IAuthSubmitPayload } from './types';
 
 export function* watcherRegistration(): SagaIterator {
   yield takeEvery(AT.AUTH_SUBMIT, submitHandler);
+  yeild takeEvery(AT.AUTH_CHECK, authCheckHandler);
 }
 
 export function* submitHandler({ payload }: IReturnedAction<IAuthSubmitPayload>): SagaIterator {
@@ -84,4 +85,9 @@ export function* loginHandler(push: IAuthSubmitPayload['push']): SagaIterator {
   } finally {
     yield put(setIsReady(true));
   }
+}
+
+
+export function* authCheckHandler() {
+  console.log('auth check+redirect');
 }

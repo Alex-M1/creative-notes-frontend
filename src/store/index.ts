@@ -5,9 +5,11 @@ import { authReducer } from './auth/reducer';
 import { userReducer } from './user/reducer';
 import { watcherRegistration } from './auth/sagas';
 import { watcherUser } from './user/sagas';
+import { watcherNotes } from './notes/sagas';
 
 const sagas = [
   watcherUser,
+  watcherNotes,
   watcherRegistration,
 ];
 

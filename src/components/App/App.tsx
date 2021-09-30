@@ -7,6 +7,7 @@ import withUserControl from '../hoc/UserControl';
 import { StGlobalStyle } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
+import MainPage from '../MainPage';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,9 @@ const App: React.FC = () => {
           </Route>
           <Route path={APP_ROUTES.LOGIN} exact>
             <AuthPage page={AuthPages.auth}/>
+          </Route>
+          <Route path={APP_ROUTES.MAIN} exact>
+            <MainPage />
           </Route>
         </Switch>
         <StGlobalStyle/>
