@@ -1,0 +1,13 @@
+{
+  "sign_in": "Авторизация",
+  "sign_up": "Регистрация",
+  "sign_in_btn": "Авторизоваться",
+  "sign_up_btn": "Зарегестрироваться",
+  "login_label": "Логин",
+  "password_label": "Пароль",
+  "confirm_label": "Подтвердите пароль",
+  "login_plh": "Введите ваш логин...",
+  "password_plh": "Введите ваш пароль...",
+  "confirm_plh": "Повторите ваш пароль...",
+  "logo": "Creative Notes"
+}
