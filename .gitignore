@@ -3,4 +3,7 @@
 /dist
 /build
 .eslintcache
+/.idea
+/.vscode
 .idea
+.vscode

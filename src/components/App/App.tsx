@@ -1,5 +1,6 @@
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { AuthPages } from '@constants/auth';
 import { ToastContainer } from 'react-toastify';
@@ -12,32 +13,18 @@ import MainPage from '../MainPage';
 const App: React.FC = () => {
   return (
     <>
-      <BrowserRouter>
-        <Header/>
-        <Switch>
-          <Route path={APP_ROUTES.REGISTRATION} exact>
-            <AuthPage page={AuthPages.registration}/>
-          </Route>
-          <Route path={APP_ROUTES.LOGIN} exact>
-            <AuthPage page={AuthPages.auth}/>
-          </Route>
-          <Route path={APP_ROUTES.MAIN} exact>
-            <MainPage />
-          </Route>
-        </Switch>
-        <StGlobalStyle/>
-      </BrowserRouter>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <Header />
+      <Route path={APP_ROUTES.REGISTRATION} exact>
+        <AuthPage page={AuthPages.registration} />
+      </Route>
+      <Route path={APP_ROUTES.LOGIN} exact>
+        <AuthPage page={AuthPages.auth} />
+      </Route>
+      <Route path={APP_ROUTES.MAIN} exact>
+        <MainPage />
+      </Route>
+      <ToastContainer />
+      <StGlobalStyle />
     </>
   );
 };
