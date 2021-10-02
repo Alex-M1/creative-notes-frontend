@@ -8,18 +8,18 @@ import { loginPasswordValues, regValues } from '@store/auth/selectors';
 import { loginValidation, registrationValidation } from '@helpers/authHelpers';
 import { setIsReady } from '@store/user/actions';
 import { notifications } from '@helpers/notifications';
-import { clearAuthInputsValues } from '@store/auth/actions';
+// import { clearAuthInputsValues } from '@store/auth/actions';
 import { REQUEST_URLS } from '@constants/requestsUrls';
 import { cookieMaster } from '../../helpers/authHelpers';
 import { ActionTypes as AT } from './actionTypes';
-import { IAuthSubmitPayload } from './types';
+// import { IAuthSubmitPayload } from './types';
 
 export function* watcherRegistration(): SagaIterator {
   yield takeEvery(AT.AUTH_SUBMIT, submitHandler);
-  yeild takeEvery(AT.AUTH_CHECK, authCheckHandler);
+  yield takeEvery(AT.AUTH_CHECK, authCheckHandler);
 }
 
-export function* submitHandler({ payload }: IReturnedAction<IAuthSubmitPayload>): SagaIterator {
+export function* submitHandler({ payload }: IReturnedAction<any>): SagaIterator {
   try {
     const { currentPage, push } = payload;
     switch (currentPage) {
@@ -34,7 +34,7 @@ export function* submitHandler({ payload }: IReturnedAction<IAuthSubmitPayload>)
   }
 }
 
-export function* registrationHandler(push: IAuthSubmitPayload['push']): SagaIterator {
+export function* registrationHandler(push): SagaIterator {
   try {
     yield put(setIsReady(false));
 
@@ -48,7 +48,7 @@ export function* registrationHandler(push: IAuthSubmitPayload['push']): SagaIter
 
     if (requestAnswer.status === 201) {
       yield call(notifications, { type: 'success', message: requestAnswer.message });
-      yield put(clearAuthInputsValues());
+      // yield put(clearAuthInputsValues());
       yield call(push, APP_ROUTES.LOGIN);
     } else {
       yield call(notifications, { type: 'error', message: requestAnswer.message });
@@ -60,7 +60,7 @@ export function* registrationHandler(push: IAuthSubmitPayload['push']): SagaIter
   }
 }
 
-export function* loginHandler(push: IAuthSubmitPayload['push']): SagaIterator {
+export function* loginHandler(push): SagaIterator {
   try {
     yield put(setIsReady(false));
 
@@ -70,12 +70,12 @@ export function* loginHandler(push: IAuthSubmitPayload['push']): SagaIterator {
     if (!isValid) return yield call(notifications, { type: 'error', message: errorMessage });
 
     const requestAnswer = yield call(postRequest, REQUEST_URLS.autorization, loginAndPassword);
-    
+
     if (requestAnswer.status === 200) {
       yield call([cookieMaster, 'setTokenInCookie'], requestAnswer.token);
       yield call(notifications, { type: 'success', message: 'success_login' });
       yield call([localStorage, 'setItem'], 'role', requestAnswer.role);
-      yield put(clearAuthInputsValues());
+      // yield put(clearAuthInputsValues());
       yield call(push, APP_ROUTES.MAIN);
     } else {
       yield call(notifications, { type: 'error', message: requestAnswer.message });
@@ -87,7 +87,6 @@ export function* loginHandler(push: IAuthSubmitPayload['push']): SagaIterator {
   }
 }
 
-
 export function* authCheckHandler() {
-  console.log('auth check+redirect');
+  yield console.log('auth check+redirect');
 }
