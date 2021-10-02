@@ -9,3 +9,7 @@ export interface IReturnedAction<P = null> {
 }
 
 export type TReducer<S, A> = Reducer<S, ActionType<A>>;
+
+export interface IHistory{
+  history: History;
+}

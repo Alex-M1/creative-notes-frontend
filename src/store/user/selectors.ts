@@ -12,3 +12,8 @@ export const getCurrentLanguage = createSelector(
   userStore,
   ({ currentLanguage }): string => currentLanguage,
 );
+
+export const getInitStatus = createSelector(
+  userStore,
+  ({ initStatus }): boolean => initStatus,
+);
