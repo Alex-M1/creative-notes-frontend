@@ -4,6 +4,7 @@ import { takeEvery } from 'redux-saga/effects';
 import { REQUEST_URLS } from '@constants/requestsUrls';
 import { io, Socket } from 'socket.io-client';
 import { ActionTypes as AT } from './actionTypes';
+import { actionCheckAuth } from './actions';
 
 export let globalSocket: Socket;
 
