@@ -7,4 +7,6 @@ export enum ActionTypes{
   DISCONNECT = '@@user/DISCONNECT',
   SET_INIT_STATUS = '@@user/SET_INIT_STATUS',
   SET_USER_INFO = '@@user/SET_USER_INFO',
+  EMIT = '@@user/EMIT',
+  SET_ERROR ='@@user/SET_ERROR',
 }

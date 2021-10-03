@@ -74,7 +74,6 @@ export function* loginHandler(): SagaIterator {
     if (requestAnswer.status === 200) {
       yield call([cookieMaster, 'setTokenInCookie'], requestAnswer.token);
       yield call(notifications, { type: 'success', message: 'success_login' });
-      yield call([localStorage, 'setItem'], 'role', requestAnswer.role);
       yield put(clearAuthInputsValues());
       yield put(push(APP_ROUTES.MAIN));
     } else {

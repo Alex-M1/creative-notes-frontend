@@ -11,7 +11,8 @@ export const StGlobalStyle = createGlobalStyle`
     height: ${window.innerHeight}px;
     overflow: hidden;
     background: url(../assets/img/night.jpg);
-    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   #root{
     height: 100%;

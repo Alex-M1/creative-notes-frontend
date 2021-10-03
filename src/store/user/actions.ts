@@ -1,7 +1,7 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { ICheckAuth, IUserInfoPayload, IUserInfo } from './types';
+import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload } from './types';
 
 export const setUserInfo = (
   payload: IUserInfoPayload,
@@ -16,3 +16,8 @@ export const userCheck = (): IReturnedAction => action(AT.USER_CHECK);
 export const contentInitAction = (): IReturnedAction => action(AT.CONTENT_INIT);
 export const checkAuth = (payload: ICheckAuth): IReturnedAction<ICheckAuth> => action(AT.CHECK_AUTH, payload);
 export const disconnect = (): IReturnedAction => action(AT.DISCONNECT);
+
+export const emitAction = (payload: string): IReturnedAction<string> => action(AT.EMIT, payload);
+export const setError = (
+  payload: IErrorPayload,
+): IReturnedAction<string> => action(AT.SET_ERROR, payload.message);

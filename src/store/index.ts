@@ -4,6 +4,7 @@ import { SagaIterator } from '@redux-saga/types';
 import { routerReducer } from 'react-router-redux';
 import { authReducer } from './auth/reducer';
 import { userReducer } from './user/reducer';
+import { postsReducer } from './posts/reducer';
 import { watcherAuth } from './auth/sagas';
 import { watcherUser } from './user/sagas';
 
@@ -20,4 +21,5 @@ export const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   router: routerReducer,
+  posts: postsReducer,
 });

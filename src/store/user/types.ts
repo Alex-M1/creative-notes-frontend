@@ -13,6 +13,10 @@ export interface IUserInfoPayload{
   message: IUserInfo
 }
 
+export interface IErrorPayload{
+  message: string;
+}
+
 export interface IUserInfo{
   age: string;
   city: string;

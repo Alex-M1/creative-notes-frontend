@@ -27,3 +27,8 @@ export const getUserRole = createSelector(
   getUserInfo,
   ({ role }: IUserInfo): string => role,
 );
+
+export const getUserLogin = createSelector(
+  getUserInfo,
+  ({ login }: IUserInfo): string => login,
+);

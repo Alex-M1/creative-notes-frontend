@@ -1,24 +1,31 @@
+import { setPublicPosts } from './../posts/actions';
 import { push } from 'react-router-redux';
 import { takeEvery, call, put, takeLatest, take } from 'redux-saga/effects';
 import { eventChannel, SagaIterator } from 'redux-saga';
 import { REQUEST_URLS } from '@constants/requestsUrls';
 import { io, Socket } from 'socket.io-client';
 import { cookieMaster } from '@helpers/authHelpers';
+import { APP_ROUTES } from '@constants/appRoutes';
+import { WS_EVENTS } from '@constants/wsEvents';
+import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
 import {
+  setError,
   checkAuth,
   setIsReady,
+  emitAction,
   disconnect,
   setUserInfo,
   setInitStatus,
   setCurrentLanguage,
 } from './actions';
-import { APP_ROUTES } from '../../constants/appRoutes';
 import { ActionTypes as AT } from './actionTypes';
 
 export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.USER_CHECK, workerLanguageChecker);
   yield takeEvery(AT.CONTENT_INIT, contentInitHander);
   yield takeEvery(AT.DISCONNECT, disconnectHandler);
+  yield takeLatest(AT.EMIT, emitHandler);
+  yield takeLatest(AT.CHECK_AUTH, checkAuthHandler);
 }
 
 export let globalSocket: Socket;
@@ -29,18 +36,20 @@ export const connect = (token: string): Socket => {
       Authorization: token,
     },
   });
-  globalSocket.on('connection', () => {
-    globalSocket.emit('user_info');
+  globalSocket.on(WS_EVENTS.CONNECTION, () => {
+    globalSocket.emit(WS_EVENTS.USER_INFO);
   });
   return globalSocket;
 };
 
 export const createSocketChannel = (socket: Socket): any => eventChannel((emit) => {
-  socket.on('check_auth', authStatus => emit(checkAuth(authStatus)));
-  socket.on('user_info', userInfo => emit(setUserInfo(userInfo)));
+  socket.on(WS_EVENTS.CHECK_AUTH, authStatus => emit(checkAuth(authStatus)));
+  socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
+  socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
+  socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    socket.off('check_auth', () => {});
+    socket.off(WS_EVENTS.CHECK_AUTH, () => {});
   };
 });
 
@@ -61,6 +70,9 @@ export function* contentInitHander(): SagaIterator {
 }
 
 export function* disconnectHandler(): SagaIterator {
+  if (globalSocket) yield call([globalSocket, 'disconnect']);
+  yield call([cookieMaster, 'deleteTokenFromCookie']);
+  yield call([localStorage, 'removeItem'], 'lang');
   yield put(push(APP_ROUTES.LOGIN));
 }
 
@@ -76,4 +88,23 @@ export function* workerLanguageChecker(): SagaIterator {
   } catch (err) {
     yield call([console, 'error'], err);
   }
+}
+
+export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
+  const token = yield call([cookieMaster, 'getTokenFromCookie']);
+  if (!token) yield put(disconnect());
+  if (globalSocket) {
+    switch (payload) {
+      case WS_EVENTS.GET_PUBLIC_POSTS: 
+        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        break;
+      default: 
+    }
+  }
+}
+
+export function* checkAuthHandler({ payload }: typeof checkAuth): SagaIterator {
+  const token = yield call([cookieMaster, 'getTokenFromCookie']);
+  if (!token) yield put(disconnect());
+  if (payload !== MESSAGES.SUCCESS) yield put(disconnect());
 }
