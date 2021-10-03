@@ -47,7 +47,7 @@ export function* registrationHandler(): SagaIterator {
     const requestAnswer = yield call(postRequest, REQUEST_URLS.registration, registrationBody);
 
     if (requestAnswer.status === 201) {
-      yield call(notifications, { type: 'success', message: requestAnswer.message });
+      yield call(notifications, { type: 'success', message: `${requestAnswer.message}_registration` });
       yield put(clearAuthInputsValues());
       yield put(push(APP_ROUTES.LOGIN));
     } else {

@@ -36,7 +36,7 @@ export const StInput = styled.input < IStyledInput >`
     border-width: ${({ borderWidth = 'medium' }) => borderWidth};;
     ${({ transition = 'all 1000ms ease-in-out' }) => transition && `transition: ${transition}`};
     &:focus {
-      ${({ borderColor = INPUT_BORDER_FOCUS_COLOR_DEFAULT }) => borderColor && `border: 1px solid ${borderColor}`};
+      ${({ borderColor = INPUT_BORDER_FOCUS_COLOR_DEFAULT }) => borderColor && `border-color:${borderColor}`};
     }
     
     &::placeholder {
