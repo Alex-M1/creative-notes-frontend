@@ -14,5 +14,7 @@
   "password_validation": "The password must be from 4 to 12 characters long, consist only of letters and numbers, be sure to contain 1 letter and 1 number",
   "confirm_validation": "Password mismatch",
   "success_registration": "Registration procedure completed successfully!",
-  "success_login": "Authorization procedure completed successfully!"
+  "success_login": "Authorization procedure completed successfully!",
+  "theme": "Theme: ",
+  "author": "Author: "
 }

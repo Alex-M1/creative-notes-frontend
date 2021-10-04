@@ -55,10 +55,10 @@ const PublicPost: FC<IPublicPostProps> = (
           <PublicPostThemeText>{theme}</PublicPostThemeText>
         </PublicPostTheme>
         <PublicPostAuthor>
-          {currentUserLogin === author.login && (<PublicPostAuthorName>{t('author')}</PublicPostAuthorName>)}
-          {currentUserLogin === author.login && (<PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>)}
-          {currentUserLogin === author.login && (<PublicPostAuthorText>{`${author.login}Maxim12`}</PublicPostAuthorText>)}
-          {currentUserRole === ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
+          {currentUserLogin !== author.login && (<PublicPostAuthorName>{t('author')}</PublicPostAuthorName>)}
+          {currentUserLogin !== author.login && (<PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>)}
+          {currentUserLogin !== author.login && (<PublicPostAuthorText>{author.login}</PublicPostAuthorText>)}
+          {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
       <PublicPostContent>
