@@ -97,4 +97,5 @@ export interface StFlexProps extends SizesProps, ColorsProps, PositionProps, Bor
   noSelect?: boolean;
   flex?: string | number;
   overflowX?: CSS.OverflowY;
+  background?: string;
 }

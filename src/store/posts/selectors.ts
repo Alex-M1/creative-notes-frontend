@@ -7,3 +7,13 @@ export const getPublicPosts = createSelector(
   postsStore,
   ({ publicPosts }: IPostsState): IPublicPosts => publicPosts,
 );
+
+export const getCreatePosts = createSelector(
+  postsStore,
+  ({ createPost }) => createPost,
+);
+
+export const getPostTheme = createSelector(
+  getCreatePosts,
+  ({ theme }) => theme,
+);

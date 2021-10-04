@@ -1,4 +1,3 @@
-import { setPublicPosts } from './../posts/actions';
 import { push } from 'react-router-redux';
 import { takeEvery, call, put, takeLatest, take } from 'redux-saga/effects';
 import { eventChannel, SagaIterator } from 'redux-saga';
@@ -8,6 +7,8 @@ import { cookieMaster } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
+import { setPublicPosts } from '../posts/actions';
+
 import {
   setError,
   checkAuth,
@@ -49,7 +50,7 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
   socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    socket.off(WS_EVENTS.CHECK_AUTH, () => {});
+    socket.off(WS_EVENTS.CHECK_AUTH, () => { });
   };
 });
 
@@ -95,10 +96,10 @@ export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
   if (!token) yield put(disconnect());
   if (globalSocket) {
     switch (payload) {
-      case WS_EVENTS.GET_PUBLIC_POSTS: 
+      case WS_EVENTS.GET_PUBLIC_POSTS:
         yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
         break;
-      default: 
+      default:
     }
   }
 }

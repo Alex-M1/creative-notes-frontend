@@ -127,7 +127,7 @@ module.exports = {
     hot: isDev,
     historyApiFallback: true,
   },
-  devtool: isDev ? 'source-map' : '',
+  devtool: isDev ? 'source-map' : false,
   plugins: plugins(),
   module: {
     rules: [

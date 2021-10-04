@@ -13,6 +13,7 @@ export const StGlobalStyle = createGlobalStyle`
     background: url(../assets/img/night.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    color: #fff
   }
   #root{
     height: 100%;
