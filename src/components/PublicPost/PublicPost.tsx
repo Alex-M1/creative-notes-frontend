@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ROLES } from '@constants/roles';
 import { ReactSVG } from 'react-svg';
 import moment from 'moment';
+import { deletePost, likePost } from '@store/user/actions';
+import { useDispatch } from 'react-redux';
 import { IPublicPostProps } from './types';
 
 import {
@@ -23,6 +25,7 @@ import {
   PublicPostAuthorImg,
   PublicPostDeleteBtn,
   PublicPostLikesCount,
+  PublicPostContentText,
 } from './styled';
 
 const PublicPost: FC<IPublicPostProps> = (
@@ -37,8 +40,11 @@ const PublicPost: FC<IPublicPostProps> = (
     currentUserRole,
   }) => {
   const { t } = useTranslation();
-  const prettyDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
-  console.log(prettyDate);
+  const prettyDate = moment(created_at).format('DD MM YYYY hh:mm:ss');
+  const dispatch = useDispatch();
+
+  const handleDeletePost = () => dispatch(deletePost());
+  const handleLikePost = () => dispatch(likePost());
   
   return (
 
@@ -49,13 +55,17 @@ const PublicPost: FC<IPublicPostProps> = (
           <PublicPostThemeText>{theme}</PublicPostThemeText>
         </PublicPostTheme>
         <PublicPostAuthor>
-          <PublicPostAuthorName>{t('author')}</PublicPostAuthorName>
-          <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>
-          {currentUserLogin !== author.login && (<PublicPostAuthorText>{author.login}</PublicPostAuthorText>)}
-          {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
+          {currentUserLogin === author.login && (<PublicPostAuthorName>{t('author')}</PublicPostAuthorName>)}
+          {currentUserLogin === author.login && (<PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>)}
+          {currentUserLogin === author.login && (<PublicPostAuthorText>{`${author.login}Maxim12`}</PublicPostAuthorText>)}
+          {currentUserRole === ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
-      <PublicPostContent>{content}</PublicPostContent>
+      <PublicPostContent>
+        <PublicPostContentText>
+          {content}
+        </PublicPostContentText>
+      </PublicPostContent>
       <PublicPostFooter>
         <PublicPostDate>
           <PublicPostDateText>
@@ -63,7 +73,7 @@ const PublicPost: FC<IPublicPostProps> = (
           </PublicPostDateText>
         </PublicPostDate>
         <PublicPostLikes>
-          <PublicPostLike>
+          <PublicPostLike onClick={handleLikePost}>
             <ReactSVG src="assets/img/like.svg" />
           </PublicPostLike>
           <PublicPostLikesCount>{likes.length}</PublicPostLikesCount>

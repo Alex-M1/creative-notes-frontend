@@ -21,3 +21,6 @@ export const emitAction = (payload: string): IReturnedAction<string> => action(A
 export const setError = (
   payload: IErrorPayload,
 ): IReturnedAction<string> => action(AT.SET_ERROR, payload.message);
+
+export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
+export const likePost = (): IReturnedAction => action(AT.LIKE_POST);

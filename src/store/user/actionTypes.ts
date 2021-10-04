@@ -8,5 +8,7 @@ export enum ActionTypes{
   SET_INIT_STATUS = '@@user/SET_INIT_STATUS',
   SET_USER_INFO = '@@user/SET_USER_INFO',
   EMIT = '@@user/EMIT',
-  SET_ERROR ='@@user/SET_ERROR',
+  SET_ERROR = '@@user/SET_ERROR',
+  DELETE_POST = '@@user/DELETE_POST',
+  LIKE_POST = '@@user/LIKE_POST',
 }

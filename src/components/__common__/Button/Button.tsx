@@ -4,7 +4,7 @@ import { SizesProps, BorderProps, FontProps, PositionProps } from '../styled/typ
 import { StButton } from './styled';
 
 interface IProps extends SizesProps, BorderProps, FontProps, PositionProps {
-  translateKey: string;
+  translateKey?: string;
   onClick: () => void
 }
 

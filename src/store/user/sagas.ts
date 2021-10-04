@@ -1,4 +1,3 @@
-import { setPublicPosts } from './../posts/actions';
 import { push } from 'react-router-redux';
 import { takeEvery, call, put, takeLatest, take } from 'redux-saga/effects';
 import { eventChannel, SagaIterator } from 'redux-saga';
@@ -8,6 +7,7 @@ import { cookieMaster } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
+import { setPublicPosts } from '../posts/actions';
 import {
   setError,
   checkAuth,
@@ -26,6 +26,8 @@ export function* watcherUser(): SagaIterator {
   yield takeEvery(AT.DISCONNECT, disconnectHandler);
   yield takeLatest(AT.EMIT, emitHandler);
   yield takeLatest(AT.CHECK_AUTH, checkAuthHandler);
+  yield takeLatest(AT.DELETE_POST, deletePostHandler);
+  yield takeLatest(AT.LIKE_POST, likePostHandler);
 }
 
 export let globalSocket: Socket;
@@ -90,7 +92,7 @@ export function* workerLanguageChecker(): SagaIterator {
   }
 }
 
-export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
+export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIterator {
   const token = yield call([cookieMaster, 'getTokenFromCookie']);
   if (!token) yield put(disconnect());
   if (globalSocket) {
@@ -103,8 +105,18 @@ export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
   }
 }
 
-export function* checkAuthHandler({ payload }: typeof checkAuth): SagaIterator {
+export function* checkAuthHandler({ payload }: ReturnType<typeof checkAuth>): SagaIterator {
   const token = yield call([cookieMaster, 'getTokenFromCookie']);
   if (!token) yield put(disconnect());
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   if (payload !== MESSAGES.SUCCESS) yield put(disconnect());
+}
+
+export function* deletePostHandler(): SagaIterator {
+  yield call([console, 'log'], 'deletepostLogic');
+}
+
+export function* likePostHandler(): SagaIterator {
+  yield call([console, 'log'], 'likeLogic');
 }

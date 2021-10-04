@@ -3,8 +3,10 @@ import Button from '@src/components/__common__/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentLanguage } from '@store/user/selectors';
 import { useTranslation } from 'react-i18next';
-import { setCurrentLanguage } from '@store/user/actions';
-import { STHeaderControlPanelWrapper, STHeaderContolPanel } from './styled';
+import { disconnect, setCurrentLanguage } from '@store/user/actions';
+import { TRANSPARENT } from '@constants/colors';
+import { ReactSVG } from 'react-svg';
+import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout } from './styled';
 
 const HeaderControlPanel: FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,8 @@ const HeaderControlPanel: FC = () => {
     localStorage.setItem('lang', language.new);
   };
 
+  const handleDisconnect = () => dispatch(disconnect());
+
   return (
     <STHeaderControlPanelWrapper>
       <STHeaderContolPanel>
@@ -29,11 +33,17 @@ const HeaderControlPanel: FC = () => {
           onClick={handleLanguageChange}
           fontSize="35px"
           height="100%"
-          backgroundColor="black"
+          backgroundColor={TRANSPARENT}
           color="white"
           border="none"
           cursorPointer
         />
+        <Logout
+          onClick={handleDisconnect}
+        >
+          <img src="assets/img/logout.png" />
+        </Logout>
+        
       </STHeaderContolPanel>
     </STHeaderControlPanelWrapper>
   );
