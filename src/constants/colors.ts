@@ -8,6 +8,15 @@ export enum DEFAULT_COLORS {
   blue= '#0000FF',
 }
 
+export const colors = {
+  dark: {
+
+  },
+  light: {
+
+  },
+};
+
 export const INPUT_BACKGROUND_COLOR_DEFAULT = DEFAULT_COLORS.transparent;
 export const INPUT_COLOR_DEFAULT = DEFAULT_COLORS.darkGrey;
 export const INPUT_BORDER_COLOR_DEFAULT = DEFAULT_COLORS.darkGrey;
