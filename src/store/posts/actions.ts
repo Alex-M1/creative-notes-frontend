@@ -10,3 +10,5 @@ export const setPublicPosts = (
 export const setPostTheme = (
   payload: T.TThemes,
 ): IReturnedAction<T.TThemes> => action(AT.SET_POST_THEME, payload);
+
+export const setPostValue = (payload: string): IReturnedAction<string> => action(AT.SET_POST_VALUE, payload);

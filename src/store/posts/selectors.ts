@@ -17,3 +17,8 @@ export const getPostTheme = createSelector(
   getCreatePosts,
   ({ theme }) => theme,
 );
+
+export const getCreatePostValue = createSelector(
+  getCreatePosts,
+  ({ value }) => value,
+);

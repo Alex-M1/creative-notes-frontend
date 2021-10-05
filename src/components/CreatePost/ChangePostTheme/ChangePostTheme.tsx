@@ -9,6 +9,5 @@ interface IProps {
 
 export const ChangePostTheme: React.FC<IProps> = ({ theme, setPostTheme }) => {
   const handleChangeTheme = (theme: string) => setPostTheme(theme);
-
   return <Select onChange={handleChangeTheme} value={theme} options={CREATE_THEME_OPTIONS} />;
 };

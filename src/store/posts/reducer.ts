@@ -12,6 +12,7 @@ export const initialState: IPostsState = {
   },
   createPost: {
     theme: ThemesKey.work,
+    value: '',
   },
 };
 
@@ -24,6 +25,14 @@ export const postsReducer: TReducer<IPostsState, typeof actions> = (state = init
         createPost: {
           ...state.createPost,
           theme: action.payload,
+        },
+      };
+    case AT.SET_POST_VALUE:
+      return {
+        ...state,
+        createPost: {
+          ...state.createPost,
+          value: action.payload,
         },
       };
     default: return state;

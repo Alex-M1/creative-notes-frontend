@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { StFlex } from '../styled/Blocs';
+import { ModalHeader } from './ModalHeader';
 
 interface IProps {
   children: JSX.Element
@@ -21,7 +22,9 @@ export const ModalWrapper: React.FC<IProps> = ({ children }) => {
         background='rgba(0,0,0,.6)'
         jc="center"
         ai="center"
+        flexDirection='column'
       >
+        <ModalHeader headerKey='sdasda' />
         {children}
       </StFlex>
     </Portal>
