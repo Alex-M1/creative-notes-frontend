@@ -2,19 +2,18 @@ import React from 'react';
 import ModalWrapper from '../__common__/ModalWrapper';
 import { StFlex } from '../__common__/styled/Blocs';
 import ChangePostTheme from './ChangePostTheme';
-// import PostInput from './PostInput';
+import CreatePostButtons from './CreatePostButtons';
+import PostInput from './PostInput';
 
 export const CreatePost: React.FC = () => {
   return (
-    <ModalWrapper>
+    <ModalWrapper headerKey="create_post_modal_header">
       <StFlex
-        // background='red'
-        border="3px solid #fff"
-        borderRadius="7px"
         flexDirection="column"
       >
         <ChangePostTheme />
-        {/* <PostInput /> */}
+        <PostInput />
+        <CreatePostButtons />
       </StFlex>
     </ModalWrapper >
   );

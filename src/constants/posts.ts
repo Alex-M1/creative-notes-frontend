@@ -15,3 +15,11 @@ export const CREATE_THEME_OPTIONS: Array<ISelect> = [
   { label: ThemesKey.think, value: ThemesKey.think },
   { label: ThemesKey.tehnology, value: ThemesKey.tehnology },
 ];
+
+export enum PostStatus {
+  PENDING = 'pending',
+  PRIVATE = 'private',
+  PUBLIC = 'public'
+}
+
+export const PER_PAGE = 10;

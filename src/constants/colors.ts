@@ -10,10 +10,20 @@ export enum DEFAULT_COLORS {
 
 export const colors = {
   dark: {
-
+    color: '#fff',
+    selectBorder: '#fff',
+    selectBg: 'rgba(0,0,0, .7)',
+    textAreaBg: 'rgba(0,0,0, .7)',
+    buttonBg: 'rgba(70, 145, 169, .5)',
+    buttonHover: 'rgba(46, 97, 113, 0.5)',
   },
   light: {
-
+    color: '#fff',
+    selectBorder: '#fff',
+    selectBg: 'rgba(0,0,0, .7)',
+    textAreaBg: 'rgba(0,0,0, .7)',
+    buttonBg: 'rgba(70, 145, 169, .5)',
+    buttonHover: 'rgba(46, 97, 113, 0.5)',
   },
 };
 

@@ -1,18 +1,20 @@
 import React from 'react';
-import { StGrid } from '../styled/Blocs';
+import { useTranslation } from 'react-i18next';
+import { StFlex } from '../styled/Blocs';
 
 interface IProps {
   headerKey: string;
 }
 
 export const ModalHeader: React.FC<IProps> = ({ headerKey }) => {
+  const { t } = useTranslation();
   return (
-    <StGrid
-      align="center"
-      columns="4fr 1fr"
+    <StFlex
+      ai="center"
+      jc="center"
+      marginBottom="15px"
     >
-      <h1>{headerKey}</h1>
-      <span>X</span>
-    </StGrid>
+      <h1>{t(headerKey)}</h1>
+    </StFlex>
   );
 };

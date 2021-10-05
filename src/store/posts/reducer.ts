@@ -7,7 +7,7 @@ import * as actions from './actions';
 export const initialState: IPostsState = {
   publicPosts: {
     posts: [],
-    page: 0,
+    page: 1,
     total_page: 0,
   },
   createPost: {

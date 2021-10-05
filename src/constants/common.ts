@@ -12,4 +12,5 @@ export const defaultPublicPostsBody: IDefaultPublicPostsBody = {
 
 export enum MESSAGES{
   SUCCESS = 'success',
+  ERROR = 'Something has been wrong...'
 }
