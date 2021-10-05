@@ -5,6 +5,7 @@ import { ReactSVG } from 'react-svg';
 import moment from 'moment';
 import { deletePost, likePost } from '@store/user/actions';
 import { useDispatch } from 'react-redux';
+import { useTheme } from '@hoc/withTheme';
 import { IPublicPostProps } from './types';
 
 import {
@@ -30,15 +31,15 @@ import {
 
 const PublicPost: FC<IPublicPostProps> = (
   {
-    theme,
+    theme: postTheme,
     likes,
     author,
     content,
     img,
     created_at,
-    currentUserLogin,
     currentUserRole,
   }) => {
+  const themeProps = useTheme();
   const { t } = useTranslation();
   const prettyDate = moment(created_at).format('DD MM YYYY hh:mm:ss');
   const dispatch = useDispatch();
@@ -48,16 +49,24 @@ const PublicPost: FC<IPublicPostProps> = (
   
   return (
 
-    <PublicPostWrapper>
-      <PublicPostHeader>
+    <PublicPostWrapper {...themeProps}>
+      <PublicPostHeader {...themeProps}>
         <PublicPostTheme>
-          <PublicPostThemeName>{t('theme')}</PublicPostThemeName>
-          <PublicPostThemeText>{theme}</PublicPostThemeText>
+          <PublicPostThemeName
+            {...themeProps}
+          >
+            {t('theme')}
+          </PublicPostThemeName>
+          <PublicPostThemeText
+            {...themeProps}
+          >
+            {postTheme}
+          </PublicPostThemeText>
         </PublicPostTheme>
         <PublicPostAuthor>
-          {currentUserLogin !== author.login && (<PublicPostAuthorName>{t('author')}</PublicPostAuthorName>)}
-          {currentUserLogin !== author.login && (<PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>)}
-          {currentUserLogin !== author.login && (<PublicPostAuthorText>{author.login}</PublicPostAuthorText>)}
+          <PublicPostAuthorName {...themeProps}>{t('author')}</PublicPostAuthorName>
+          <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} />
+          <PublicPostAuthorText {...themeProps}>{author.login}</PublicPostAuthorText>
           {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
@@ -68,7 +77,9 @@ const PublicPost: FC<IPublicPostProps> = (
       </PublicPostContent>
       <PublicPostFooter>
         <PublicPostDate>
-          <PublicPostDateText>
+          <PublicPostDateText
+            {...themeProps}
+          >
             {prettyDate}
           </PublicPostDateText>
         </PublicPostDate>
@@ -76,7 +87,11 @@ const PublicPost: FC<IPublicPostProps> = (
           <PublicPostLike onClick={handleLikePost}>
             <ReactSVG src="assets/img/like.svg" />
           </PublicPostLike>
-          <PublicPostLikesCount>{likes.length}</PublicPostLikesCount>
+          <PublicPostLikesCount
+            {...themeProps}
+          >
+            {likes.length}
+          </PublicPostLikesCount>
         </PublicPostLikes>
       </PublicPostFooter>
     </PublicPostWrapper>

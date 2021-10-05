@@ -5,7 +5,6 @@ import { getCurrentLanguage } from '@store/user/selectors';
 import { useTranslation } from 'react-i18next';
 import { disconnect, setCurrentLanguage } from '@store/user/actions';
 import { TRANSPARENT } from '@constants/colors';
-import { ReactSVG } from 'react-svg';
 import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout } from './styled';
 
 const HeaderControlPanel: FC = () => {
