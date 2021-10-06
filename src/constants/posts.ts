@@ -5,7 +5,7 @@ export enum ThemesKey {
   art = 'art',
   work = 'work',
   think = 'think',
-  tehnology = 'tehnilogy'
+  tehnology = 'tehnology'
 }
 
 export const CREATE_THEME_OPTIONS: Array<ISelect> = [

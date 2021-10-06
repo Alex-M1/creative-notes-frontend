@@ -10,7 +10,7 @@ export const STHeaderControlPanelWrapper = styled.div`
 export const STHeaderContolPanel = styled.div`
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -19,6 +19,7 @@ export const Logout = styled.span`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding-left:30px;
   img {
       height: 50px;
       width: 50px;
