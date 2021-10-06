@@ -16,4 +16,7 @@ export const StButton = styled.button<BorderProps & SizesProps & PositionProps &
   &:hover{
     background-color: ${({ colors, theme }) => colors[theme].buttonHover};
   }
+  &:disabled{
+    background-color: ${({ colors, theme }) => colors[theme].disabled};
+  }
 `;

@@ -7,6 +7,7 @@ import { StButton } from './styled';
 interface IProps extends SizesProps, BorderProps, FontProps, PositionProps {
   translateKey: string;
   onClick: () => void;
+  disabled?: boolean;
   backgroundColor?: string;
   borderRadius?: string;
 }
@@ -17,6 +18,7 @@ export const Button: React.FC<IProps> = ({
   onClick,
   translateKey,
   borderRadius = '6px',
+  disabled,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -30,6 +32,7 @@ export const Button: React.FC<IProps> = ({
       textAlign={textAlign}
       onClick={onClick}
       borderRadius={borderRadius}
+      disabled={disabled}
       {...props}
     >
       {t(translateKey)}

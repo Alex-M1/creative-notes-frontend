@@ -28,7 +28,8 @@ export interface IPostAuthor {
 
 export interface ICreatePost {
   theme: TThemes;
-  value: string
+  value: string,
+  isSendPost: boolean;
 }
 
 export type TThemes = ThemesKey.art | ThemesKey.music | ThemesKey.tehnology | ThemesKey.think | ThemesKey.work;

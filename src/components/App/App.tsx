@@ -9,13 +9,11 @@ import { StGlobalStyle } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
 import MainPage from '../MainPage';
-import CreatePost from '../CreatePost';
 
 const App: React.FC = () => {
   return (
     <>
       <Header />
-      <CreatePost />
       <Route path={APP_ROUTES.REGISTRATION} exact>
         <AuthPage page={AuthPages.registration} />
       </Route>

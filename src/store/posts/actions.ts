@@ -15,3 +15,6 @@ export const setPostValue = (payload: string): IReturnedAction<string> => action
 
 export const privatePostRequest = (): IReturnedAction<void> => action(AT.PRIVATE_POST_REQUEST);
 export const publishPostRequest = (): IReturnedAction<void> => action(AT.PUBLISH_POST_REQUEST);
+export const setIsSendPost = (payload: boolean): IReturnedAction<boolean> => (
+  action(AT.SET_IS_SEND_POST, payload)
+);

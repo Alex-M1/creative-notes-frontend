@@ -16,6 +16,7 @@ export const colors = {
     textAreaBg: 'rgba(0,0,0, .7)',
     buttonBg: 'rgba(70, 145, 169, .5)',
     buttonHover: 'rgba(46, 97, 113, 0.5)',
+    disabled: 'rgba(168, 191, 199,.5)',
   },
   light: {
     color: '#fff',
@@ -24,6 +25,7 @@ export const colors = {
     textAreaBg: 'rgba(0,0,0, .7)',
     buttonBg: 'rgba(70, 145, 169, .5)',
     buttonHover: 'rgba(46, 97, 113, 0.5)',
+    disabled: 'rgba(168, 191, 199,.5)',
   },
 };
 

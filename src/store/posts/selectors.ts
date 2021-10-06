@@ -25,3 +25,8 @@ export const getCreatePostValue = createSelector(
   getCreatePosts,
   ({ value }) => value,
 );
+
+export const getIsSendPost = createSelector(
+  getCreatePosts,
+  ({ isSendPost }) => isSendPost,
+);

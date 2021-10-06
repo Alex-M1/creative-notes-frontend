@@ -13,6 +13,7 @@ export const initialState: IPostsState = {
   createPost: {
     theme: ThemesKey.work,
     value: '',
+    isSendPost: false,
   },
 };
 
@@ -33,6 +34,15 @@ export const postsReducer: TReducer<IPostsState, typeof actions> = (state = init
         createPost: {
           ...state.createPost,
           value: action.payload,
+        },
+      };
+    case AT.SET_IS_SEND_POST:
+      return {
+        ...state,
+        createPost: {
+          ...state.createPost,
+          isSendPost: action.payload,
+          value: action.payload ? state.createPost.value : '',
         },
       };
     default: return state;

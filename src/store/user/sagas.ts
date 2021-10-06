@@ -11,7 +11,7 @@ import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selector
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
-import { setPublicPosts } from '../posts/actions';
+import { setIsSendPost, setPublicPosts } from '../posts/actions';
 
 import {
   setError,
@@ -34,6 +34,7 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.EMIT, emitHandler);
   yield takeLatest(AT.CHECK_AUTH, checkAuthHandler);
   yield takeEvery(PostAT.PUBLISH_POST_REQUEST, publishPostRequest);
+  yield takeEvery(PostAT.PRIVATE_POST_REQUEST, privatePostRequest);
 }
 
 export let globalSocket: Socket;
@@ -126,6 +127,7 @@ export function* publishPostRequest(): SagaIterator {
     if (!postValue) {
       return yield call(notifications, { message: 'empty_content' });
     }
+    yield put(setIsSendPost(true));
     yield call([globalSocket, 'emit'], WS_EVENTS.CREATE_POST, {
       theme: postTheme,
       content: postValue,
@@ -136,5 +138,31 @@ export function* publishPostRequest(): SagaIterator {
     yield call(notifications, { type: 'success', message: role === ROLES.SUPER_ADMIN ? 'post_published' : 'pending_post' });
   } catch {
     yield call(notifications, { message: 'error' });
+  } finally {
+    yield put(setIsSendPost(false));
+  }
+}
+
+export function* privatePostRequest(): SagaIterator {
+  try {
+    const postTheme = yield select(getPostTheme);
+    const postValue = yield select(getCreatePostValue);
+    const page = yield select(getPage);
+    if (!postValue) {
+      return yield call(notifications, { message: 'empty_content' });
+    }
+    yield put(setIsSendPost(true));
+    yield call([globalSocket, 'emit'], WS_EVENTS.CREATE_POST, {
+      theme: postTheme,
+      content: postValue,
+      status: PostStatus.PRIVATE,
+      page,
+      per_page: PER_PAGE,
+    });
+    yield call(notifications, { type: 'success', message: 'post_published' });
+  } catch {
+    yield call(notifications, { message: 'error' });
+  } finally {
+    yield put(setIsSendPost(false));
   }
 }
