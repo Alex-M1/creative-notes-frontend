@@ -5,16 +5,11 @@ import { SizesProps, BorderProps, FontProps, PositionProps } from '../styled/typ
 import { StButton } from './styled';
 
 interface IProps extends SizesProps, BorderProps, FontProps, PositionProps {
-<<<<<<< HEAD
-  translateKey: string;
   onClick: () => void;
   disabled?: boolean;
   backgroundColor?: string;
   borderRadius?: string;
-=======
   translateKey?: string;
-  onClick: () => void
->>>>>>> websocket_connect
 }
 export const Button: React.FC<IProps> = ({
   width = '100px',

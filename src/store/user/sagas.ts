@@ -7,16 +7,11 @@ import { cookieMaster } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
-<<<<<<< HEAD
 import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selectors';
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
 import { setIsSendPost, setPublicPosts } from '../posts/actions';
-
-=======
-import { setPublicPosts } from '../posts/actions';
->>>>>>> websocket_connect
 import {
   setError,
   checkAuth,
@@ -180,5 +175,5 @@ export function* deletePostHandler(): SagaIterator {
 }
 
 export function* likePostHandler(): SagaIterator {
-    yield call([console, 'log'], 'likeLogic');
-  }
+  yield call([console, 'log'], 'likeLogic');
+}
