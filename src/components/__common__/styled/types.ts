@@ -1,4 +1,4 @@
-import { DEFAULT_COLORS } from '@constants/colors';
+import { colors, DEFAULT_COLORS } from '@constants/colors';
 import { Property as CSS } from 'csstype';
 
 export interface IStGrid extends SizesProps, ColorsProps, PositionProps, BorderProps, FontProps {
@@ -97,4 +97,10 @@ export interface StFlexProps extends SizesProps, ColorsProps, PositionProps, Bor
   noSelect?: boolean;
   flex?: string | number;
   overflowX?: CSS.OverflowY;
+  background?: string;
+}
+
+export interface ITheme {
+  theme: 'dark' | 'light',
+  colors: typeof colors
 }

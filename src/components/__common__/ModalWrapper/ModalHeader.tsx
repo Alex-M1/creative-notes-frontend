@@ -1,18 +1,32 @@
 import React from 'react';
-import { StGrid } from '../styled/Blocs';
+import { useTranslation } from 'react-i18next';
+import { StFlex } from '../styled/Blocs';
 
 interface IProps {
   headerKey: string;
+  onClose: () => void
 }
 
-export const ModalHeader: React.FC<IProps> = ({ headerKey }) => {
+export const ModalHeader: React.FC<IProps> = ({ headerKey, onClose }) => {
+  const { t } = useTranslation();
   return (
-    <StGrid
-      align="center"
-      columns="4fr 1fr"
+    <StFlex
+      ai="center"
+      jc="center"
+      marginBottom="15px"
+      position='relative'
     >
-      <h1>{headerKey}</h1>
-      <span>X</span>
-    </StGrid>
+      <h1>{t(headerKey)}</h1>
+      <StFlex
+        position='absolute'
+        color='#fff'
+        right='0'
+        fontSize='24px'
+        cursor='pointer'
+        onClick={onClose}
+      >
+        ✖
+      </StFlex>
+    </StFlex >
   );
 };

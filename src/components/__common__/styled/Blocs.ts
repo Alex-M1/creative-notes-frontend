@@ -22,5 +22,6 @@ export const StFlex = styled.div<T.StFlexProps>`
     ${mixins.fontStyles};
     ${props => props.cursor && `cursor: ${props.cursor};`};
     ${props => props.overflowX && `overflow-x: ${props.overflowX}`};
+    ${props => props.background && `background: ${props.background}`}
   }
 `;

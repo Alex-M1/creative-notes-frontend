@@ -14,5 +14,14 @@
   "password_validation": "The password must be from 4 to 12 characters long, consist only of letters and numbers, be sure to contain 1 letter and 1 number",
   "confirm_validation": "Password mismatch",
   "success_registration": "Registration procedure completed successfully!",
-  "success_login": "Authorization procedure completed successfully!"
+  "success_login": "Authorization procedure completed successfully!",
+  "create_post_modal_header": "Create post",
+  "post_theme": "Choose theme",
+  "publish_post": "Publish post",
+  "private_post": "To private",
+  "create_post_plh": "Write something good...",
+  "empty_content": "Content cannot be empty",
+  "post_published": "Post published",
+  "pending_post": "Your post has been sent for processing",
+  "error": "Something has been wrong"
 }
