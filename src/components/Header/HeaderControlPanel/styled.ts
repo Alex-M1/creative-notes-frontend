@@ -10,7 +10,7 @@ export const STHeaderControlPanelWrapper = styled.div`
 export const STHeaderContolPanel = styled.div`
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
 `;
 

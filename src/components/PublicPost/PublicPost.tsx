@@ -60,7 +60,7 @@ const PublicPost: FC<IPublicPostProps> = (
           <PublicPostThemeText
             {...themeProps}
           >
-            {postTheme}
+            {t(postTheme)}
           </PublicPostThemeText>
         </PublicPostTheme>
         <PublicPostAuthor>

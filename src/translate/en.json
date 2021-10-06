@@ -25,5 +25,11 @@
   "pending_post": "Your post has been sent for processing",
   "error": "Something has been wrong",
   "theme": "Theme: ",
-  "author": "Author: "
+  "author": "Author: ",
+  "hunting": "Hunting",
+  "music": "Music",
+  "art": "Art",
+  "work": "Work",
+  "think": "Think",
+  "tehnology": "Tehnilogy"
 }

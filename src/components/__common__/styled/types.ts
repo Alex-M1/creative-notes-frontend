@@ -104,8 +104,3 @@ export interface StFlexProps extends SizesProps, ColorsProps, PositionProps, Bor
   overflowX?: CSS.OverflowY;
   background?: string;
 }
-
-export interface ITheme {
-  theme: 'dark' | 'light',
-  colors: typeof colors
-}

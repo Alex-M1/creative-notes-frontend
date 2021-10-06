@@ -4,13 +4,17 @@ import { Route } from 'react-router';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { AuthPages } from '@constants/auth';
 import { ToastContainer } from 'react-toastify';
+import { getInitStatus } from '@store/user/selectors';
+import { useSelector } from 'react-redux';
 import withUserControl from '../hoc/UserControl';
-import { StGlobalStyle } from './styled';
+import { StGlobalStyle, StAbsoluteWrapper } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
 import MainPage from '../MainPage';
+import CreatePost from '../CreatePost';
 
 const App: React.FC = () => {
+  const initStatus = useSelector(getInitStatus);
   return (
     <>
       <Header />
@@ -24,6 +28,15 @@ const App: React.FC = () => {
         <MainPage />
       </Route>
       <ToastContainer />
+      {initStatus && (
+        <StAbsoluteWrapper
+          position="absolute"
+          bottom="5%"
+          right="5%"
+        >
+          <CreatePost />
+        </StAbsoluteWrapper>
+      )}
       <StGlobalStyle />
     </>
   );

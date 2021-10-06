@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 export const notifications = (options: INotifications): void => {
   const { type, time, message } = options;
   toast[type || 'error'](i18next.t(message), {
-    position: 'bottom-right',
+    position: 'top-right',
     autoClose: time || 5000,
     hideProgressBar: false,
     closeOnClick: true,

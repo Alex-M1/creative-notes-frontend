@@ -83,6 +83,7 @@ export function* disconnectHandler(): SagaIterator {
   if (globalSocket) yield call([globalSocket, 'disconnect']);
   yield call([cookieMaster, 'deleteTokenFromCookie']);
   yield call([localStorage, 'removeItem'], 'lang');
+  yield put(setInitStatus(false));
   yield put(push(APP_ROUTES.LOGIN));
 }
 

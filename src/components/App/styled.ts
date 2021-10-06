@@ -1,4 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { PositionProps } from '@common/styled/types';
+import { positionStyles } from '@common/styled/mixsins';
 
 export const StGlobalStyle = createGlobalStyle`
   *{
@@ -22,4 +24,11 @@ export const StGlobalStyle = createGlobalStyle`
   a{
     text-decoration: none;
   }
+`;
+
+export const StAbsoluteWrapper = styled.div<PositionProps>`
+  &&&&{
+    ${positionStyles}
+  }
+ 
 `;

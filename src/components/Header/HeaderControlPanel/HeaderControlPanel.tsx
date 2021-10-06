@@ -32,6 +32,7 @@ const HeaderControlPanel: FC = () => {
           onClick={handleLanguageChange}
           fontSize="35px"
           height="100%"
+          width="80px"
           backgroundColor={TRANSPARENT}
           color="white"
           border="none"
