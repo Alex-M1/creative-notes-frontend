@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
-import { StHeader } from './styled';
+import { StHeader, StHeaderContent } from './styled';
 import Logo from './Logo';
 import HeaderControlPanel from './HeaderControlPanel';
 
 const Header: FC = () => {
   return (
     <StHeader>
-      <Logo />
-      <HeaderControlPanel/>
+      <StHeaderContent>
+        <Logo />
+        <HeaderControlPanel/>
+      </StHeaderContent>
     </StHeader>
   );
 };

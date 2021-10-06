@@ -9,5 +9,12 @@
   "login_plh": "Enter your login...",
   "password_plh": "Enter your password...",
   "confirm_plh": "Confirm password...",
-  "logo": "Creative Notes"
+  "logo": "Creative Notes",
+  "login_validation": "The login should only consist of letters and numbers from 4 to 12 characters long",
+  "password_validation": "The password must be from 4 to 12 characters long, consist only of letters and numbers, be sure to contain 1 letter and 1 number",
+  "confirm_validation": "Password mismatch",
+  "success_registration": "Registration procedure completed successfully!",
+  "success_login": "Authorization procedure completed successfully!",
+  "theme": "Theme: ",
+  "author": "Author: "
 }

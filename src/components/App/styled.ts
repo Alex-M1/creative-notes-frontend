@@ -6,12 +6,14 @@ export const StGlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    -webkit-text-stroke: 0.1px black;
   }
   body {
     height: ${window.innerHeight}px;
     overflow: hidden;
     background: url(../assets/img/night.jpg);
-    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   #root{
     height: 100%;

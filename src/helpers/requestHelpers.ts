@@ -1,7 +1,8 @@
+import { REQUEST_URLS } from '@constants/requestsUrls';
 //TODO after we understand all request models we can typed body, for time - any
 export const postRequest = async (url: string, body: any): Promise<any> => {
   try {
-    const answer = await fetch(url, {
+    const answer = await fetch(`${REQUEST_URLS.baseUrl}${url}`, {
       body: JSON.stringify(body), 
       method: 'POST',
       mode: 'cors',
