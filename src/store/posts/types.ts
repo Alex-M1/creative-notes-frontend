@@ -18,7 +18,8 @@ export interface IPublicPost {
   content: string;
   created_at: number;
   theme: string;
-  likes: string[];
+  likes: [] | string[];
+  img?: string;
 }
 
 export interface IPostAuthor {

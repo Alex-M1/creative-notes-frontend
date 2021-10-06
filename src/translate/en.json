@@ -23,5 +23,7 @@
   "empty_content": "Content cannot be empty",
   "post_published": "Post published",
   "pending_post": "Your post has been sent for processing",
-  "error": "Something has been wrong"
+  "error": "Something has been wrong",
+  "theme": "Theme: ",
+  "author": "Author: "
 }

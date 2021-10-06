@@ -1,5 +1,5 @@
-import { DEFAULT_COLORS } from '@constants/colors';
 import styled from 'styled-components';
+import { ITheme } from '@common/styled/types';
 
 export const MainPageWrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const MainPageWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const PublicPostsWrapper = styled.div`
+export const PublicPostsWrapper = styled.div<ITheme>`
   width: 60vw;
   height: 85vh;
   padding:5px;
@@ -23,7 +23,7 @@ export const PublicPostsWrapper = styled.div`
         }
             ::-webkit-scrollbar-thumb {
               width: 7px;
-              background-color: ${DEFAULT_COLORS.lightGrey}
+                background-color: ${({ colors, theme }) => colors[theme].publicPostBorder};
             }
 `;
 

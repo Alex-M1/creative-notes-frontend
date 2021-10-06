@@ -1,11 +1,11 @@
 export enum DEFAULT_COLORS {
-  lightGrey = '#D4AFCD',
+  lightGrey = '#D3D3D3',
   darkGrey = '#2E6171',
   black = '#000000',
   white = '#FFFFFF',
   transparent = 'transparent',
   transparentGrey = 'rgba(46, 97, 113, 0.5)',
-  blue = '#d774f2',
+  blue= '#0000FF',
 }
 
 export const colors = {
@@ -17,6 +17,10 @@ export const colors = {
     buttonBg: 'rgba(70, 145, 169, .5)',
     buttonHover: 'rgba(46, 97, 113, 0.5)',
     disabled: 'rgba(168, 191, 199,.5)',
+    publicPostBorder: '#D3D3D3',
+    publicPostText: '#D3D3D3',
+    publicPostRubric: '#2E6171',
+    publicPostDate: '#0000FF',
   },
   light: {
     color: '#fff',
@@ -26,6 +30,10 @@ export const colors = {
     buttonBg: 'rgba(70, 145, 169, .5)',
     buttonHover: 'rgba(46, 97, 113, 0.5)',
     disabled: 'rgba(168, 191, 199,.5)',
+    publicPostBorder: '#D3D3D3',
+    publicPostText: '#D3D3D3',
+    publicPostRubric: '#2E6171',
+    publicPostDate: '#0000FF',
   },
 };
 

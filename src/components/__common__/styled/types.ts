@@ -1,6 +1,11 @@
 import { colors, DEFAULT_COLORS } from '@constants/colors';
 import { Property as CSS } from 'csstype';
 
+export interface ITheme{
+  theme: 'dark' | 'light',
+  colors: typeof colors,
+}
+
 export interface IStGrid extends SizesProps, ColorsProps, PositionProps, BorderProps, FontProps {
   columns?: string;
   gap?: string;

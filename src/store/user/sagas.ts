@@ -7,12 +7,16 @@ import { cookieMaster } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
+<<<<<<< HEAD
 import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selectors';
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
 import { setIsSendPost, setPublicPosts } from '../posts/actions';
 
+=======
+import { setPublicPosts } from '../posts/actions';
+>>>>>>> websocket_connect
 import {
   setError,
   checkAuth,
@@ -35,6 +39,8 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.CHECK_AUTH, checkAuthHandler);
   yield takeEvery(PostAT.PUBLISH_POST_REQUEST, publishPostRequest);
   yield takeEvery(PostAT.PRIVATE_POST_REQUEST, privatePostRequest);
+  yield takeLatest(AT.DELETE_POST, deletePostHandler);
+  yield takeLatest(AT.LIKE_POST, likePostHandler);
 }
 
 export let globalSocket: Socket;
@@ -99,7 +105,7 @@ export function* workerLanguageChecker(): SagaIterator {
   }
 }
 
-export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
+export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIterator {
   const token = yield call([cookieMaster, 'getTokenFromCookie']);
   if (!token) yield put(disconnect());
   if (globalSocket) {
@@ -112,9 +118,11 @@ export function* emitHandler({ payload }: typeof emitAction): SagaIterator {
   }
 }
 
-export function* checkAuthHandler({ payload }: typeof checkAuth): SagaIterator {
+export function* checkAuthHandler({ payload }: ReturnType<typeof checkAuth>): SagaIterator {
   const token = yield call([cookieMaster, 'getTokenFromCookie']);
   if (!token) yield put(disconnect());
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   if (payload !== MESSAGES.SUCCESS) yield put(disconnect());
 }
 
@@ -166,3 +174,11 @@ export function* privatePostRequest(): SagaIterator {
     yield put(setIsSendPost(false));
   }
 }
+
+export function* deletePostHandler(): SagaIterator {
+  yield call([console, 'log'], 'deletepostLogic');
+}
+
+export function* likePostHandler(): SagaIterator {
+    yield call([console, 'log'], 'likeLogic');
+  }

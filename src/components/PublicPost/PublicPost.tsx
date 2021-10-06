@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { ROLES } from '@constants/roles';
 import { ReactSVG } from 'react-svg';
 import moment from 'moment';
+import { deletePost, likePost } from '@store/user/actions';
+import { useDispatch } from 'react-redux';
+import { useTheme } from '@hoc/withTheme';
 import { IPublicPostProps } from './types';
 
 import {
@@ -23,50 +26,72 @@ import {
   PublicPostAuthorImg,
   PublicPostDeleteBtn,
   PublicPostLikesCount,
+  PublicPostContentText,
 } from './styled';
 
 const PublicPost: FC<IPublicPostProps> = (
   {
-    theme,
+    theme: postTheme,
     likes,
     author,
     content,
     img,
     created_at,
-    currentUserLogin,
     currentUserRole,
   }) => {
+  const themeProps = useTheme();
   const { t } = useTranslation();
-  const prettyDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
-  console.log(prettyDate);
+  const prettyDate = moment(created_at).format('DD MM YYYY hh:mm:ss');
+  const dispatch = useDispatch();
+
+  const handleDeletePost = () => dispatch(deletePost());
+  const handleLikePost = () => dispatch(likePost());
   
   return (
 
-    <PublicPostWrapper>
-      <PublicPostHeader>
+    <PublicPostWrapper {...themeProps}>
+      <PublicPostHeader {...themeProps}>
         <PublicPostTheme>
-          <PublicPostThemeName>{t('theme')}</PublicPostThemeName>
-          <PublicPostThemeText>{theme}</PublicPostThemeText>
+          <PublicPostThemeName
+            {...themeProps}
+          >
+            {t('theme')}
+          </PublicPostThemeName>
+          <PublicPostThemeText
+            {...themeProps}
+          >
+            {postTheme}
+          </PublicPostThemeText>
         </PublicPostTheme>
         <PublicPostAuthor>
-          <PublicPostAuthorName>{t('author')}</PublicPostAuthorName>
-          <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'}/>
-          {currentUserLogin !== author.login && (<PublicPostAuthorText>{author.login}</PublicPostAuthorText>)}
-          {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
+          <PublicPostAuthorName {...themeProps}>{t('author')}</PublicPostAuthorName>
+          <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} />
+          <PublicPostAuthorText {...themeProps}>{author.login}</PublicPostAuthorText>
+          {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
-      <PublicPostContent>{content}</PublicPostContent>
+      <PublicPostContent>
+        <PublicPostContentText>
+          {content}
+        </PublicPostContentText>
+      </PublicPostContent>
       <PublicPostFooter>
         <PublicPostDate>
-          <PublicPostDateText>
+          <PublicPostDateText
+            {...themeProps}
+          >
             {prettyDate}
           </PublicPostDateText>
         </PublicPostDate>
         <PublicPostLikes>
-          <PublicPostLike>
+          <PublicPostLike onClick={handleLikePost}>
             <ReactSVG src="assets/img/like.svg" />
           </PublicPostLike>
-          <PublicPostLikesCount>{likes.length}</PublicPostLikesCount>
+          <PublicPostLikesCount
+            {...themeProps}
+          >
+            {likes.length}
+          </PublicPostLikesCount>
         </PublicPostLikes>
       </PublicPostFooter>
     </PublicPostWrapper>
