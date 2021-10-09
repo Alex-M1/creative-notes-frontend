@@ -2,6 +2,7 @@ import { IAuthFormValues, IInputKey, TAuthInput, TAuthPages } from '@common/type
 import { AuthInputType, AuthPages, AUTH_REGULAR, COOKIE_SETTING } from '@constants/auth';
 import { IAuthState } from '@store/auth/types';
 import { IValidation } from '@helpers/types';
+import { APP_ROUTES } from '../constants/appRoutes';
 import { ILoginPassword } from '../store/auth/types';
 
 export const typeOfInput = (type: TAuthInput): string => {
@@ -17,17 +18,23 @@ export const setAuthPageProps = (page: TAuthPages): IAuthFormValues => {
   if (page === AuthPages.registration) {
     return {
       page,
+      pathToRedirect: APP_ROUTES.LOGIN,
       title: 'sign_up',
       inputKey: AuthInputType,
+      spanRedirectText: 'reg_span_text',
+      linkRedirectText: 'reg_link_text',
     };
   }
   if (page === AuthPages.auth) {
     return {
       page,
+      pathToRedirect: APP_ROUTES.REGISTRATION,
       title: 'sign_in',
       inputKey: <IInputKey>Object.values(AuthInputType).reduce((acc, current) => (
         current === AuthInputType.confirm ? { ...acc } : { ...acc, [current]: current }
       ), {}),
+      spanRedirectText: 'login_span_text',
+      linkRedirectText: 'login_link_text',
     };
   }
 };

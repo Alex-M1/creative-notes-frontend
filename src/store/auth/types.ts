@@ -13,5 +13,4 @@ export interface IAuthState extends ILoginPassword{
 
 export interface IAuthSubmitPayload{
     currentPage: string;
-    push: (arg: string) => void
 }

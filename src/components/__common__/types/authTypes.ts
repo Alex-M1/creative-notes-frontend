@@ -7,6 +7,9 @@ export interface IAuthFormValues {
   title: 'sign_in' | 'sign_up';
   inputKey: IInputKey,
   page: TAuthPages,
+  pathToRedirect: string;
+  spanRedirectText: string;
+  linkRedirectText: string;
 }
 export interface IInputKey {
   login: 'login',

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Button from '@src/components/__common__/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentLanguage } from '@store/user/selectors';
+import { getCurrentLanguage, getInitStatus } from '@store/user/selectors';
 import { useTranslation } from 'react-i18next';
 import { disconnect, setCurrentLanguage } from '@store/user/actions';
 import { TRANSPARENT } from '@constants/colors';
@@ -12,6 +12,7 @@ const HeaderControlPanel: FC = () => {
   const { i18n } = useTranslation();
 
   const currentLanguage = useSelector(getCurrentLanguage);
+  const isInit = useSelector(getInitStatus);
 
   const language = { new: 'en' };
   if (language.new === currentLanguage) language.new = 'ru';
@@ -38,11 +39,13 @@ const HeaderControlPanel: FC = () => {
           border="none"
           cursorPointer
         />
-        <Logout
-          onClick={handleDisconnect}
-        >
-          <img src="assets/img/logout.png" />
-        </Logout>
+        {isInit && (
+          <Logout
+            onClick={handleDisconnect}
+          >
+            <img src="assets/img/logout.png" />
+          </Logout>
+        )}
         
       </STHeaderContolPanel>
     </STHeaderControlPanelWrapper>

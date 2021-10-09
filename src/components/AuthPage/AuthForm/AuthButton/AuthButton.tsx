@@ -11,9 +11,8 @@ interface IProps {
 }
 
 export const AuthButton: React.FC<IProps> = ({ translateKey, currentPage }) => {
-  const { push } = useHistory();
   const dispatch = useDispatch();
-  const authSubmitHandler = () => dispatch(authSubmit({ currentPage, push }));
+  const authSubmitHandler = () => dispatch(authSubmit({ currentPage }));
 
   return (
     <

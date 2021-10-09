@@ -31,5 +31,9 @@
   "art": "Art",
   "work": "Work",
   "think": "Think",
-  "tehnology": "Tehnilogy"
+  "tehnology": "Tehnology",
+  "login_span_text": "Need an account?",
+  "login_link_text": "Register now",
+  "reg_span_text": "Alredy Registred?",
+  "reg_link_text": "Sign In"
 }

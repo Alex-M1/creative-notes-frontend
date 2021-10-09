@@ -26,9 +26,14 @@
   "error": "Что-то пошло не так",
   "theme": "Тема: ",
   "author": "Автор: ",
+  "hunting": "Охота",
   "music": "Музыка",
   "art": "Искусство",
   "work": "Работа",
   "think": "Мысли",
-  "tehnology": "Технологии"
+  "tehnology": "Технологии",
+  "login_span_text": "Нужен аккаунт?",
+  "login_link_text": "Зарегестрируйся сейчас",
+  "reg_span_text": "Уже есть аккаунт?",
+  "reg_link_text": "Войти"
 }
