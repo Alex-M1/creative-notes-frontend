@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const STHeaderControlPanelWrapper = styled.div`
-/*   display: flex;
-  justify-content: flex-end;
-  align-items: center; */
-  min-width: 300px;
+  min-width: 400px;
 `;
 
 export const STHeaderContolPanel = styled.div`
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
 `;
 

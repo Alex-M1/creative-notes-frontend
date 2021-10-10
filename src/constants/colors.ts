@@ -21,6 +21,8 @@ export const colors = {
     publicPostText: '#D3D3D3',
     publicPostRubric: '#2E6171',
     publicPostDate: '#0000FF',
+    backgroundUrl: 'assets/img/night.jpg',
+    postWrapperColor: 'rgba(0, 0, 0, 0.9)',
   },
   light: {
     color: '#fff',
@@ -31,9 +33,11 @@ export const colors = {
     buttonHover: 'rgba(46, 97, 113, 0.5)',
     disabled: 'rgba(168, 191, 199,.5)',
     publicPostBorder: '#D3D3D3',
-    publicPostText: '#D3D3D3',
-    publicPostRubric: '#2E6171',
-    publicPostDate: '#0000FF',
+    publicPostText: 'black',
+    publicPostRubric: 'white',
+    publicPostDate: 'white',
+    backgroundUrl: 'assets/img/rain.jpg',
+    postWrapperColor: 'rgba(128,128,128, 0.8)',
   },
 };
 

@@ -13,7 +13,7 @@ export const StGlobalStyle = createGlobalStyle`
   body {
     height: ${window.innerHeight}px;
     overflow: hidden;
-    background: url(../assets/img/night.jpg);
+  ${({ theme: myTheme = 'dark', colors = {} }) => `background: url(${colors[myTheme].backgroundUrl});`}
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff

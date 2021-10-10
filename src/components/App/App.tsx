@@ -12,9 +12,11 @@ import AuthPage from '../AuthPage';
 import Header from '../Header';
 import MainPage from '../MainPage';
 import CreatePost from '../CreatePost';
+import { useTheme, withTheme } from '../hoc/withTheme';
 
 const App: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
+  const themeProps = useTheme();
   return (
     <>
       <Header />
@@ -37,9 +39,9 @@ const App: React.FC = () => {
           <CreatePost />
         </StAbsoluteWrapper>
       )}
-      <StGlobalStyle />
+      <StGlobalStyle {...themeProps}/>
     </>
   );
 };
 
-export default withUserControl(App);
+export default withUserControl(withTheme(App));

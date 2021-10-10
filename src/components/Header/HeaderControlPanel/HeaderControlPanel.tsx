@@ -5,17 +5,23 @@ import { getCurrentLanguage, getInitStatus } from '@store/user/selectors';
 import { useTranslation } from 'react-i18next';
 import { disconnect, setCurrentLanguage } from '@store/user/actions';
 import { TRANSPARENT } from '@constants/colors';
+import { useTheme } from '@src/components/hoc/withTheme';
 import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout } from './styled';
 
 const HeaderControlPanel: FC = () => {
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
+  const { theme, changeTheme } = useTheme();
 
   const currentLanguage = useSelector(getCurrentLanguage);
   const isInit = useSelector(getInitStatus);
 
   const language = { new: 'en' };
   if (language.new === currentLanguage) language.new = 'ru';
+
+  const handleThemeChange = () => {
+    changeTheme();
+  };
 
   const handleLanguageChange = () => {
     i18n.changeLanguage(language.new);
@@ -29,10 +35,21 @@ const HeaderControlPanel: FC = () => {
     <STHeaderControlPanelWrapper>
       <STHeaderContolPanel>
         <Button
+          translateKey={theme}
+          onClick={handleThemeChange}
+          fontSize="25px"
+          height="50px"
+          width="200px"
+          backgroundColor={TRANSPARENT}
+          color="white"
+          border="none"
+          cursorPointer
+        />
+        <Button
           translateKey={currentLanguage}
           onClick={handleLanguageChange}
           fontSize="35px"
-          height="100%"
+          height="50px"
           width="80px"
           backgroundColor={TRANSPARENT}
           color="white"

@@ -11,6 +11,9 @@ export const StButton = styled.button<BorderProps & SizesProps & PositionProps &
     ${positionStyles}
   }
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${({ color = TEXT_COLOR_DEFAULT }) => color};
   background-color: ${({ colors, theme }) => colors[theme].buttonBg};
   &:hover{

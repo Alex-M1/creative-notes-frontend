@@ -7,7 +7,7 @@ export const PublicPostWrapper = styled.div<ITheme>`
   border-radius: 15px;
   border: 4px solid ${({ colors, theme }) => colors[theme].publicPostBorder};
   color: ${({ colors, theme }) => colors[theme].publicPostText};
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: ${({ colors, theme }) => colors[theme].postWrapperColor}
 `;
 
 export const PublicPostHeader = styled.div<ITheme>`

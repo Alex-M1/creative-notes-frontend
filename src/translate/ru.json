@@ -35,5 +35,7 @@
   "login_span_text": "Нужен аккаунт?",
   "login_link_text": "Зарегестрируйся сейчас",
   "reg_span_text": "Уже есть аккаунт?",
-  "reg_link_text": "Войти"
+  "reg_link_text": "Войти",
+  "dark": "Темная Тема",
+  "light": "Темная Тема"
 }
