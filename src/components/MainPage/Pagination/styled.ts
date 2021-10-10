@@ -23,6 +23,13 @@ export const StPaginationWrapper = styled.div`
     background: #fff;
     color: #000;
     }
+    & a{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .active {
     background: #fff;
