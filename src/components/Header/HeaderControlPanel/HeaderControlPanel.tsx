@@ -6,7 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { disconnect, setCurrentLanguage } from '@store/user/actions';
 import { TRANSPARENT } from '@constants/colors';
 import { useTheme } from '@src/components/hoc/withTheme';
-import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout } from './styled';
+import { APP_ROUTES } from '@constants/appRoutes';
+import { push } from 'react-router-redux';
+import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout, PesronalArea } from './styled';
 
 const HeaderControlPanel: FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,10 @@ const HeaderControlPanel: FC = () => {
 
   const handleThemeChange = () => {
     changeTheme();
+  };
+
+  const handlePersonalAreaRedirect = () => {
+    dispatch(push(APP_ROUTES.PERSONAL_AREA));
   };
 
   const handleLanguageChange = () => {
@@ -56,12 +62,19 @@ const HeaderControlPanel: FC = () => {
           border="none"
           cursorPointer
         />
+        
         {isInit && (
-          <Logout
-            onClick={handleDisconnect}
-          >
-            <img src="assets/img/logout.png" />
-          </Logout>
+          <>
+            <PesronalArea
+              src="assets/img/defaultAvatar.png"
+              onClick={handlePersonalAreaRedirect}
+            />
+            <Logout
+              onClick={handleDisconnect}
+            >
+              <img src="assets/img/logout.png" />
+            </Logout>
+          </>
         )}
         
       </STHeaderContolPanel>

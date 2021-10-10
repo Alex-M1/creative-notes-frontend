@@ -23,6 +23,7 @@ export const colors = {
     publicPostDate: '#0000FF',
     backgroundUrl: 'assets/img/night.jpg',
     postWrapperColor: 'rgba(0, 0, 0, 0.9)',
+    textDecColor: 'white',
   },
   light: {
     color: '#fff',
@@ -38,6 +39,7 @@ export const colors = {
     publicPostDate: 'white',
     backgroundUrl: 'assets/img/rain.jpg',
     postWrapperColor: 'rgba(128,128,128, 0.8)',
+    textDecColor: 'white',
   },
 };
 
