@@ -18,3 +18,5 @@ export const publishPostRequest = (): IReturnedAction<void> => action(AT.PUBLISH
 export const setIsSendPost = (payload: boolean): IReturnedAction<boolean> => (
   action(AT.SET_IS_SEND_POST, payload)
 );
+
+export const changePage = (payload: number): IReturnedAction<number> => action(AT.CHANGE_PAGE, payload);

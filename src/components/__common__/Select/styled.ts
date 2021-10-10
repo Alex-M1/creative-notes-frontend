@@ -22,4 +22,4 @@ export const StOptions = styled.option<ITheme>`
   background:${({ colors, theme }) => colors[theme].selectBg};
   display: inline-block;
   padding: 10px;
-`
+`;
