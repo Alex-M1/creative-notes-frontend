@@ -1,4 +1,6 @@
-interface IDefaultPublicPostsBody{
+import { PER_PAGE } from './posts';
+
+interface IDefaultPublicPostsBody {
   page: number;
   per_page: number;
   theme: string;
@@ -6,11 +8,11 @@ interface IDefaultPublicPostsBody{
 
 export const defaultPublicPostsBody: IDefaultPublicPostsBody = {
   page: 1,
-  per_page: 10,
+  per_page: PER_PAGE,
   theme: 'all',
 };
 
-export enum MESSAGES{
+export enum MESSAGES {
   SUCCESS = 'success',
   ERROR = 'Something has been wrong...'
 }
