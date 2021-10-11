@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
-import PublicPost from '../PublicPost';
 
+import PublicPost from '../PublicPost';
 import { MainPageWrapper, PublicPostsWrapper, NoContentLabel } from './styled';
+import Pagination from './Pagination';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const MainPage: React.FC = () => {
   const { posts } = useSelector(getPublicPosts);
 
   const isNeeedToShowPosts = posts.length > 0;
-  
+
   useEffect(() => {
     if (initStatus) {
       dispatch(emitAction(WS_EVENTS.GET_PUBLIC_POSTS));
@@ -40,6 +41,7 @@ const MainPage: React.FC = () => {
               currentUserRole={currentUserRole}
             />
           ))}
+          <Pagination />
         </PublicPostsWrapper>
       ) : (
         <NoContentLabel>

@@ -42,6 +42,7 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.CHANGE_PASSWORD, changePasswordHandler);
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
+  yield takeEvery(PostAT.CHANGE_PAGE, changePage);
 }
 
 export let globalSocket: Socket;
@@ -176,7 +177,20 @@ export function* privatePostRequest(): SagaIterator {
     yield put(setIsSendPost(false));
   }
 }
-
+export function* changePage({ payload }): SagaIterator {
+  try {
+    const postTheme = yield select(getPostTheme);
+    yield call([globalSocket, 'emit'], WS_EVENTS.GET_PUBLIC_POSTS, {
+      theme: postTheme,
+      page: payload,
+      per_page: PER_PAGE,
+    });
+  } catch {
+    yield call(notifications, { message: 'error' });
+  } finally {
+    yield put(setIsSendPost(false));
+  }
+}
 export function* deletePostHandler(): SagaIterator {
   yield call([console, 'log'], 'deletepostLogic');
 }
