@@ -1,5 +1,5 @@
 import { WS_EVENTS } from '@constants/wsEvents';
-import { getPublicPosts } from '@store/posts/selectors';
+import { getPrivatePosts } from '@store/posts/selectors';
 import { IPublicPost } from '@store/posts/types';
 import { emitAction } from '@store/user/actions';
 import { getInitStatus, getUserRole } from '@store/user/selectors';
@@ -9,49 +9,47 @@ import { useSelector, useDispatch } from 'react-redux';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
 
-import PublicPost from '../PublicPost';
-import { MainPageWrapper, PublicPostsWrapper, NoContentLabel } from './styled';
-import Pagination from './Pagination';
+import PrivatePost from '../PrivatePost';
+import { PrivatePageWrapper, PrivatePostsWrapper, NoContentLabel } from './styled';
 import Jaw from '../Jaw';
 
-const MainPage: React.FC = () => {
+const PrivatePage: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const themeProps = useTheme();
 
   const initStatus = useSelector(getInitStatus);
   const currentUserRole = useSelector(getUserRole);
-  const { posts } = useSelector(getPublicPosts);
+  const { posts } = useSelector(getPrivatePosts);
 
   const isNeeedToShowPosts = posts.length > 0;
 
   useEffect(() => {
     if (initStatus) {
-      dispatch(emitAction(WS_EVENTS.GET_PUBLIC_POSTS));
+      dispatch(emitAction(WS_EVENTS.GET_PRIVATE_POSTS));
     }
   }, [initStatus]);
 
   return (
-    <MainPageWrapper>
+    <PrivatePageWrapper>
       <Jaw/>
       {isNeeedToShowPosts ? (
-        <PublicPostsWrapper {...themeProps}>
+        <PrivatePostsWrapper {...themeProps}>
           {posts.map((post: IPublicPost) => (
-            <PublicPost
+            <PrivatePost
               {...post}
               key={post._id}
               currentUserRole={currentUserRole}
             />
           ))}
-          <Pagination />
-        </PublicPostsWrapper>
+        </PrivatePostsWrapper>
       ) : (
         <NoContentLabel>
-          {t('no_public_posts')}
+          {t('no_private_posts')}
         </NoContentLabel>
       )}
-    </MainPageWrapper>
+    </PrivatePageWrapper>
   );
 };
 
-export default withContent(MainPage);
+export default withContent(PrivatePage);

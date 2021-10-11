@@ -8,6 +8,11 @@ export const getPublicPosts = createSelector(
   ({ publicPosts }: IPostsState): IPublicPosts => publicPosts,
 );
 
+export const getPrivatePosts = createSelector(
+  postsStore,
+  ({ privatePosts }: IPostsState): IPublicPosts => privatePosts,
+);
+
 export const getTotalPage = createSelector(
   getPublicPosts,
   ({ total_page }) => total_page,

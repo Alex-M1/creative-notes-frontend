@@ -12,7 +12,7 @@ import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
 import { putRequest } from '../../helpers/requestHelpers';
-import { setIsSendPost, setPublicPosts } from '../posts/actions';
+import { setIsSendPost, setPublicPosts, setPrivatePosts, changePage } from '../posts/actions';
 import {
   setError,
   checkAuth,
@@ -42,7 +42,7 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.CHANGE_PASSWORD, changePasswordHandler);
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
-  yield takeEvery(PostAT.CHANGE_PAGE, changePage);
+  yield takeEvery(PostAT.CHANGE_PAGE, changePageHandler);
 }
 
 export let globalSocket: Socket;
@@ -63,6 +63,7 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
   socket.on(WS_EVENTS.CHECK_AUTH, authStatus => emit(checkAuth(authStatus)));
   socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
   socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
+  socket.on(WS_EVENTS.GET_PRIVATE_POSTS, (privatePosts) => emit(setPrivatePosts(privatePosts.message)));
   socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -114,6 +115,9 @@ export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIt
   if (globalSocket) {
     switch (payload) {
       case WS_EVENTS.GET_PUBLIC_POSTS:
+        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        break;
+      case WS_EVENTS.GET_PRIVATE_POSTS:
         yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
         break;
       default:
@@ -177,7 +181,7 @@ export function* privatePostRequest(): SagaIterator {
     yield put(setIsSendPost(false));
   }
 }
-export function* changePage({ payload }): SagaIterator {
+export function* changePageHandler({ payload }: ReturnType<typeof changePage>): SagaIterator {
   try {
     const postTheme = yield select(getPostTheme);
     yield call([globalSocket, 'emit'], WS_EVENTS.GET_PUBLIC_POSTS, {
