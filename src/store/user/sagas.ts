@@ -229,6 +229,6 @@ export function* submitChangeUserInfoHandler(): SagaIterator {
   if (status > 205) {
     return yield call(notifications, { type: 'error', message });
   }
-  yield call(notifications, { type: 'success', message: 'sucess_changes' });
+  yield call(notifications, { type: 'success', message: 'success_changes' });
   yield put(push(APP_ROUTES.MAIN));
 }
