@@ -8,7 +8,10 @@ import { getUserRole } from '@store/user/selectors';
 import { ROLES } from '@constants/roles';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
-import { StPAWrapper, StPANavigation, StPANavLink } from './styled';
+
+import { StPAWrapper, StPANavigation, StPANavLink, StPANContent } from './styled';
+import PasswordChange from './PasswordChange';
+import AdditionalFields from './AdditionalFields';
 
 const PersonalArea = () => {
   const { search } = useLocation();
@@ -17,12 +20,14 @@ const PersonalArea = () => {
   const userRole = useSelector(getUserRole);
   const themeProps = useTheme();
 
-  const isNeedToShowNavigation = userRole !== ROLES.SUPER_ADMIN;
-  const isNeedToShowUserSettings = search === `?PA=${SUB_APP_ROUTES.CHANGE_INFO}`;
+  const isNeedToShowAdminPanel = userRole === ROLES.SUPER_ADMIN;
+  const isNeedToShowUserAdditionalFields = search === `?PA=${SUB_APP_ROUTES.CHANGE_INFO}`;
+  const isNeedToShowUserPasswordChange = search === `?PA=${SUB_APP_ROUTES.CHANGE_PASSWORD}`;
 
   const handleNavClick = (e) => {
     dispatch(push(`${APP_ROUTES.PERSONAL_AREA}?PA=${e.target.id}`));
-  };
+    localStorage.setItem('personalAreaPath', e.target.id);
+  };  
 
   useEffect(() => {
     const subRoute = localStorage.getItem('personalAreaPath');
@@ -36,16 +41,24 @@ const PersonalArea = () => {
 
   return (
     <StPAWrapper>
-      {isNeedToShowNavigation && (
-        <StPANavigation>
-          <StPANavLink
-            onClick={handleNavClick}
-            id={SUB_APP_ROUTES.CHANGE_INFO}
-            selected={search === `?PA=${SUB_APP_ROUTES.CHANGE_INFO}`}
-            {...themeProps}
-          >
-            {t('change-info')}
-          </StPANavLink >
+      <StPANavigation {...themeProps}>
+        <StPANavLink
+          onClick={handleNavClick}
+          id={SUB_APP_ROUTES.CHANGE_INFO}
+          selected={search === `?PA=${SUB_APP_ROUTES.CHANGE_INFO}`}
+          {...themeProps}
+        >
+          {t('change-info')}
+        </StPANavLink >
+        <StPANavLink
+          onClick={handleNavClick}
+          id={SUB_APP_ROUTES.CHANGE_PASSWORD}
+          selected={search === `?PA=${SUB_APP_ROUTES.CHANGE_PASSWORD}`}
+          {...themeProps}
+        >
+          {t('change-password')}
+        </StPANavLink >
+        {isNeedToShowAdminPanel && (
           <StPANavLink
             onClick={handleNavClick}
             id={SUB_APP_ROUTES.ADMIN_PANEL}
@@ -54,11 +67,18 @@ const PersonalArea = () => {
           >
             {t('admin-panel')}
           </StPANavLink >
-        </StPANavigation>
+        )}
+      </StPANavigation>
+      {search && (
+        <StPANContent {...themeProps}>
+          {isNeedToShowUserPasswordChange && (
+            <PasswordChange />
+          )}
+          {isNeedToShowUserAdditionalFields && (
+            <AdditionalFields />
+          )}
+        </StPANContent>
       )}
-     {/*  {isNeedToShowUserSettings && (
-
-      )} */}
     </StPAWrapper>
   );
 };

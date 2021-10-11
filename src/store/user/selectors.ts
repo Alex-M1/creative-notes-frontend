@@ -32,3 +32,13 @@ export const getUserLogin = createSelector(
   getUserInfo,
   ({ login }: IUserInfo): string => login,
 );
+
+export const getOldPassword = createSelector(
+  userStore,
+  ({ oldPassword }: IUserState): string => oldPassword,
+);
+
+export const getNewPassword = createSelector(
+  userStore,
+  ({ newPassword }: IUserState): string => newPassword,
+);

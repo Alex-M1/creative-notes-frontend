@@ -3,7 +3,7 @@ import { takeEvery, call, put, takeLatest, take, select } from 'redux-saga/effec
 import { eventChannel, SagaIterator } from 'redux-saga';
 import { REQUEST_URLS } from '@constants/requestsUrls';
 import { io, Socket } from 'socket.io-client';
-import { cookieMaster } from '@helpers/authHelpers';
+import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
@@ -11,6 +11,7 @@ import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selector
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
+import { putRequest } from '../../helpers/requestHelpers';
 import { setIsSendPost, setPublicPosts } from '../posts/actions';
 import {
   setError,
@@ -21,9 +22,11 @@ import {
   setUserInfo,
   setInitStatus,
   setCurrentLanguage,
+  cleanPasswordFields,
 } from './actions';
 import { ActionTypes as AT } from './actionTypes';
-import { getUserRole } from './selectors';
+// eslint-disable-next-line import/no-cycle
+import { getUserRole, getOldPassword, getNewPassword, getUserInfo } from './selectors';
 import { ActionTypes as PostAT } from '../posts/actionTypes';
 
 export function* watcherUser(): SagaIterator {
@@ -36,6 +39,9 @@ export function* watcherUser(): SagaIterator {
   yield takeEvery(PostAT.PRIVATE_POST_REQUEST, privatePostRequest);
   yield takeLatest(AT.DELETE_POST, deletePostHandler);
   yield takeLatest(AT.LIKE_POST, likePostHandler);
+  yield takeLatest(AT.CHANGE_PASSWORD, changePasswordHandler);
+  yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
+  yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
 }
 
 export let globalSocket: Socket;
@@ -177,4 +183,38 @@ export function* deletePostHandler(): SagaIterator {
 
 export function* likePostHandler(): SagaIterator {
   yield call([console, 'log'], 'likeLogic');
+}
+
+export function* changePasswordHandler(): SagaIterator {
+  const oldPassword = yield select(getOldPassword);
+  const newPassword = yield select(getNewPassword);
+
+  const { errorMessage, isValid } = yield call(newPasswordValidation, newPassword);
+
+  if (!isValid) return yield call(notifications, { type: 'error', message: errorMessage });
+
+  const { status, message } = yield call(putRequest, REQUEST_URLS.password_change, { oldPassword, newPassword });
+
+  if (status > 205) return yield call(notifications, { type: 'error', message });
+  yield call(notifications, { type: 'success', message });
+  yield put(cleanPasswordFields());
+  yield put(push(APP_ROUTES.MAIN));
+}
+
+export function* freshUserInfoHandler(): SagaIterator {
+  if (globalSocket) {
+    yield call([globalSocket, 'emit'], WS_EVENTS.USER_INFO);
+  }
+}
+
+export function* submitChangeUserInfoHandler(): SagaIterator {
+  const { age, city, name, lastName } = yield select(getUserInfo);
+  const { isValid, errorMessage } = yield call(requestUpdateInfoValidation, { age, city, name, lastName });
+  if (!isValid) return yield call(notifications, { type: 'error', message: errorMessage });
+  const { status, message } = yield call(putRequest, REQUEST_URLS.update_user_data, { age, city, name, lastName });
+  if (status > 205) {
+    return yield call(notifications, { type: 'error', message });
+  }
+  yield call(notifications, { type: 'success', message: 'sucess_changes' });
+  yield put(push(APP_ROUTES.MAIN));
 }

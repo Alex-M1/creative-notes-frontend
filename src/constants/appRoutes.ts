@@ -6,6 +6,7 @@ export enum APP_ROUTES {
 }
 
 export enum SUB_APP_ROUTES {
+  CHANGE_PASSWORD = 'change-password',
   CHANGE_INFO = 'change-info',
   ADMIN_PANEL = 'admin-panel',
 }

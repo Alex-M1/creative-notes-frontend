@@ -1,7 +1,7 @@
 import { IAuthFormValues, IInputKey, TAuthInput, TAuthPages } from '@common/types/authTypes';
 import { AuthInputType, AuthPages, AUTH_REGULAR, COOKIE_SETTING } from '@constants/auth';
 import { IAuthState } from '@store/auth/types';
-import { IValidation } from '@helpers/types';
+import { IValidation } from './types';
 import { APP_ROUTES } from '../constants/appRoutes';
 import { ILoginPassword } from '../store/auth/types';
 
@@ -54,6 +54,20 @@ export const loginValidation = ({ login, password }: ILoginPassword): IValidatio
   if (!loginReg.test(login.trim())) return { errorMessage: 'login_validation', isValid: false };
   if (!passwordReg.test(password.trim())) return { errorMessage: 'password_validation', isValid: false };
   return { errorMessage: '', isValid: true };
+};
+
+export const newPasswordValidation = (password: string): IValidation => {
+  const { passwordReg } = AUTH_REGULAR;
+  if (!passwordReg.test(password.trim())) return { errorMessage: 'new_password_validation', isValid: false };
+  return { errorMessage: '', isValid: true };
+};
+
+export const requestUpdateInfoValidation = ({ age, city, name, lastName }: any): IValidation => {
+  if (name && !/^[a-zA-Z]{4,12}$/.test(name)) return { errorMessage: 'name_validation', isValid: false };
+  if (lastName && !/^[a-zA-Z]{4,12}$/.test(lastName)) return { errorMessage: 'lastName_validation', isValid: false };
+  if (city && !/^[a-zA-Z]{4,12}$/.test(city)) return { errorMessage: 'city_validation', isValid: false };
+  if (age && !/^[0-9]{2,3}$/.test(age)) return { errorMessage: 'age_validation', isValid: false };
+  return { isValid: true, errorMessage: '' };
 };
 
 export const cookieMaster = {
