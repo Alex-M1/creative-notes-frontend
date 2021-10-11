@@ -83,7 +83,7 @@ const PublicPost: FC<IPublicPostProps> = (
             {prettyDate}
           </PublicPostDateText>
         </PublicPostDate>
-        <PublicPostLikes>
+{/*         <PublicPostLikes>
           <PublicPostLike onClick={handleLikePost}>
             <ReactSVG src="assets/img/like.svg" />
           </PublicPostLike>
@@ -92,7 +92,7 @@ const PublicPost: FC<IPublicPostProps> = (
           >
             {likes.length}
           </PublicPostLikesCount>
-        </PublicPostLikes>
+        </PublicPostLikes> */}
       </PublicPostFooter>
     </PublicPostWrapper>
   );
