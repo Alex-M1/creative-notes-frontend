@@ -6,21 +6,41 @@ export interface IUserState {
   oldPassword: string;
   newPassword: string;
   freezeUserInfo: IUserInfo | Record<string, never>;
+  adminPanel: IAdminUsersRequest
 }
 
-export interface ICheckAuth{
+export interface IAdminUsersRequest {
+  page: number;
+  total_page: number;
+  users: Array<IAdminsUser>
+}
+
+export type TChangeRole = {
+  user: string;
+  role: string;
+};
+
+export interface IAdminsUser {
+  _id: string;
+  img?: string;
+  login: string;
+  online: false;
+  role: string;
+}
+
+export interface ICheckAuth {
   message: string;
 }
 
-export interface IUserInfoPayload{
+export interface IUserInfoPayload {
   message: IUserInfo
 }
 
-export interface IErrorPayload{
+export interface IErrorPayload {
   message: string;
 }
 
-export interface IUserInfo{
+export interface IUserInfo {
   age: string;
   city: string;
   img: string;
@@ -30,7 +50,7 @@ export interface IUserInfo{
   role: string;
 }
 
-export interface INewUserInfoField{
+export interface INewUserInfoField {
   field: string;
   value: string;
 }

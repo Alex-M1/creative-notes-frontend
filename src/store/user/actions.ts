@@ -1,7 +1,7 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField } from './types';
+import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField, IAdminUsersRequest, TChangeRole } from './types';
 
 export const setUserInfo = (
   payload: IUserInfoPayload,
@@ -39,3 +39,7 @@ export const freezeUserInfo = (): IReturnedAction => action(AT.FREEZE_USER_INFO)
 export const unFreezeUserInfo = (): IReturnedAction => action(AT.UNFREEZE_USER_INFO);
 
 export const submitChangeUserInfo = (): IReturnedAction => action(AT.SUBMIT_CHANGE_USER_INFO);
+
+export const getUsersRequest = (payload: number) => action(AT.GET_USERS, payload);
+export const setUsers = (payload: IAdminUsersRequest) => action(AT.SET_USERS, payload);
+export const changeUserRole = (payload: TChangeRole) => action(AT.CHANGE_USER_ROLE, payload);

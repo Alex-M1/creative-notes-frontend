@@ -12,6 +12,7 @@ import { useTheme } from '@hoc/withTheme';
 import { StPAWrapper, StPANavigation, StPANavLink, StPANContent } from './styled';
 import PasswordChange from './PasswordChange';
 import AdditionalFields from './AdditionalFields';
+import AdminPanel from './AdminPanel';
 
 const PersonalArea = () => {
   const { search } = useLocation();
@@ -27,7 +28,7 @@ const PersonalArea = () => {
   const handleNavClick = (e) => {
     dispatch(push(`${APP_ROUTES.PERSONAL_AREA}?PA=${e.target.id}`));
     localStorage.setItem('personalAreaPath', e.target.id);
-  };  
+  };
 
   useEffect(() => {
     const subRoute = localStorage.getItem('personalAreaPath');
@@ -77,6 +78,9 @@ const PersonalArea = () => {
           {isNeedToShowUserAdditionalFields && (
             <AdditionalFields />
           )}
+          {
+            isNeedToShowAdminPanel && <AdminPanel />
+          }
         </StPANContent>
       )}
     </StPAWrapper>

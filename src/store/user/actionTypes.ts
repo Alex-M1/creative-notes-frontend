@@ -1,4 +1,4 @@
-export enum ActionTypes{
+export enum ActionTypes {
   USER_CHECK = '@@user/USER_CHECK',
   SET_IS_READY = '@@user/SET_IS_READY',
   SET_CURRENT_LANGUAGE = '@@user/SET_CURRENT_LANGUAGE',
@@ -20,4 +20,7 @@ export enum ActionTypes{
   FREEZE_USER_INFO = '@@user/FREEZE_USER_INFO',
   UNFREEZE_USER_INFO = '@@user/UNFREEZE_USER_INFO',
   SUBMIT_CHANGE_USER_INFO = '@@user/SUBMIT_CHANGE_USER_INFO',
+  GET_USERS = '@@user/GET_USERS',
+  SET_USERS = '@@user/SET_USERS',
+  CHANGE_USER_ROLE = '@@user/CHANGE_USER_ROLE'
 }
