@@ -1,7 +1,7 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload } from './types';
+import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField } from './types';
 
 export const setUserInfo = (
   payload: IUserInfoPayload,
@@ -24,3 +24,18 @@ export const setError = (
 
 export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
 export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
+
+export const setOldPassword = (payload: string): IReturnedAction<string> => action(AT.SET_OLD_PASSWORD, payload);
+export const setNewPassword = (payload: string): IReturnedAction<string> => action(AT.SET_NEW_PASSWORD, payload);
+export const changePassword = (): IReturnedAction => action(AT.CHANGE_PASSWORD);
+export const cleanPasswordFields = (): IReturnedAction => action(AT.CLEAN_PASSWORD_FIELDS);
+
+export const changeUserInfo = (
+  payload: INewUserInfoField,
+): IReturnedAction<INewUserInfoField> => action(AT.CHANGE_USER_INFO, payload);
+
+export const takeFreshUserInfo = (): IReturnedAction => action(AT.TAKE_FRESH_USER_INFO);
+export const freezeUserInfo = (): IReturnedAction => action(AT.FREEZE_USER_INFO);
+export const unFreezeUserInfo = (): IReturnedAction => action(AT.UNFREEZE_USER_INFO);
+
+export const submitChangeUserInfo = (): IReturnedAction => action(AT.SUBMIT_CHANGE_USER_INFO);

@@ -8,9 +8,9 @@ export interface IProps {
 
 const AuthPage: FC<IProps> = ({ page }) => {
   return (
-    <div>
+    <>
       <AuthForm page={page} />
-    </div>
+    </>
   );
 };
 

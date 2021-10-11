@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const STHeaderControlPanelWrapper = styled.div`
-  min-width: 400px;
+  min-width: 450px;
 `;
 
 export const STHeaderContolPanel = styled.div`
@@ -21,4 +21,11 @@ export const Logout = styled.span`
       height: 50px;
       width: 50px;
   }
+`;
+
+export const PesronalArea = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 `;

@@ -3,6 +3,9 @@ export interface IUserState {
   currentLanguage: string;
   userInfo: IUserInfo;
   initStatus: boolean;
+  oldPassword: string;
+  newPassword: string;
+  freezeUserInfo: IUserInfo | Record<string, never>;
 }
 
 export interface ICheckAuth{
@@ -25,4 +28,9 @@ export interface IUserInfo{
   login: string;
   name: string;
   role: string;
+}
+
+export interface INewUserInfoField{
+  field: string;
+  value: string;
 }

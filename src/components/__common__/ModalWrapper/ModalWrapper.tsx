@@ -1,3 +1,4 @@
+import { useTheme } from '@hoc/withTheme';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button';
@@ -22,6 +23,8 @@ export const ModalWrapper: React.FC<IProps> = ({ children, headerKey, triggerKey
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
+
+  const { colors, theme } = useTheme();
   return (
     <>
       <Button onClick={handleOpen} translateKey={triggerKey} width="200px" />
@@ -33,15 +36,15 @@ export const ModalWrapper: React.FC<IProps> = ({ children, headerKey, triggerKey
               height="100%"
               top='0'
               position='absolute'
-              background='rgba(0,0,0,.6)'
+              background={colors[theme].postWrapperColor}
               jc="center"
               ai="center"
             >
               <StFlex
-                border="3px solid #fff"
+                border={`3px solid ${colors[theme].publicPostBorder}`}
                 flexDirection="column"
                 borderRadius="7px"
-                background='rgba(0,0,0,.8)'
+                background={colors[theme].postWrapperColor}
                 minHeight="300px"
                 minWidth="800px"
                 padding="15px 30px"

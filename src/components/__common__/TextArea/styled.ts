@@ -11,8 +11,11 @@ export const StTextArea = styled.textarea<ITheme>`
   padding: 15px 20px;
   &::placeholder{
     font-style: italic;
+    color: ${({ colors, theme }) => colors[theme].color};
   }
   &:focus{
-    box-shadow: 5px -4px 14px 9px rgba(255, 255, 255, 0.2);
+    outline: none !important;
+    box-shadow: 0 0 10px #719ECE;
+    border: 2px solid ${({ colors, theme }) => colors[theme].color};
   }
 `;

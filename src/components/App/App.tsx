@@ -6,13 +6,14 @@ import { AuthPages } from '@constants/auth';
 import { ToastContainer } from 'react-toastify';
 import { getInitStatus } from '@store/user/selectors';
 import { useSelector } from 'react-redux';
-import withUserControl from '../hoc/UserControl';
+import { useTheme, withTheme } from '@hoc/withTheme';
+import withUserControl from '@hoc/UserControl';
 import { StGlobalStyle, StAbsoluteWrapper } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
 import MainPage from '../MainPage';
 import CreatePost from '../CreatePost';
-import { useTheme, withTheme } from '../hoc/withTheme';
+import PersonalArea from '../PersonalArea';
 
 const App: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
@@ -28,6 +29,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={APP_ROUTES.MAIN} exact>
         <MainPage />
+      </Route>
+      <Route path={APP_ROUTES.PERSONAL_AREA} exact>
+        <PersonalArea />
       </Route>
       <ToastContainer />
       {initStatus && (
