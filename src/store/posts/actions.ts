@@ -11,6 +11,10 @@ export const setPrivatePosts = (
   payload: T.IPublicPosts,
 ): IReturnedAction<T.IPublicPosts> => action(AT.SET_PRIVATE_POSTS, payload);
 
+export const setPendingPosts = (
+  payload: T.IPublicPosts,
+): IReturnedAction<T.IPublicPosts> => action(AT.SET_PENDING_POSTS, payload);
+
 export const setPostTheme = (
   payload: T.TThemes,
 ): IReturnedAction<T.TThemes> => action(AT.SET_POST_THEME, payload);

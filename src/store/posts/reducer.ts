@@ -20,12 +20,18 @@ export const initialState: IPostsState = {
     page: 1,
     total_page: 0,
   },
+  pendingPosts: {
+    posts: [],
+    page: 1,
+    total_page: 0,
+  },
 };
 
 export const postsReducer: TReducer<IPostsState, typeof actions> = (state = initialState, action) => {
   switch (action.type) {
     case AT.SET_PUBLIC_POSTS: return { ...state, publicPosts: action.payload };
     case AT.SET_PRIVATE_POSTS: return { ...state, privatePosts: action.payload };
+    case AT.SET_PENDING_POSTS: return { ...state, pendingPosts: action.payload };
     case AT.SET_POST_THEME:
       return {
         ...state,

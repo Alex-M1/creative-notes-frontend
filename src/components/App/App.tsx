@@ -15,6 +15,7 @@ import MainPage from '../MainPage';
 import CreatePost from '../CreatePost';
 import PersonalArea from '../PersonalArea';
 import PrivatePage from '../PrivatePage';
+import PendingPage from '../PendingPage';
 
 const App: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
@@ -33,6 +34,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={APP_ROUTES.PRIVATE} exact>
         <PrivatePage />
+      </Route>
+      <Route path={APP_ROUTES.PENDING} exact>
+        <PendingPage />
       </Route>
       <Route path={APP_ROUTES.PERSONAL_AREA} exact>
         <PersonalArea />

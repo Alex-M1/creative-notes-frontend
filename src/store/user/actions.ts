@@ -39,3 +39,8 @@ export const freezeUserInfo = (): IReturnedAction => action(AT.FREEZE_USER_INFO)
 export const unFreezeUserInfo = (): IReturnedAction => action(AT.UNFREEZE_USER_INFO);
 
 export const submitChangeUserInfo = (): IReturnedAction => action(AT.SUBMIT_CHANGE_USER_INFO);
+
+export const rejectPendingPost = (payload: string): IReturnedAction<string> => action(AT.REJECT_PENDING_POST, payload);
+export const resolvePendingPost = (
+  payload: string,
+): IReturnedAction<string> => action(AT.RESOLVE_PENDING_POST, payload);

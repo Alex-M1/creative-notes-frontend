@@ -10,6 +10,7 @@ export interface IPostsState {
   publicPosts: IPublicPosts;
   createPost: ICreatePost
   privatePosts: IPublicPosts;
+  pendingPosts: IPublicPosts;
 }
 
 export interface IPublicPost {

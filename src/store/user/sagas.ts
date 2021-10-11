@@ -11,8 +11,9 @@ import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selector
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
+import { getPendingPosts } from '../posts/selectors';
 import { putRequest } from '../../helpers/requestHelpers';
-import { setIsSendPost, setPublicPosts, setPrivatePosts, changePage } from '../posts/actions';
+import { setIsSendPost, setPublicPosts, setPrivatePosts, setPendingPosts, changePage } from '../posts/actions';
 import {
   setError,
   checkAuth,
@@ -43,6 +44,8 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
   yield takeEvery(PostAT.CHANGE_PAGE, changePageHandler);
+  yield takeEvery(AT.REJECT_PENDING_POST, rejectHandler);
+  yield takeEvery(AT.RESOLVE_PENDING_POST, resolveHandler);
 }
 
 export let globalSocket: Socket;
@@ -64,6 +67,7 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
   socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
   socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
   socket.on(WS_EVENTS.GET_PRIVATE_POSTS, (privatePosts) => emit(setPrivatePosts(privatePosts.message)));
+  socket.on(WS_EVENTS.GET_PENDING_POSTS, (pendingPosts) => emit(setPendingPosts(pendingPosts.message)));
   socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -118,6 +122,9 @@ export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIt
         yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
         break;
       case WS_EVENTS.GET_PRIVATE_POSTS:
+        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        break;
+      case WS_EVENTS.GET_PENDING_POSTS:
         yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
         break;
       default:
@@ -235,4 +242,18 @@ export function* submitChangeUserInfoHandler(): SagaIterator {
   }
   yield call(notifications, { type: 'success', message: 'success_changes' });
   yield put(push(APP_ROUTES.MAIN));
+}
+
+export function* rejectHandler({ payload }) {
+  if (globalSocket) {
+    const { posts: pendingPosts, page, per_page } = yield select(getPendingPosts);
+    yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'reject', page, per_page });
+  }
+}
+
+export function* resolveHandler({ payload }) {
+    if (globalSocket) {
+    const { posts: pendingPosts, page, per_page } = yield select(getPendingPosts);
+    yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'public', page, per_page });
+  }
 }
