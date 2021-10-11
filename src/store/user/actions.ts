@@ -1,7 +1,7 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField } from './types';
+import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField, IAdminUsersRequest, TChangeRole } from './types';
 
 export const setUserInfo = (
   payload: IUserInfoPayload,
@@ -44,3 +44,10 @@ export const rejectPendingPost = (payload: string): IReturnedAction<string> => a
 export const resolvePendingPost = (
   payload: string,
 ): IReturnedAction<string> => action(AT.RESOLVE_PENDING_POST, payload);
+export const getUsersRequest = (payload: number): IReturnedAction<number> => action(AT.GET_USERS, payload);
+export const setUsers = (
+  payload: IAdminUsersRequest,
+): IReturnedAction<IAdminUsersRequest> => action(AT.SET_USERS, payload);
+export const changeUserRole = (
+  payload: TChangeRole,
+): IReturnedAction<TChangeRole> => action(AT.CHANGE_USER_ROLE, payload);

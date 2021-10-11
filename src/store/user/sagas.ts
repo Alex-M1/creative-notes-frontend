@@ -24,11 +24,13 @@ import {
   setInitStatus,
   setCurrentLanguage,
   cleanPasswordFields,
+  setUsers,
 } from './actions';
 import { ActionTypes as AT } from './actionTypes';
 // eslint-disable-next-line import/no-cycle
 import { getUserRole, getOldPassword, getNewPassword, getUserInfo } from './selectors';
 import { ActionTypes as PostAT } from '../posts/actionTypes';
+import { TChangeRole } from './types';
 
 export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.USER_CHECK, workerLanguageChecker);
@@ -43,6 +45,9 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.CHANGE_PASSWORD, changePasswordHandler);
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
+  yield takeEvery(PostAT.CHANGE_PAGE, changePage);
+  yield takeEvery(AT.GET_USERS, getUsers);
+  yield takeEvery(AT.CHANGE_USER_ROLE, changeUserRole);
   yield takeEvery(PostAT.CHANGE_PAGE, changePageHandler);
   yield takeEvery(AT.REJECT_PENDING_POST, rejectHandler);
   yield takeEvery(AT.RESOLVE_PENDING_POST, resolveHandler);
@@ -229,6 +234,34 @@ export function* changePasswordHandler(): SagaIterator {
 export function* freshUserInfoHandler(): SagaIterator {
   if (globalSocket) {
     yield call([globalSocket, 'emit'], WS_EVENTS.USER_INFO);
+  }
+}
+
+export function* getUsers({ payload }: any) {
+  try {
+    const token = yield cookieMaster.getTokenFromCookie();
+    const res = yield call(
+      fetch,
+      `${REQUEST_URLS.baseUrl}${REQUEST_URLS.get_users}?page=${payload || 1}&per_page=5`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+    const users = yield call([res, res.json]);
+    yield put(setUsers(users.message));
+  } catch {
+    yield call(notifications, { message: 'error' });
+  }
+}
+
+export function* changeUserRole({ payload }: TChangeRole) {
+  try {
+    yield call(putRequest, REQUEST_URLS.change_user_role, payload);
+    yield call(getUsers, { payload: 1 });
+  } catch {
+    yield call(notifications, { message: 'error' });
   }
 }
 

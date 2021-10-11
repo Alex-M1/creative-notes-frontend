@@ -42,3 +42,8 @@ export const getNewPassword = createSelector(
   userStore,
   ({ newPassword }: IUserState): string => newPassword,
 );
+
+export const getAdminUsers = createSelector(
+  userStore,
+  ({ adminPanel }) => adminPanel.users,
+);

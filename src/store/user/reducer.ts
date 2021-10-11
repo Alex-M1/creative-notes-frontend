@@ -19,6 +19,7 @@ export const initialState: IUserState = {
   newPassword: '',
   freezeUserInfo: {},
   initStatus: false,
+  adminPanel: {},
 };
 
 export const userReducer: TReducer<IUserState, typeof actions> = (state = initialState, action) => {
@@ -35,6 +36,11 @@ export const userReducer: TReducer<IUserState, typeof actions> = (state = initia
     case AT.CHANGE_USER_INFO: return {
       ...state, userInfo: { ...state.userInfo, [action.payload.field]: action.payload.value },
     };
+    case AT.SET_USERS:
+      return {
+        ...state,
+        adminPanel: action.payload,
+      };
     default: return state;
   }
 };
