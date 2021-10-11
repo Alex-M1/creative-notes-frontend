@@ -9,6 +9,7 @@ export interface IPublicPosts {
 export interface IPostsState {
   publicPosts: IPublicPosts;
   createPost: ICreatePost
+  privatePosts: IPublicPosts;
 }
 
 export interface IPublicPost {

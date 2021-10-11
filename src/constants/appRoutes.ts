@@ -3,6 +3,8 @@ export enum APP_ROUTES {
   LOGIN = '/login',
   MAIN = '/',
   PERSONAL_AREA = '/personal-area',
+  PRIVATE = '/private',
+  PENDING = '/pending',
 }
 
 export enum SUB_APP_ROUTES {

@@ -67,7 +67,7 @@ const PublicPost: FC<IPublicPostProps> = (
           <PublicPostAuthorName {...themeProps}>{t('author')}</PublicPostAuthorName>
           <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} />
           <PublicPostAuthorText {...themeProps}>{author.login}</PublicPostAuthorText>
-          {currentUserRole !== ROLES.USER && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
+          {currentUserRole === ROLES.SUPER_ADMIN && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
       <PublicPostContent>

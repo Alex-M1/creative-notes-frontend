@@ -56,5 +56,6 @@
   "city": "City: ",
   "void_field": "Void field",
   "no_change_avatar": "Do not change your avatar, you already have it beautiful!",
-  "success_changes": "Sucess changes!"
+  "success_changes": "Sucess changes!",
+  "no_public_posts": "No public Posts now..."
 }
