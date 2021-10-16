@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import AuthInput from './AuthInput';
 import AuthButton from './AuthButton';
 
-import { StNavTitle, StNavLink, StNavWrapper } from './styled';
+import { StNavTitle, StNavLink } from './styled';
 
 export interface IProps {
   page: TAuthPages;

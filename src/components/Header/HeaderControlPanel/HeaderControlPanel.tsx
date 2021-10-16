@@ -1,14 +1,21 @@
 import React, { FC } from 'react';
 import Button from '@src/components/__common__/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentLanguage, getInitStatus } from '@store/user/selectors';
+import { getCurrentLanguage, getInitStatus, getUserImg, getUserLogin } from '@store/user/selectors';
 import { useTranslation } from 'react-i18next';
 import { disconnect, setCurrentLanguage } from '@store/user/actions';
 import { TRANSPARENT } from '@constants/colors';
 import { useTheme } from '@src/components/hoc/withTheme';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { push } from 'react-router-redux';
-import { STHeaderControlPanelWrapper, STHeaderContolPanel, Logout, PesronalArea } from './styled';
+import {
+  STHeaderControlPanelWrapper,
+  STHeaderContolPanel,
+  Logout,
+  PesronalArea,
+  LoginText,
+  PersonalInfo,
+} from './styled';
 
 const HeaderControlPanel: FC = () => {
   const dispatch = useDispatch();
@@ -17,6 +24,8 @@ const HeaderControlPanel: FC = () => {
 
   const currentLanguage = useSelector(getCurrentLanguage);
   const isInit = useSelector(getInitStatus);
+  const userLogin = useSelector(getUserLogin);
+  const userAvatar = useSelector(getUserImg);
 
   const language = { new: 'en' };
   if (language.new === currentLanguage) language.new = 'ru';
@@ -43,9 +52,9 @@ const HeaderControlPanel: FC = () => {
         <Button
           translateKey={theme}
           onClick={handleThemeChange}
-          fontSize="25px"
+          fontSize="15px"
           height="50px"
-          width="200px"
+          width="80px"
           backgroundColor={TRANSPARENT}
           color="white"
           border="none"
@@ -54,7 +63,7 @@ const HeaderControlPanel: FC = () => {
         <Button
           translateKey={currentLanguage}
           onClick={handleLanguageChange}
-          fontSize="35px"
+          fontSize="15px"
           height="50px"
           width="80px"
           backgroundColor={TRANSPARENT}
@@ -65,13 +74,14 @@ const HeaderControlPanel: FC = () => {
         
         {isInit && (
           <>
-            <PesronalArea
-              src="assets/img/defaultAvatar.png"
-              onClick={handlePersonalAreaRedirect}
-            />
-            <Logout
-              onClick={handleDisconnect}
-            >
+            <PersonalInfo>
+              <PesronalArea
+                src={userAvatar || 'assets/img/defaultAvatar.png'} 
+                onClick={handlePersonalAreaRedirect}
+              />
+              <LoginText title={userLogin}>{userLogin}</LoginText>
+            </PersonalInfo>
+            <Logout onClick={handleDisconnect}>
               <img src="assets/img/logout.png" />
             </Logout>
           </>

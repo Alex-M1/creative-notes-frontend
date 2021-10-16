@@ -28,6 +28,11 @@ export const getUserRole = createSelector(
   ({ role }: IUserInfo): string => role,
 );
 
+export const getUserImg = createSelector(
+  getUserInfo,
+  ({ img }: IUserInfo): string => img,
+);
+
 export const getUserLogin = createSelector(
   getUserInfo,
   ({ login }: IUserInfo): string => login,

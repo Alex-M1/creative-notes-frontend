@@ -1,7 +1,7 @@
 import { IAuthFormValues, IInputKey, TAuthInput, TAuthPages } from '@common/types/authTypes';
 import { AuthInputType, AuthPages, AUTH_REGULAR, COOKIE_SETTING } from '@constants/auth';
 import { IAuthState } from '@store/auth/types';
-import { IValidation } from './types';
+import { IValidation, IUpdateInfo } from './types';
 import { APP_ROUTES } from '../constants/appRoutes';
 import { ILoginPassword } from '../store/auth/types';
 
@@ -62,7 +62,7 @@ export const newPasswordValidation = (password: string): IValidation => {
   return { errorMessage: '', isValid: true };
 };
 
-export const requestUpdateInfoValidation = ({ age, city, name, lastName }: any): IValidation => {
+export const requestUpdateInfoValidation = ({ age, city, name, lastName }: IUpdateInfo): IValidation => {
   if (name && !/^[a-zA-Z]{4,12}$/.test(name)) return { errorMessage: 'name_validation', isValid: false };
   if (lastName && !/^[a-zA-Z]{4,12}$/.test(lastName)) return { errorMessage: 'lastName_validation', isValid: false };
   if (city && !/^[a-zA-Z]{4,12}$/.test(city)) return { errorMessage: 'city_validation', isValid: false };

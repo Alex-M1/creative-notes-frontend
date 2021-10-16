@@ -11,7 +11,7 @@ import { StAFWrapper, StAFAvatar, StAFFields, StAFLabel, StAFAvaContainter, StCh
 const AdditionalFields: FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { age, city, name, lastName } = useSelector(getUserInfo);
+  const { age, city, name, lastName, img, role } = useSelector(getUserInfo);
   const [changeble, setChangeble] = useState(false);
   const handleChanges = () => {
     if (!changeble) dispatch(freezeUserInfo());
@@ -45,7 +45,7 @@ const AdditionalFields: FC = () => {
     <StAFWrapper>
       <StChanges src={changeble ? 'assets/img/crest.png' : 'assets/img/pen.png'} onClick={handleChanges} />
       <StAFAvaContainter>
-        <StAFAvatar src="assets/img/defaultAvatar.png" onClick={handleAvatarClick} changeble={changeble}/>
+        <StAFAvatar src={img || 'assets/img/defaultAvatar.png'} onClick={handleAvatarClick} changeble={changeble}/>
       </StAFAvaContainter>
       <StAFFields>
         <StAFLabel>
@@ -127,6 +127,12 @@ const AdditionalFields: FC = () => {
           )
             : <p>{age || t('void_field')}</p>}
         </StAFLabel>
+        <StAFLabel>     
+          <p> 
+            {t('role')}
+          </p>
+          <p>{role}</p>
+        </StAFLabel>
       </StAFFields>
       {changeble && (
         <Button
@@ -134,8 +140,8 @@ const AdditionalFields: FC = () => {
           onClick={handleSubmit}
           translateKey="submit"
           position='absolute'
-          bottom='100px' 
-          right="150px"
+          bottom='50px' 
+          right="120px"
           width="150px"
           height="50px"
         />
