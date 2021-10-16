@@ -3,7 +3,6 @@ import Button from '@common/Button';
 import { DEFAULT_COLORS } from '@constants/colors';
 import { authSubmit } from '@store/auth/actions';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 interface IProps {
   translateKey: string;

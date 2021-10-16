@@ -285,7 +285,7 @@ export function* rejectHandler({ payload }) {
 }
 
 export function* resolveHandler({ payload }) {
-    if (globalSocket) {
+  if (globalSocket) {
     const { posts: pendingPosts, page, per_page } = yield select(getPendingPosts);
     yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'public', page, per_page });
   }
