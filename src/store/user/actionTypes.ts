@@ -24,5 +24,6 @@ export enum ActionTypes {
   RESOLVE_PENDING_POST = '@@user/RESOLVE_PENDING_POST',
   GET_USERS = '@@user/GET_USERS',
   SET_USERS = '@@user/SET_USERS',
-  CHANGE_USER_ROLE = '@@user/CHANGE_USER_ROLE'
+  CHANGE_USER_ROLE = '@@user/CHANGE_USER_ROLE',
+  SET_IMG = '@@user/SET_IMG'
 }

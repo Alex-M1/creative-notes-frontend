@@ -6,12 +6,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Input from '@common/Input';
 import { changeUserInfo, freezeUserInfo, unFreezeUserInfo, submitChangeUserInfo } from '@store/user/actions';
 import Button from '@common/Button';
+import FileIpt from '@src/components/__common__/FileIpt';
 import { StAFWrapper, StAFAvatar, StAFFields, StAFLabel, StAFAvaContainter, StChanges } from './styled';
 
 const AdditionalFields: FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { age, city, name, lastName } = useSelector(getUserInfo);
+  const { age, city, name, lastName, img, role } = useSelector(getUserInfo);
   const [changeble, setChangeble] = useState(false);
   const handleChanges = () => {
     if (!changeble) dispatch(freezeUserInfo());
@@ -45,7 +46,8 @@ const AdditionalFields: FC = () => {
     <StAFWrapper>
       <StChanges src={changeble ? 'assets/img/crest.png' : 'assets/img/pen.png'} onClick={handleChanges} />
       <StAFAvaContainter>
-        <StAFAvatar src="assets/img/defaultAvatar.png" onClick={handleAvatarClick} changeble={changeble}/>
+        <StAFAvatar src={img || 'assets/img/defaultAvatar.png'} onClick={handleAvatarClick} changeble={changeble} />
+        {changeble ? <FileIpt /> : null}
       </StAFAvaContainter>
       <StAFFields>
         <StAFLabel>
@@ -65,7 +67,7 @@ const AdditionalFields: FC = () => {
             />
           ) : <p>{name || t('void_field')}</p>}
         </StAFLabel>
-        <StAFLabel>     
+        <StAFLabel>
           <p>{t('lastName')}</p>
           {changeble ? (
             <Input
@@ -87,9 +89,9 @@ const AdditionalFields: FC = () => {
               </p>
             )}
         </StAFLabel>
-        <StAFLabel>     
-          <p> 
-            {t('city') }
+        <StAFLabel>
+          <p>
+            {t('city')}
           </p>
           {changeble ? (
             <Input
@@ -107,8 +109,8 @@ const AdditionalFields: FC = () => {
           )
             : <p>{city || t('void_field')}</p>}
         </StAFLabel>
-        <StAFLabel>     
-          <p> 
+        <StAFLabel>
+          <p>
             {t('age')}
           </p>
           {changeble ? (
@@ -127,15 +129,21 @@ const AdditionalFields: FC = () => {
           )
             : <p>{age || t('void_field')}</p>}
         </StAFLabel>
+        <StAFLabel>
+          <p>
+            {t('role')}
+          </p>
+          <p>{role}</p>
+        </StAFLabel>
       </StAFFields>
       {changeble && (
         <Button
-          disabled={!age && !name && !lastName && !age}
+          disabled={!age && !name && !lastName && !age && !img}
           onClick={handleSubmit}
           translateKey="submit"
           position='absolute'
-          bottom='100px' 
-          right="150px"
+          bottom='50px'
+          right="120px"
           width="150px"
           height="50px"
         />

@@ -61,7 +61,7 @@ const PendingPost: FC<IPendingPostProps> = (
         </PendingPostTheme>
         <PendingPostAuthor>
           <PendingPostAuthorName {...themeProps}>{t('author')}</PendingPostAuthorName>
-          <PendingPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} />
+          <PendingPostAuthorImg src={author.img || 'assets/img/defaultAvatar.png'} />
           <PendingPostAuthorText {...themeProps}>{author.login}</PendingPostAuthorText>
         </PendingPostAuthor>
       </PendingPostHeader>

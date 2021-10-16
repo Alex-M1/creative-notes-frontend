@@ -27,6 +27,7 @@ export interface IPublicPost {
 export interface IPostAuthor {
   _id: string;
   login: string;
+  img?: string
 }
 
 export interface ICreatePost {

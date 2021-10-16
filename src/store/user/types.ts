@@ -5,6 +5,7 @@ export interface IUserState {
   initStatus: boolean;
   oldPassword: string;
   newPassword: string;
+  imgName: string;
   freezeUserInfo: IUserInfo | Record<string, never>;
   adminPanel: IAdminUsersRequest
 }
@@ -53,4 +54,9 @@ export interface IUserInfo {
 export interface INewUserInfoField {
   field: string;
   value: string;
+}
+
+export interface ISetImg {
+  imgName: string;
+  code?: string;
 }

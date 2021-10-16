@@ -22,6 +22,7 @@ const MainPage: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
   const currentUserRole = useSelector(getUserRole);
   const { posts } = useSelector(getPublicPosts);
+  console.log(posts);
 
   const isNeeedToShowPosts = posts.length > 0;
 
@@ -33,7 +34,7 @@ const MainPage: React.FC = () => {
 
   return (
     <MainPageWrapper>
-      <Jaw/>
+      <Jaw />
       {isNeeedToShowPosts ? (
         <PublicPostsWrapper {...themeProps}>
           {posts.map((post: IPublicPost) => (

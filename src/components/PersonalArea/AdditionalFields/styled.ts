@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface IChangeble{
+interface IChangeble {
   changeble?: boolean;
 }
 
@@ -18,6 +18,7 @@ export const StAFAvaContainter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 export const StAFAvatar = styled.img<IChangeble>`
   ${({ changeble }) => changeble && 'cursor: pointer'};

@@ -3,15 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { ROLES } from '@constants/roles';
 import { ReactSVG } from 'react-svg';
 import moment from 'moment';
-import { deletePost, likePost } from '@store/user/actions';
+import { deletePost } from '@store/user/actions';
 import { useDispatch } from 'react-redux';
 import { useTheme } from '@hoc/withTheme';
 import { IPublicPostProps } from './types';
 
 import {
-  PublicPostLike,
   PublicPostDate,
-  PublicPostLikes,
   PublicPostTheme,
   PublicPostHeader,
   PublicPostWrapper,
@@ -25,14 +23,12 @@ import {
   PublicPostAuthorText,
   PublicPostAuthorImg,
   PublicPostDeleteBtn,
-  PublicPostLikesCount,
   PublicPostContentText,
 } from './styled';
 
 const PublicPost: FC<IPublicPostProps> = (
   {
     theme: postTheme,
-    likes,
     author,
     content,
     img,
@@ -45,8 +41,7 @@ const PublicPost: FC<IPublicPostProps> = (
   const dispatch = useDispatch();
 
   const handleDeletePost = () => dispatch(deletePost());
-  const handleLikePost = () => dispatch(likePost());
-  
+
   return (
 
     <PublicPostWrapper {...themeProps}>
@@ -65,9 +60,9 @@ const PublicPost: FC<IPublicPostProps> = (
         </PublicPostTheme>
         <PublicPostAuthor>
           <PublicPostAuthorName {...themeProps}>{t('author')}</PublicPostAuthorName>
-          <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} />
+          <PublicPostAuthorImg src={author.img || 'assets/img/defaultAvatar.png'} />
           <PublicPostAuthorText {...themeProps}>{author.login}</PublicPostAuthorText>
-          {currentUserRole === ROLES.SUPER_ADMIN && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg"/></PublicPostDeleteBtn>)}
+          {currentUserRole === ROLES.SUPER_ADMIN && (<PublicPostDeleteBtn onClick={handleDeletePost}><ReactSVG src="assets/img/deleteBtn.svg" /></PublicPostDeleteBtn>)}
         </PublicPostAuthor>
       </PublicPostHeader>
       <PublicPostContent>
@@ -83,16 +78,6 @@ const PublicPost: FC<IPublicPostProps> = (
             {prettyDate}
           </PublicPostDateText>
         </PublicPostDate>
-        {/*         <PublicPostLikes>
-          <PublicPostLike onClick={handleLikePost}>
-            <ReactSVG src="assets/img/like.svg" />
-          </PublicPostLike>
-          <PublicPostLikesCount
-            {...themeProps}
-          >
-            {likes.length}
-          </PublicPostLikesCount>
-        </PublicPostLikes> */}
       </PublicPostFooter>
     </PublicPostWrapper>
   );

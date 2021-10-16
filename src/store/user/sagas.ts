@@ -266,10 +266,10 @@ export function* changeUserRole({ payload }: TChangeRole) {
 }
 
 export function* submitChangeUserInfoHandler(): SagaIterator {
-  const { age, city, name, lastName } = yield select(getUserInfo);
+  const { age, city, name, lastName, img } = yield select(getUserInfo);
   const { isValid, errorMessage } = yield call(requestUpdateInfoValidation, { age, city, name, lastName });
   if (!isValid) return yield call(notifications, { type: 'error', message: errorMessage });
-  const { status, message } = yield call(putRequest, REQUEST_URLS.update_user_data, { age, city, name, lastName });
+  const { status, message } = yield call(putRequest, REQUEST_URLS.update_user_data, { age, city, name, lastName, img });
   if (status > 205) {
     return yield call(notifications, { type: 'error', message });
   }

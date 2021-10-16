@@ -20,6 +20,7 @@ export const initialState: IUserState = {
   freezeUserInfo: {},
   initStatus: false,
   adminPanel: {},
+  imgName: '',
 };
 
 export const userReducer: TReducer<IUserState, typeof actions> = (state = initialState, action) => {
@@ -36,6 +37,16 @@ export const userReducer: TReducer<IUserState, typeof actions> = (state = initia
     case AT.CHANGE_USER_INFO: return {
       ...state, userInfo: { ...state.userInfo, [action.payload.field]: action.payload.value },
     };
+    case AT.SET_IMG: {
+      return {
+        ...state,
+        imgName: action.payload.setImg,
+        userInfo: {
+          ...state.userInfo,
+          img: action.payload.code ? action.payload.code : state.userInfo.img,
+        },
+      };
+    }
     case AT.SET_USERS:
       return {
         ...state,

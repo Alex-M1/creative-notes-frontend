@@ -57,5 +57,15 @@
   "void_field": "Void field",
   "no_change_avatar": "Do not change your avatar, you already have it beautiful!",
   "success_changes": "Sucess changes!",
-  "no_public_posts": "No public Posts now..."
+  "no_public_posts": "No public Notes now...",
+  "no_private_posts": "No private Notes now...",
+  "no_pending_posts": "No pending Notes now...",
+  "public": "Public",
+  "private": "Private",
+  "pending": "Pending",
+  "en": "English",
+  "ru": "Русский",
+  "role": "Role: ",
+  "very_long_note": "Very long Note. Note must be no longer than 6000 symbols.",
+  "choose_file": "Choose file"
 }

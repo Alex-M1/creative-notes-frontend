@@ -29,3 +29,18 @@ export const PesronalArea = styled.img`
   border-radius: 50%;
   cursor: pointer;
 `;
+
+export const LoginText = styled.p`
+  font-size: 15px;
+  max-width: 10ch;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+`;
+
+export const PersonalInfo = styled.div`
+  display: flex;
+  text-overflow: ellipsis;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+`;

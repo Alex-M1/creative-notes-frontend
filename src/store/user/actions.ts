@@ -1,7 +1,7 @@
 import { IReturnedAction } from '@store/types';
 import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
-import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField, IAdminUsersRequest, TChangeRole } from './types';
+import { ICheckAuth, IUserInfoPayload, IUserInfo, IErrorPayload, INewUserInfoField, IAdminUsersRequest, TChangeRole, ISetImg } from './types';
 
 export const setUserInfo = (
   payload: IUserInfoPayload,
@@ -51,3 +51,5 @@ export const setUsers = (
 export const changeUserRole = (
   payload: TChangeRole,
 ): IReturnedAction<TChangeRole> => action(AT.CHANGE_USER_ROLE, payload);
+
+export const setImg = (payload: ISetImg): IReturnedAction<ISetImg> => action(AT.SET_IMG, payload);
