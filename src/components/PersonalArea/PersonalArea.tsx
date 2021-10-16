@@ -21,7 +21,7 @@ const PersonalArea = () => {
   const userRole = useSelector(getUserRole);
   const themeProps = useTheme();
 
-  const isNeedToShowAdminPanel = userRole === ROLES.SUPER_ADMIN;
+  const isNeedToShowAdminPanel = search === `?PA=${SUB_APP_ROUTES.ADMIN_PANEL}`;
   const isNeedToShowUserAdditionalFields = search === `?PA=${SUB_APP_ROUTES.CHANGE_INFO}`;
   const isNeedToShowUserPasswordChange = search === `?PA=${SUB_APP_ROUTES.CHANGE_PASSWORD}`;
 
@@ -59,7 +59,7 @@ const PersonalArea = () => {
         >
           {t('change-password')}
         </StPANavLink >
-        {isNeedToShowAdminPanel && (
+        {userRole === ROLES.SUPER_ADMIN && (
           <StPANavLink
             onClick={handleNavClick}
             id={SUB_APP_ROUTES.ADMIN_PANEL}

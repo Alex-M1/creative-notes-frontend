@@ -12,6 +12,7 @@ export const AdminPanel: React.FC<IProps> = ({ users, getUsersRequest }) => {
   useEffect(() => {
     getUsersRequest();
   }, []);
+
   return (
     <StFlex
       width="100%"

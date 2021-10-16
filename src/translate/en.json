@@ -67,5 +67,7 @@
   "ru": "Русский",
   "role": "Role: ",
   "very_long_note": "Very long Note. Note must be no longer than 6000 symbols.",
-  "choose_file": "Choose file"
+  "choose_file": "Choose file",
+  "to_manager": "To Manager",
+  "to_user": "To User"
 }
