@@ -28,7 +28,7 @@ export const StPANavigation = styled.div<ITheme>`
 
 export const StPANavLink = styled.span<IStyledNavLink>`
   cursor: pointer;
-  font-size: 25px;
+  font-size: 15px;
   ${({ selected }) => selected && 'text-decoration: underline'};
   color: ${({ theme, colors }) => colors[theme].textDecColor};
   text-decoration-color: ${({ theme, colors }) => colors[theme].textDecColor};

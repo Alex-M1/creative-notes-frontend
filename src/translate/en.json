@@ -48,7 +48,7 @@
   "submit": "Submit",
   "change-info": "Change your additional information",
   "change-password": "Change your password",
-  "admin-panel": "Admin panel",
+  "admin-panel": "Role management",
   "invalid_password": "Invalid current password",
   "name": "Name: ",
   "age": "Age: ",
@@ -69,5 +69,8 @@
   "very_long_note": "Very long Note. Note must be no longer than 6000 symbols.",
   "choose_file": "Choose file",
   "to_manager": "To Manager",
-  "to_user": "To User"
+  "to_user": "To User",
+  "resolve": "Resolve",
+  "reject": "Reject",
+  "password_is_changed": "Password changed successfully"
 }
