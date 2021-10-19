@@ -11,6 +11,7 @@ import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selector
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
+import { chooseWSEvent } from '@src/helpers/postsHelper';
 import { getPendingPosts } from '../posts/selectors';
 import { putRequest } from '../../helpers/requestHelpers';
 import { setIsSendPost, setPublicPosts, setPrivatePosts, setPendingPosts, changePage } from '../posts/actions';
@@ -195,10 +196,11 @@ export function* privatePostRequest(): SagaIterator {
 }
 export function* changePageHandler({ payload }: ReturnType<typeof changePage>): SagaIterator {
   try {
-    const postTheme = yield select(getPostTheme);
-    yield call([globalSocket, 'emit'], WS_EVENTS.GET_PUBLIC_POSTS, {
-      theme: postTheme,
-      page: payload,
+    // const postTheme = yield select(getPostTheme);
+    const wsEvent = yield call(chooseWSEvent, payload.postRequestName);
+    yield call([globalSocket, 'emit'], wsEvent, {
+      theme: 'all',
+      page: payload.page,
       per_page: PER_PAGE,
     });
   } catch {

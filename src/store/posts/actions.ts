@@ -27,4 +27,4 @@ export const setIsSendPost = (payload: boolean): IReturnedAction<boolean> => (
   action(AT.SET_IS_SEND_POST, payload)
 );
 
-export const changePage = (payload: number): IReturnedAction<number> => action(AT.CHANGE_PAGE, payload);
+export const changePage = (payload: T.TGetPost): IReturnedAction<T.TGetPost> => action(AT.CHANGE_PAGE, payload);

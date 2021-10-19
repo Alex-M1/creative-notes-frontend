@@ -22,4 +22,11 @@ export enum PostStatus {
   PUBLIC = 'public'
 }
 
+export enum POST_KEY {
+  PUBLIC = 'publicPosts',
+  PENDING = 'pendingPosts',
+  PRIVATE = 'privatePosts',
+  CREATE = 'createPosts'
+}
+
 export const PER_PAGE = 5;

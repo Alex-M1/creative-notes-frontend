@@ -3,15 +3,16 @@ import { getPublicPosts } from '@store/posts/selectors';
 import { IPublicPost } from '@store/posts/types';
 import { emitAction } from '@store/user/actions';
 import { getInitStatus, getUserRole } from '@store/user/selectors';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
 
+import { POST_KEY } from '@constants/posts';
 import PublicPost from '../PublicPost';
 import { MainPageWrapper, PublicPostsWrapper, NoContentLabel } from './styled';
-import Pagination from './Pagination';
+import Pagination from '../__common__/Pagination';
 import Jaw from '../Jaw';
 
 const MainPage: React.FC = () => {
@@ -22,9 +23,8 @@ const MainPage: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
   const currentUserRole = useSelector(getUserRole);
   const { posts } = useSelector(getPublicPosts);
-  console.log(posts);
 
-  const isNeeedToShowPosts = posts.length > 0;
+  const isNeeedToShowPosts = useMemo(() => posts.length > 0, [posts]);
 
   useEffect(() => {
     if (initStatus) {
@@ -44,7 +44,7 @@ const MainPage: React.FC = () => {
               currentUserRole={currentUserRole}
             />
           ))}
-          <Pagination />
+          <Pagination postKey={POST_KEY.PUBLIC} />
         </PublicPostsWrapper>
       ) : (
         <NoContentLabel>

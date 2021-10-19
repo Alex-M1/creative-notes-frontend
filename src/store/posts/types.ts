@@ -1,4 +1,4 @@
-import { ThemesKey } from '@constants/posts';
+import { POST_KEY, ThemesKey } from '@constants/posts';
 
 export interface IPublicPosts {
   posts: IPublicPost[];
@@ -37,3 +37,7 @@ export interface ICreatePost {
 }
 
 export type TThemes = ThemesKey.art | ThemesKey.music | ThemesKey.tehnology | ThemesKey.think | ThemesKey.work;
+export interface TGetPost {
+  page: number;
+  postRequestName: POST_KEY
+}

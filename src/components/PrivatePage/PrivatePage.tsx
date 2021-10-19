@@ -9,9 +9,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
 
+import { POST_KEY } from '@constants/posts';
 import PrivatePost from '../PrivatePost';
 import { PrivatePageWrapper, PrivatePostsWrapper, NoContentLabel } from './styled';
 import Jaw from '../Jaw';
+import Pagination from '../__common__/Pagination';
 
 const PrivatePage: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const PrivatePage: React.FC = () => {
 
   return (
     <PrivatePageWrapper>
-      <Jaw/>
+      <Jaw />
       {isNeeedToShowPosts ? (
         <PrivatePostsWrapper {...themeProps}>
           {posts.map((post: IPublicPost) => (
@@ -42,6 +44,7 @@ const PrivatePage: React.FC = () => {
               currentUserRole={currentUserRole}
             />
           ))}
+          <Pagination postKey={POST_KEY.PRIVATE} />
         </PrivatePostsWrapper>
       ) : (
         <NoContentLabel>

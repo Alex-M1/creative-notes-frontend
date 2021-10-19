@@ -1,3 +1,4 @@
+import { POST_KEY } from '@constants/posts';
 import { createSelector } from 'reselect';
 import { ApplicationState } from '../types';
 import { IPostsState, IPublicPosts } from './types';
@@ -19,13 +20,14 @@ export const getPendingPosts = createSelector(
 );
 
 export const getTotalPage = createSelector(
-  getPublicPosts,
-  ({ total_page }) => total_page,
+  postsStore,
+  (_state: ApplicationState, page: POST_KEY) => page,
+  (posts, page): number => posts[page].total_page,
 );
 
 export const getPage = createSelector(
   getPublicPosts,
-  ({ page }) => page,
+  ({ page }): number => page,
 );
 export const getCreatePosts = createSelector(
   postsStore,

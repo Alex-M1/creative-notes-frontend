@@ -3,15 +3,17 @@ import { getPendingPosts } from '@store/posts/selectors';
 import { IPublicPost } from '@store/posts/types';
 import { emitAction } from '@store/user/actions';
 import { getInitStatus, getUserRole } from '@store/user/selectors';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import withContent from '@hoc/withContent';
 import { useTheme } from '@hoc/withTheme';
 
+import { POST_KEY } from '@constants/posts';
 import PendingPost from '../PendingPost';
 import { PendingPageWrapper, PendingPostsWrapper, NoContentLabel } from './styled';
 import Jaw from '../Jaw';
+import Pagination from '../__common__/Pagination';
 
 const PendingPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ const PendingPage: React.FC = () => {
   const currentUserRole = useSelector(getUserRole);
   const { posts } = useSelector(getPendingPosts);
 
-  const isNeeedToShowPosts = posts.length > 0;
+  const isNeeedToShowPosts = useMemo(() => posts.length > 0, [posts]);
 
   useEffect(() => {
     if (initStatus) {
@@ -32,7 +34,7 @@ const PendingPage: React.FC = () => {
 
   return (
     <PendingPageWrapper>
-      <Jaw/>
+      <Jaw />
       {isNeeedToShowPosts ? (
         <PendingPostsWrapper {...themeProps}>
           {posts.map((post: IPublicPost) => (
@@ -42,6 +44,7 @@ const PendingPage: React.FC = () => {
               currentUserRole={currentUserRole}
             />
           ))}
+          <Pagination postKey={POST_KEY.PENDING} />
         </PendingPostsWrapper>
       ) : (
         <NoContentLabel>
