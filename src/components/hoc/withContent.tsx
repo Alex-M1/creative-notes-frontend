@@ -3,15 +3,14 @@ import { contentInitAction } from '@store/user/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInitStatus } from '@store/user/selectors';
 
-const withContent = (Component: React.ComponentType<any>) => (): any => {
+const withContent = (Component: React.ComponentType<any>) => (props: any): any => {
   const dispatch = useDispatch();
   const initStatus = useSelector(getInitStatus);
-
   useEffect(() => {
     if (!initStatus) dispatch(contentInitAction());
   }, [initStatus]);
 
-  return (<Component/>);
+  return (<Component {...props} />);
 };
 
 export default withContent;

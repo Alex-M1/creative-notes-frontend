@@ -13,14 +13,23 @@ export interface IPostsState {
   pendingPosts: IPublicPosts;
 }
 
-export interface IPublicPost {
+export interface IPublicPost { //TODO delete
   _id: string;
-  _v: number;
   author: IPostAuthor;
   content: string;
   created_at: number;
   theme: string;
   likes: [] | string[];
+  img?: string;
+}
+
+export interface IPost {
+  _id: string;
+  author: IPostAuthor;
+  content: string;
+  created_at: number;
+  theme: string;
+  likes: string[];
   img?: string;
 }
 

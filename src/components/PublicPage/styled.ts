@@ -6,7 +6,7 @@ export const MainPageWrapper = styled.div`
   grid-template-columns: 3fr 9fr;
 `;
 
-export const PostsWrapper = styled.div<ITheme>`
+export const PublicPostsWrapper = styled.div<ITheme>`
   height: 85vh;
   padding:5px;
   display: 'flex';

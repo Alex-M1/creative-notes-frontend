@@ -11,11 +11,11 @@ import withUserControl from '@hoc/UserControl';
 import { StGlobalStyle, StAbsoluteWrapper } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
-import MainPage from '../MainPage';
 import CreatePost from '../CreatePost';
 import PersonalArea from '../PersonalArea';
 import PrivatePage from '../PrivatePage';
 import PendingPage from '../PendingPage';
+import PublicPage from '../PublicPage';
 
 const App: React.FC = () => {
   const initStatus = useSelector(getInitStatus);
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <AuthPage page={AuthPages.auth} />
       </Route>
       <Route path={APP_ROUTES.MAIN} exact>
-        <MainPage />
+        <PublicPage />
       </Route>
       <Route path={APP_ROUTES.PRIVATE} exact>
         <PrivatePage />
@@ -51,7 +51,7 @@ const App: React.FC = () => {
           <CreatePost />
         </StAbsoluteWrapper>
       )}
-      <StGlobalStyle {...themeProps}/>
+      <StGlobalStyle {...themeProps} />
     </>
   );
 };

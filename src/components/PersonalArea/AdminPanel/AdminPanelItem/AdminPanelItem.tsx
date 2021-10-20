@@ -1,4 +1,4 @@
-import { PublicPostAuthorImg } from '@src/components/PublicPost/styled';
+import { PublicPostAuthorImg } from '@src/components/PublicPage/PublicPost/styled';
 import Button from '@src/components/__common__/Button';
 import { StFlex } from '@src/components/__common__/styled/Blocs';
 import { TChangeRole } from '@store/user/types';
