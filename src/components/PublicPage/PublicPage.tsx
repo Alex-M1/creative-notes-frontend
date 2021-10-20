@@ -1,17 +1,11 @@
 import React from 'react';
-import PublicPost from './PublicPost';
+import PostContainer from '@common/PostContainer';
 import MainPage from '../MainPage';
 
 const PublicPage: React.FC = () => (
   <MainPage>
     {
-      ({ post, currentUserRole }) => (
-        <PublicPost
-          {...post}
-          key={post._id}
-          currentUserRole={currentUserRole}
-        />
-      )
+      ({ post, currentUserRole }) => <PostContainer {...post} key={post._id} currentUserRole={currentUserRole} />
     }
   </MainPage>
 );
