@@ -11,7 +11,7 @@ import withUserControl from '@hoc/UserControl';
 import { StGlobalStyle, StAbsoluteWrapper } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
-import CreatePost from '../CreatePost';
+import CreatePost from '../Jaw/CreatePost';
 import PersonalArea from '../PersonalArea';
 import PrivatePage from '../PrivatePage';
 import PendingPage from '../PendingPage';
@@ -42,15 +42,15 @@ const App: React.FC = () => {
         <PersonalArea />
       </Route>
       <ToastContainer />
-      {initStatus && (
+      {/* {initStatus && (
         <StAbsoluteWrapper
           position="absolute"
           bottom="5%"
           right="5%"
         >
-          <CreatePost />
+       
         </StAbsoluteWrapper>
-      )}
+      )} */}
       <StGlobalStyle {...themeProps} />
     </>
   );

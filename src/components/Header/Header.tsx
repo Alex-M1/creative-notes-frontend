@@ -3,8 +3,7 @@ import { StHeader, StHeaderContent } from './styled';
 import Logo from './Logo';
 import HeaderControlPanel from './HeaderControlPanel';
 
-const Header: FC = () => {
-  return (
+const Header: FC = () => (
     <StHeader>
       <StHeaderContent>
         <Logo />
@@ -12,6 +11,5 @@ const Header: FC = () => {
       </StHeaderContent>
     </StHeader>
   );
-};
 
 export default Header;

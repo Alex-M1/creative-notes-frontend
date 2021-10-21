@@ -3,7 +3,7 @@ import { POST_KEY } from '@constants/posts';
 import { chooseKeyByRoute } from '@src/helpers/postsHelper';
 import { createSelector } from 'reselect';
 import { ApplicationState } from '../types';
-import { IPostsState, IPublicPosts } from './types';
+import { IPostsState, IPublicPosts, TThemes } from './types';
 
 export const postsStore = (state: ApplicationState): IPostsState => state.posts;
 export const getPublicPosts = createSelector(
@@ -49,10 +49,15 @@ export const getPostTheme = createSelector(
 
 export const getCreatePostValue = createSelector(
   getCreatePosts,
-  ({ value }) => value,
+  ({ value }): string => value,
 );
 
 export const getIsSendPost = createSelector(
   getCreatePosts,
-  ({ isSendPost }) => isSendPost,
+  ({ isSendPost }): boolean => isSendPost,
+);
+
+export const getFilteredTheme = createSelector(
+  postsStore,
+  ({ filteredTheme }): TThemes => filteredTheme,
 );

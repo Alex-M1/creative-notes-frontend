@@ -4,9 +4,7 @@ import MainPage from '../MainPage';
 
 const PublicPage: React.FC = () => (
   <MainPage>
-    {
-      ({ post, currentUserRole }) => <PostContainer {...post} key={post._id} currentUserRole={currentUserRole} />
-    }
+    {({ post, currentUserRole }) => <PostContainer {...post} key={post._id} currentUserRole={currentUserRole} />}
   </MainPage>
 );
 

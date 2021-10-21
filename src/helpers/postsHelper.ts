@@ -13,3 +13,9 @@ export const chooseKeyByRoute = (route: APP_ROUTES): POST_KEY => {
   if (route === APP_ROUTES.PRIVATE) return POST_KEY.PRIVATE;
   if (route === APP_ROUTES.PENDING) return POST_KEY.PENDING;
 };
+
+export const chooseWSEventByRoute = (route: APP_ROUTES): WS_EVENTS => {
+  if (route === APP_ROUTES.PENDING) return WS_EVENTS.GET_PENDING_POSTS;
+  if (route === APP_ROUTES.MAIN) return WS_EVENTS.GET_PUBLIC_POSTS;
+  if (route === APP_ROUTES.PRIVATE) return WS_EVENTS.GET_PRIVATE_POSTS;
+};

@@ -1,6 +1,6 @@
 import React from 'react';
-import ModalWrapper from '../__common__/ModalWrapper';
-import { StFlex } from '../__common__/styled/Blocs';
+import ModalWrapper from '../../__common__/ModalWrapper';
+import { StFlex } from '../../__common__/styled/Blocs';
 import ChangePostTheme from './ChangePostTheme';
 import CreatePostButtons from './CreatePostButtons';
 import PostInput from './PostInput';

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ITheme } from '../styled/types';
 
 export const StPostContainer = styled.div<ITheme>`
-  margin-top: 30px;
+  margin-bottom: 30px;
   min-height: 150px;
   border-radius: 15px;
   border: 4px solid ${({ colors, theme }) => colors[theme].publicPostBorder};

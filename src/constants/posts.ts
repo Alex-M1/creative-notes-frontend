@@ -5,7 +5,8 @@ export enum ThemesKey {
   art = 'art',
   work = 'work',
   think = 'think',
-  tehnology = 'tehnology'
+  tehnology = 'tehnology',
+  all = 'all'
 }
 
 export const CREATE_THEME_OPTIONS: Array<ISelect> = [
@@ -14,6 +15,11 @@ export const CREATE_THEME_OPTIONS: Array<ISelect> = [
   { label: ThemesKey.work, value: ThemesKey.work },
   { label: ThemesKey.think, value: ThemesKey.think },
   { label: ThemesKey.tehnology, value: ThemesKey.tehnology },
+];
+
+export const FILTER_THEME_OPTIONS: Array<ISelect> = [
+  { label: ThemesKey.all, value: ThemesKey.all },
+  ...CREATE_THEME_OPTIONS,
 ];
 
 export enum PostStatus {

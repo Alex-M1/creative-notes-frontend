@@ -5,9 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { useDispatch } from 'react-redux';
 import { push } from 'react-router-redux';
-import { JawWrapper, JawLink } from './styled';
+import { StJawWrapper, StJawLink } from './styled';
+import CreatePost from './CreatePost';
+import PostThemeFilter from './PostThemeFilter';
 
-const Jaw = () => {
+const Jaw: React.FC = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   const themeProps = useTheme();
@@ -18,11 +20,13 @@ const Jaw = () => {
   const redirectToPending = () => dispatch(push(APP_ROUTES.PENDING));
 
   return (
-    <JawWrapper {...themeProps}>
-      <JawLink selected={pathname === APP_ROUTES.MAIN} onClick={redirectToMain}>{t('public')}</JawLink>
-      <JawLink selected={pathname === APP_ROUTES.PRIVATE} onClick={redirectToPrivate}>{t('private') }</JawLink>
-      <JawLink selected={pathname === APP_ROUTES.PENDING} onClick={redirectToPending}>{t('pending') }</JawLink>
-    </JawWrapper>
+    <StJawWrapper {...themeProps}>
+      <PostThemeFilter />
+      <StJawLink selected={pathname === APP_ROUTES.MAIN} onClick={redirectToMain}>{t('public')}</StJawLink>
+      <StJawLink selected={pathname === APP_ROUTES.PRIVATE} onClick={redirectToPrivate}>{t('private')}</StJawLink>
+      <StJawLink selected={pathname === APP_ROUTES.PENDING} onClick={redirectToPending}>{t('pending')}</StJawLink>
+      <CreatePost />
+    </StJawWrapper>
   );
 };
 

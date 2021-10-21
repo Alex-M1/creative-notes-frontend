@@ -25,6 +25,7 @@ export const initialState: IPostsState = {
     page: 1,
     total_page: 0,
   },
+  filteredTheme: ThemesKey.all,
 };
 
 export const postsReducer: TReducer<IPostsState, typeof actions> = (state = initialState, action) => {
@@ -56,6 +57,11 @@ export const postsReducer: TReducer<IPostsState, typeof actions> = (state = init
           isSendPost: action.payload,
           value: action.payload ? state.createPost.value : '',
         },
+      };
+    case AT.CHANGE_FILTER_THEME:
+      return {
+        ...state,
+        filteredTheme: action.payload,
       };
     default: return state;
   }

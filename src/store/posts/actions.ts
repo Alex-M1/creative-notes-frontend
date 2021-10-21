@@ -28,3 +28,6 @@ export const setIsSendPost = (payload: boolean): IReturnedAction<boolean> => (
 );
 
 export const changePage = (payload: T.TGetPost): IReturnedAction<T.TGetPost> => action(AT.CHANGE_PAGE, payload);
+export const changeFilterTheme = (payload: T.TThemes): IReturnedAction<T.TThemes> => (
+  action(AT.CHANGE_FILTER_THEME, payload)
+);

@@ -5,7 +5,7 @@ interface IJawLink {
   selected?: boolean;
 }
 
-export const JawWrapper = styled.div<ITheme>`
+export const StJawWrapper = styled.div<ITheme>`
   min-height: 7vh;
   color: ${({ colors, theme }) => colors[theme].mainColor};
   border: 4px solid ${({ colors, theme }) => colors[theme].publicPostBorder};
@@ -16,7 +16,7 @@ export const JawWrapper = styled.div<ITheme>`
   align-items: center;
 `;
 
-export const JawLink = styled.div<IJawLink>`
+export const StJawLink = styled.div<IJawLink>`
   cursor: pointer;
    ${({ selected }) => selected && 'border-bottom: solid'};
 `;

@@ -7,7 +7,7 @@ import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
-import { getPostTheme, getCreatePostValue, getPage } from '@store/posts/selectors';
+import { getPostTheme, getCreatePostValue, getPage, getFilteredTheme } from '@store/posts/selectors';
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
@@ -120,18 +120,24 @@ export function* workerLanguageChecker(): SagaIterator {
 }
 
 export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIterator {
+  const theme = yield select(getFilteredTheme);
+  const body = {
+    page: 1,
+    per_page: PER_PAGE,
+    theme,
+  };
   const token = yield call([cookieMaster, 'getTokenFromCookie']);
   if (!token) yield put(disconnect());
   if (globalSocket) {
     switch (payload) {
       case WS_EVENTS.GET_PUBLIC_POSTS:
-        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        yield call([globalSocket, 'emit'], payload, body);
         break;
       case WS_EVENTS.GET_PRIVATE_POSTS:
-        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        yield call([globalSocket, 'emit'], payload, body);
         break;
       case WS_EVENTS.GET_PENDING_POSTS:
-        yield call([globalSocket, 'emit'], payload, defaultPublicPostsBody);
+        yield call([globalSocket, 'emit'], payload, body);
         break;
       default:
     }
@@ -196,10 +202,10 @@ export function* privatePostRequest(): SagaIterator {
 }
 export function* changePageHandler({ payload }: ReturnType<typeof changePage>): SagaIterator {
   try {
-    // const postTheme = yield select(getPostTheme);
     const wsEvent = yield call(chooseWSEvent, payload.postRequestName);
+    const theme = yield select(getFilteredTheme);
     yield call([globalSocket, 'emit'], wsEvent, {
-      theme: 'all',
+      theme,
       page: payload.page,
       per_page: PER_PAGE,
     });

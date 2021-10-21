@@ -11,6 +11,7 @@ export interface IPostsState {
   createPost: ICreatePost
   privatePosts: IPublicPosts;
   pendingPosts: IPublicPosts;
+  filteredTheme: ThemesKey;
 }
 
 export interface IPublicPost { //TODO delete
@@ -45,7 +46,13 @@ export interface ICreatePost {
   isSendPost: boolean;
 }
 
-export type TThemes = ThemesKey.art | ThemesKey.music | ThemesKey.tehnology | ThemesKey.think | ThemesKey.work;
+export type TThemes = ThemesKey.art
+  | ThemesKey.music
+  | ThemesKey.tehnology
+  | ThemesKey.think
+  | ThemesKey.work
+  | ThemesKey.all;
+
 export interface TGetPost {
   page: number;
   postRequestName: POST_KEY
