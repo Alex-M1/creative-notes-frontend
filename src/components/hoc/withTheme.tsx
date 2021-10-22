@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { colors } from '@constants/colors';
+import { IUseTheme } from '../__common__/types/commonTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const Theme = React.createContext({ theme: 'dark', changeTheme: () => { } });
@@ -19,7 +20,7 @@ export const withTheme = (Component: React.ComponentType<any>) => (): JSX.Elemen
   );
 };
 
-export const useTheme = () => ({
+export const useTheme = (): IUseTheme => ({
   colors,
   ...useContext(Theme),
 });

@@ -2,16 +2,15 @@ import styled from 'styled-components';
 import { ITheme } from '@common/styled/types';
 
 export const MainPageWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  gap: 20px;
+  padding: 10px 0;
 `;
 
-export const PublicPostsWrapper = styled.div<ITheme>`
-  width: 60vw;
+export const PostsWrapper = styled.div<ITheme>`
   height: 85vh;
-  padding:5px;
+  padding-right:30px;
   display: 'flex';
   justify-content: space-around;
   align-items: center;

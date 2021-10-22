@@ -11,16 +11,26 @@ export interface IPostsState {
   createPost: ICreatePost
   privatePosts: IPublicPosts;
   pendingPosts: IPublicPosts;
+  filteredTheme: ThemesKey;
 }
 
-export interface IPublicPost {
+export interface IPublicPost { //TODO delete
   _id: string;
-  _v: number;
   author: IPostAuthor;
   content: string;
   created_at: number;
   theme: string;
   likes: [] | string[];
+  img?: string;
+}
+
+export interface IPost {
+  _id: string;
+  author: IPostAuthor;
+  content: string;
+  created_at: number;
+  theme: string;
+  likes: string[];
   img?: string;
 }
 
@@ -36,7 +46,13 @@ export interface ICreatePost {
   isSendPost: boolean;
 }
 
-export type TThemes = ThemesKey.art | ThemesKey.music | ThemesKey.tehnology | ThemesKey.think | ThemesKey.work;
+export type TThemes = ThemesKey.art
+  | ThemesKey.music
+  | ThemesKey.tehnology
+  | ThemesKey.think
+  | ThemesKey.work
+  | ThemesKey.all;
+
 export interface TGetPost {
   page: number;
   postRequestName: POST_KEY

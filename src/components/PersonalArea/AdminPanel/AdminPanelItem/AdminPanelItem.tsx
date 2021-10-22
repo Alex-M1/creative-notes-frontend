@@ -1,6 +1,6 @@
-import { PublicPostAuthorImg } from '@src/components/PublicPost/styled';
-import Button from '@src/components/__common__/Button';
-import { StFlex } from '@src/components/__common__/styled/Blocs';
+import Button from '@common/Button';
+import { StPostAuthorImg } from '@common/PostContainer/styled';
+import { StFlex } from '@common/styled/Blocs';
 import { TChangeRole } from '@store/user/types';
 import React from 'react';
 
@@ -27,7 +27,7 @@ export const AdminPanelItem: React.FC<IProps> = ({ _id, img, login, online, role
       ai="center"
     >
       <div>
-        <PublicPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} alt="" />
+        <StPostAuthorImg src={img || 'assets/img/defaultAvatar.png'} alt="" />
         <span>{online}</span>
       </div>
       <span>{login}</span>

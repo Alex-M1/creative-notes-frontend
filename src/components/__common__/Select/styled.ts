@@ -3,11 +3,11 @@ import { ITheme } from '../styled/types';
 
 export const StSelect = styled.select<ITheme>`
   padding: 10px;
+  width: 200px;
   background-color:${({ colors, theme }) => colors[theme].selectBg};
   border: 2px solid ${({ colors, theme }) => colors[theme].selectBorder};
   color: ${({ colors, theme }) => colors[theme].selectBorder};
   border-radius: 6px;
-  text-align: center;
   font-size: 16px;
   letter-spacing: 2px;
   outline: none;

@@ -4,21 +4,17 @@ import { Route } from 'react-router';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { AuthPages } from '@constants/auth';
 import { ToastContainer } from 'react-toastify';
-import { getInitStatus } from '@store/user/selectors';
-import { useSelector } from 'react-redux';
 import { useTheme, withTheme } from '@hoc/withTheme';
 import withUserControl from '@hoc/UserControl';
-import { StGlobalStyle, StAbsoluteWrapper } from './styled';
+import { StGlobalStyle } from './styled';
 import AuthPage from '../AuthPage';
 import Header from '../Header';
-import MainPage from '../MainPage';
-import CreatePost from '../CreatePost';
 import PersonalArea from '../PersonalArea';
 import PrivatePage from '../PrivatePage';
 import PendingPage from '../PendingPage';
+import PublicPage from '../PublicPage';
 
 const App: React.FC = () => {
-  const initStatus = useSelector(getInitStatus);
   const themeProps = useTheme();
   return (
     <>
@@ -30,7 +26,7 @@ const App: React.FC = () => {
         <AuthPage page={AuthPages.auth} />
       </Route>
       <Route path={APP_ROUTES.MAIN} exact>
-        <MainPage />
+        <PublicPage />
       </Route>
       <Route path={APP_ROUTES.PRIVATE} exact>
         <PrivatePage />
@@ -42,16 +38,7 @@ const App: React.FC = () => {
         <PersonalArea />
       </Route>
       <ToastContainer />
-      {initStatus && (
-        <StAbsoluteWrapper
-          position="absolute"
-          bottom="5%"
-          right="5%"
-        >
-          <CreatePost />
-        </StAbsoluteWrapper>
-      )}
-      <StGlobalStyle {...themeProps}/>
+      <StGlobalStyle {...themeProps} />
     </>
   );
 };

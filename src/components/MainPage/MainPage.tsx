@@ -1,34 +1,43 @@
-import { WS_EVENTS } from '@constants/wsEvents';
-import { getPublicPosts } from '@store/posts/selectors';
-import { IPublicPost } from '@store/posts/types';
+import { IPost } from '@store/posts/types';
+import { Location } from 'history';
 import { emitAction } from '@store/user/actions';
-import { getInitStatus, getUserRole } from '@store/user/selectors';
 import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
-import withContent from '@hoc/withContent';
+import { useDispatch } from 'react-redux';
 import { useTheme } from '@hoc/withTheme';
-
-import { POST_KEY } from '@constants/posts';
-import PublicPost from '../PublicPost';
-import { MainPageWrapper, PublicPostsWrapper, NoContentLabel } from './styled';
+import { chooseKeyByRoute, chooseWSEvent } from '@src/helpers/postsHelper';
+import { APP_ROUTES } from '@constants/appRoutes';
+import { MainPageWrapper, PostsWrapper, NoContentLabel } from './styled';
 import Pagination from '../__common__/Pagination';
 import Jaw from '../Jaw';
 
-const MainPage: React.FC = () => {
+interface IProps {
+  initStatus: boolean;
+  currentUserRole: string;
+  posts: Array<IPost>
+  children: (props: IChildrenProps) => JSX.Element
+  location: Location
+}
+interface IChildrenProps {
+  currentUserRole: string
+  post: IPost
+}
+const MainPage: React.FC<IProps> = ({
+  posts,
+  location,
+  children,
+  initStatus,
+  currentUserRole,
+}) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const themeProps = useTheme();
-
-  const initStatus = useSelector(getInitStatus);
-  const currentUserRole = useSelector(getUserRole);
-  const { posts } = useSelector(getPublicPosts);
-
   const isNeeedToShowPosts = useMemo(() => posts.length > 0, [posts]);
-
+  const postKey = chooseKeyByRoute(location.pathname as APP_ROUTES);
+  const socketEvent = chooseWSEvent(postKey);
   useEffect(() => {
     if (initStatus) {
-      dispatch(emitAction(WS_EVENTS.GET_PUBLIC_POSTS));
+      dispatch(emitAction(socketEvent));
     }
   }, [initStatus]);
 
@@ -36,16 +45,10 @@ const MainPage: React.FC = () => {
     <MainPageWrapper>
       <Jaw />
       {isNeeedToShowPosts ? (
-        <PublicPostsWrapper {...themeProps}>
-          {posts.map((post: IPublicPost) => (
-            <PublicPost
-              {...post}
-              key={post._id}
-              currentUserRole={currentUserRole}
-            />
-          ))}
-          <Pagination postKey={POST_KEY.PUBLIC} />
-        </PublicPostsWrapper>
+        <PostsWrapper {...themeProps}>
+          {posts.map((post: IPost) => children({ post, currentUserRole }))}
+          <Pagination postKey={postKey} />
+        </PostsWrapper>
       ) : (
         <NoContentLabel>
           {t('no_public_posts')}
@@ -55,4 +58,4 @@ const MainPage: React.FC = () => {
   );
 };
 
-export default withContent(MainPage);
+export default MainPage;

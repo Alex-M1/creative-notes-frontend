@@ -6,12 +6,6 @@ export interface IProps {
   page: TAuthPages
 }
 
-const AuthPage: FC<IProps> = ({ page }) => {
-  return (
-    <>
-      <AuthForm page={page} />
-    </>
-  );
-};
+const AuthPage: FC<IProps> = ({ page }) => <AuthForm page={page} />;
 
 export default AuthPage;
