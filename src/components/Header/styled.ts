@@ -11,7 +11,7 @@ export const StHeader = styled.div`
 `;
 
 export const StHeaderContent = styled.div`
-  min-width: 60vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

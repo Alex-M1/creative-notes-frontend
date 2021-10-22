@@ -2,6 +2,7 @@ import Select from '@common/Select';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { FILTER_THEME_OPTIONS } from '@constants/posts';
 import { WS_EVENTS } from '@constants/wsEvents';
+import { StFlex } from '@src/components/__common__/styled/Blocs';
 import { chooseWSEventByRoute } from '@src/helpers/postsHelper';
 import { TThemes } from '@store/posts/types';
 import React from 'react';
@@ -20,10 +21,12 @@ export const PostThemeFilter: React.FC<IProps> = ({ value, changeFilterTheme, em
     emitAction(chooseWSEventByRoute(pathname as APP_ROUTES));
   };
   return (
-    <Select
-      value={value}
-      options={FILTER_THEME_OPTIONS}
-      onChange={onChange}
-    />
+    <StFlex width="100%" jc="flex-start">
+      <Select
+        value={value}
+        options={FILTER_THEME_OPTIONS}
+        onChange={onChange}
+      />
+    </StFlex>
   );
 };

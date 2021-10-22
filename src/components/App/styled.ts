@@ -13,6 +13,7 @@ export const StGlobalStyle = createGlobalStyle`
   body {
     height: ${window.innerHeight}px;
     overflow: hidden;
+    padding: 20px;
   ${({ theme: myTheme = 'dark', colors = {} }) => `background: url(${colors[myTheme].backgroundUrl});`}
     background-repeat: no-repeat;
     background-size: cover;
@@ -24,11 +25,4 @@ export const StGlobalStyle = createGlobalStyle`
   a{
     text-decoration: none;
   }
-`;
-
-export const StAbsoluteWrapper = styled.div<PositionProps>`
-  &&&&{
-    ${positionStyles}
-  }
- 
 `;

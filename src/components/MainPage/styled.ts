@@ -5,7 +5,7 @@ export const MainPageWrapper = styled.div`
   display: grid;
   grid-template-columns: 3fr 9fr;
   gap: 20px;
-  padding: 10px 20px;
+  padding: 10px 0;
 `;
 
 export const PostsWrapper = styled.div<ITheme>`
