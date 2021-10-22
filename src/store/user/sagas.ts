@@ -158,7 +158,7 @@ export function* publishPostRequest(): SagaIterator {
     const postValue = yield select(getCreatePostValue);
     const role = yield select(getUserRole);
     const page = yield select(getPage);
-    if (!postValue) {
+    if (!postValue.trim()) {
       return yield call(notifications, { message: 'empty_content' });
     }
     yield put(setIsSendPost(true));
@@ -182,7 +182,7 @@ export function* privatePostRequest(): SagaIterator {
     const postTheme = yield select(getPostTheme);
     const postValue = yield select(getCreatePostValue);
     const page = yield select(getPage);
-    if (!postValue) {
+    if (!postValue.trim()) {
       return yield call(notifications, { message: 'empty_content' });
     }
     yield put(setIsSendPost(true));
@@ -287,14 +287,14 @@ export function* submitChangeUserInfoHandler(): SagaIterator {
 
 export function* rejectHandler({ payload }) {
   if (globalSocket) {
-    const { posts: pendingPosts, page, per_page } = yield select(getPendingPosts);
+    const { page, per_page } = yield select(getPendingPosts);
     yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'reject', page, per_page });
   }
 }
 
 export function* resolveHandler({ payload }) {
   if (globalSocket) {
-    const { posts: pendingPosts, page, per_page } = yield select(getPendingPosts);
+    const { page, per_page } = yield select(getPendingPosts);
     yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'public', page, per_page });
   }
 }

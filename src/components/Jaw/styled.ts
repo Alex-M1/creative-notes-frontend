@@ -24,4 +24,7 @@ export const StJawLink = styled.div<IJawLink>`
   align-items: center;
   margin-bottom: 20px;
    ${({ selected }) => selected && 'border-bottom: solid'};
+  &:hover{
+    color: #a3a3a3
+  }
 `;
