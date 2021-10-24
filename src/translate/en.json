@@ -74,5 +74,6 @@
   "resolve": "Resolve",
   "reject": "Reject",
   "password_is_changed": "Password changed successfully",
-  "anonymous": "Anonymous"
+  "anonymous": "Anonymous",
+  "anon": "Anonymous"
 }

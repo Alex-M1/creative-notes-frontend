@@ -74,5 +74,6 @@
   "resolve": "Опубликовать",
   "reject": "Отклонить",
   "password_is_changed": "Пароль успешно изменен",
-  "anonymous": "Анонимно"
+  "anonymous": "Анонимно",
+  "anon": "Аноним"
 }
