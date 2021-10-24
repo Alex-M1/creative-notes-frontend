@@ -6,16 +6,17 @@ import { io, Socket } from 'socket.io-client';
 import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from '@helpers/authHelpers';
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
-import { defaultPublicPostsBody, MESSAGES } from '@constants/common';
+import { MESSAGES } from '@constants/common';
 import { getPostTheme, getCreatePostValue, getPage, getFilteredTheme } from '@store/posts/selectors';
 import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { notifications } from '@src/helpers/notifications';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
-import { getPendingPosts } from '../posts/selectors';
+import { setPostIsAnonim, setIsSendPost, setPublicPosts, setPrivatePosts, setPendingPosts, changePage } from '../posts/actions';
+import { getIsAnonymous, getPendingPosts } from '../posts/selectors';
 import { putRequest } from '../../helpers/requestHelpers';
-import { setIsSendPost, setPublicPosts, setPrivatePosts, setPendingPosts, changePage } from '../posts/actions';
 import {
+  setUsers,
   setError,
   checkAuth,
   setIsReady,
@@ -23,15 +24,17 @@ import {
   disconnect,
   setUserInfo,
   setInitStatus,
+  getUsersRequest,
+  rejectPendingPost,
   setCurrentLanguage,
+  resolvePendingPost,
   cleanPasswordFields,
-  setUsers,
+  changeUserRole as actionChangeUserRole,
 } from './actions';
 import { ActionTypes as AT } from './actionTypes';
 // eslint-disable-next-line import/no-cycle
 import { getUserRole, getOldPassword, getNewPassword, getUserInfo } from './selectors';
 import { ActionTypes as PostAT } from '../posts/actionTypes';
-import { TChangeRole } from './types';
 
 export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.USER_CHECK, workerLanguageChecker);
@@ -46,7 +49,6 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.CHANGE_PASSWORD, changePasswordHandler);
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
-  yield takeEvery(PostAT.CHANGE_PAGE, changePage);
   yield takeEvery(AT.GET_USERS, getUsers);
   yield takeEvery(AT.CHANGE_USER_ROLE, changeUserRole);
   yield takeEvery(PostAT.CHANGE_PAGE, changePageHandler);
@@ -156,6 +158,7 @@ export function* publishPostRequest(): SagaIterator {
   try {
     const postTheme = yield select(getPostTheme);
     const postValue = yield select(getCreatePostValue);
+    const isAnonim = yield select(getIsAnonymous);
     const role = yield select(getUserRole);
     const page = yield select(getPage);
     if (!postValue.trim()) {
@@ -168,12 +171,14 @@ export function* publishPostRequest(): SagaIterator {
       status: role === ROLES.SUPER_ADMIN ? PostStatus.PUBLIC : PostStatus.PENDING,
       page,
       per_page: PER_PAGE,
+      isAnonim,
     });
     yield call(notifications, { type: 'success', message: role === ROLES.SUPER_ADMIN ? 'post_published' : 'pending_post' });
   } catch {
     yield call(notifications, { message: 'error' });
   } finally {
     yield put(setIsSendPost(false));
+    yield put(setPostIsAnonim(false));
   }
 }
 
@@ -245,9 +250,9 @@ export function* freshUserInfoHandler(): SagaIterator {
   }
 }
 
-export function* getUsers({ payload }: any) {
+export function* getUsers({ payload }: ReturnType<typeof getUsersRequest>): SagaIterator {
   try {
-    const token = yield cookieMaster.getTokenFromCookie();
+    const token = yield call([cookieMaster, 'getTokenFromCookie']);
     const res = yield call(
       fetch,
       `${REQUEST_URLS.baseUrl}${REQUEST_URLS.get_users}?page=${payload || 1}&per_page=5`,
@@ -257,17 +262,17 @@ export function* getUsers({ payload }: any) {
         },
       },
     );
-    const users = yield call([res, res.json]);
+    const users = yield call([res, 'json']);
     yield put(setUsers(users.message));
   } catch {
     yield call(notifications, { message: 'error' });
   }
 }
 
-export function* changeUserRole({ payload }: TChangeRole) {
+export function* changeUserRole({ payload }: ReturnType<typeof actionChangeUserRole>): SagaIterator {
   try {
     yield call(putRequest, REQUEST_URLS.change_user_role, payload);
-    yield call(getUsers, { payload: 1 });
+    yield put(getUsersRequest(1));
   } catch {
     yield call(notifications, { message: 'error' });
   }
@@ -285,14 +290,14 @@ export function* submitChangeUserInfoHandler(): SagaIterator {
   yield put(push(APP_ROUTES.MAIN));
 }
 
-export function* rejectHandler({ payload }) {
+export function* rejectHandler({ payload }: ReturnType<typeof rejectPendingPost>): SagaIterator {
   if (globalSocket) {
     const { page, per_page } = yield select(getPendingPosts);
     yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'reject', page, per_page });
   }
 }
 
-export function* resolveHandler({ payload }) {
+export function* resolveHandler({ payload }: ReturnType<typeof resolvePendingPost>): SagaIterator {
   if (globalSocket) {
     const { page, per_page } = yield select(getPendingPosts);
     yield call([globalSocket, 'emit'], 'upd_pending_post', { postId: payload, status: 'public', page, per_page });

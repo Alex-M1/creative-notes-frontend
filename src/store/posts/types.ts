@@ -44,6 +44,7 @@ export interface ICreatePost {
   theme: TThemes;
   value: string,
   isSendPost: boolean;
+  isAnonim: boolean;
 }
 
 export type TThemes = ThemesKey.art
