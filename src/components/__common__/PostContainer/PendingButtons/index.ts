@@ -1,4 +1,4 @@
-import { rejectPendingPost, resolvePendingPost } from '@store/user/actions';
+import { rejectPendingPost, resolvePendingPost } from '@store/posts/actions';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { PendingButtons } from './PendingButtons';

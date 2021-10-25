@@ -3,6 +3,7 @@ import { action } from 'typesafe-actions';
 import { ActionTypes as AT } from './actionTypes';
 import * as T from './types';
 
+export const emitAction = (payload: string): IReturnedAction<string> => action(AT.EMIT, payload);
 export const setPublicPosts = (
   payload: T.IPublicPosts,
 ): IReturnedAction<T.IPublicPosts> => action(AT.SET_PUBLIC_POSTS, payload);
@@ -31,3 +32,10 @@ export const changePage = (payload: T.TGetPost): IReturnedAction<T.TGetPost> => 
 export const changeFilterTheme = (payload: T.TThemes): IReturnedAction<T.TThemes> => (
   action(AT.CHANGE_FILTER_THEME, payload)
 );
+
+export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
+export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
+export const rejectPendingPost = (payload: string): IReturnedAction<string> => action(AT.REJECT_PENDING_POST, payload);
+export const resolvePendingPost = (
+  payload: string,
+): IReturnedAction<string> => action(AT.RESOLVE_PENDING_POST, payload);

@@ -17,13 +17,13 @@ export const contentInitAction = (): IReturnedAction => action(AT.CONTENT_INIT);
 export const checkAuth = (payload: ICheckAuth): IReturnedAction<ICheckAuth> => action(AT.CHECK_AUTH, payload);
 export const disconnect = (): IReturnedAction => action(AT.DISCONNECT);
 
-export const emitAction = (payload: string): IReturnedAction<string> => action(AT.EMIT, payload);
+// export const emitAction = (payload: string): IReturnedAction<string> => action(AT.EMIT, payload);
 export const setError = (
   payload: IErrorPayload,
 ): IReturnedAction<string> => action(AT.SET_ERROR, payload.message);
 
-export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
-export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
+// export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
+// export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
 
 export const setOldPassword = (payload: string): IReturnedAction<string> => action(AT.SET_OLD_PASSWORD, payload);
 export const setNewPassword = (payload: string): IReturnedAction<string> => action(AT.SET_NEW_PASSWORD, payload);
@@ -40,11 +40,11 @@ export const unFreezeUserInfo = (): IReturnedAction => action(AT.UNFREEZE_USER_I
 
 export const submitChangeUserInfo = (): IReturnedAction => action(AT.SUBMIT_CHANGE_USER_INFO);
 
-export const rejectPendingPost = (payload: string): IReturnedAction<string> => action(AT.REJECT_PENDING_POST, payload);
-export const resolvePendingPost = (
-  payload: string,
-): IReturnedAction<string> => action(AT.RESOLVE_PENDING_POST, payload);
-export const getUsersRequest = (payload: number): IReturnedAction<number> => action(AT.GET_USERS, payload);
+// export const rejectPendingPost = (payload: string): IReturnedAction<string> => action(AT.REJECT_PENDING_POST, payload);
+// export const resolvePendingPost = (
+//   payload: string,
+// ): IReturnedAction<string> => action(AT.RESOLVE_PENDING_POST, payload);
+export const getUsersRequest = (payload?: number): IReturnedAction<number> => action(AT.GET_USERS, payload);
 export const setUsers = (
   payload: IAdminUsersRequest,
 ): IReturnedAction<IAdminUsersRequest> => action(AT.SET_USERS, payload);
