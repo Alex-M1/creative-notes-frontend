@@ -11,6 +11,7 @@ import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { PER_PAGE } from '@constants/posts';
 import { putRequest } from '@helpers/requestHelpers';
+import { setComments } from '@store/comments/actions';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
 import {
   setError,
@@ -40,12 +41,14 @@ export function* watcherUser(): SagaIterator {
 }
 
 const { socket } = SocketMaster;
+
 export const createSocketChannel = (socket: Socket): any => eventChannel((emit) => {
   socket.on(WS_EVENTS.CHECK_AUTH, authStatus => emit(checkAuth(authStatus)));
   socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
   socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
   socket.on(WS_EVENTS.GET_PRIVATE_POSTS, (privatePosts) => emit(setPrivatePosts(privatePosts.message)));
   socket.on(WS_EVENTS.GET_PENDING_POSTS, (pendingPosts) => emit(setPendingPosts(pendingPosts.message)));
+  socket.on(WS_EVENTS.GET_COMMENTS, (comments) => emit(setComments(comments.message)));
   socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -58,7 +61,6 @@ export function* contentInitHander(): SagaIterator {
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
 
     if (!token) return yield put(disconnect());
-    // if (!socket) socket = yield call(connect, token);
 
     const socketChannel = yield call(createSocketChannel, socket);
 

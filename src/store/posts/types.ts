@@ -32,6 +32,7 @@ export interface IPost {
   theme: string;
   likes: string[];
   img?: string;
+  comments: number;
 }
 
 export interface IPostAuthor {

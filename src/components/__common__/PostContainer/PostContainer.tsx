@@ -15,6 +15,7 @@ export const PostContainer: React.FC<IProps> = ({
   theme,
   author,
   content,
+  comments,
   created_at,
   currentUserRole,
 }) => {
@@ -24,7 +25,7 @@ export const PostContainer: React.FC<IProps> = ({
     <StPostContainer {...themeProps}>
       <PostHeader postTheme={theme} theme={themeProps} author={author} userRole={currentUserRole} />
       <PostContent content={content} />
-      <PostFooter id={_id} createdAt={created_at} userRole={currentUserRole} theme={themeProps} />
+      <PostFooter comments={comments} id={_id} createdAt={created_at} userRole={currentUserRole} theme={themeProps} />
     </StPostContainer>
   );
 };

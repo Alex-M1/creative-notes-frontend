@@ -1,8 +1,7 @@
-import { EventChannel, eventChannel, SagaIterator } from 'redux-saga';
+import { SagaIterator } from 'redux-saga';
 import { cookieMaster } from '@src/helpers/authHelpers';
-import { disconnect, setError } from '@store/user/actions';
-import { call, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
-import { Socket } from 'socket.io-client';
+import { disconnect } from '@store/user/actions';
+import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { WS_EVENTS } from '@constants/wsEvents';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { getUserRole } from '@store/user/selectors';
@@ -11,7 +10,13 @@ import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
 import { ActionTypes as AT } from './actionTypes';
-import { getCreatePostValue, getFilteredTheme, getPage, getPendingPosts, getPostTheme } from './selectors';
+import {
+  getCreatePostValue,
+  getFilteredTheme,
+  getPage,
+  getPendingPosts,
+  getPostTheme,
+} from './selectors';
 import { changePage, emitAction, rejectPendingPost, resolvePendingPost, setIsSendPost, setPendingPosts, setPrivatePosts, setPublicPosts } from './actions';
 
 export function* watcherPosts(): SagaIterator {
@@ -26,28 +31,6 @@ export function* watcherPosts(): SagaIterator {
 }
 
 const { socket } = SocketMaster;
-export const createSocketChannel = (socket: Socket): EventChannel<any> => eventChannel((emit) => {
-  socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
-  socket.on(WS_EVENTS.GET_PRIVATE_POSTS, (privatePosts) => emit(setPrivatePosts(privatePosts.message)));
-  socket.on(WS_EVENTS.GET_PENDING_POSTS, (pendingPosts) => emit(setPendingPosts(pendingPosts.message)));
-  socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
-  return () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    socket.off(WS_EVENTS.CHECK_AUTH, () => { });
-  };
-});
-
-export function* createPostChannel(): SagaIterator {
-  const token = yield call([cookieMaster, 'getTokenFromCookie']);
-
-  if (!token) return yield put(disconnect());
-
-  const socketChannel = yield call(createSocketChannel, socket);
-  while (socketChannel) {
-    const payload = yield take(socketChannel);
-    yield put(payload);
-  }
-}
 
 export function* rejectPendingPostSaga({ payload }: ReturnType<typeof rejectPendingPost>): SagaIterator {
   if (socket) {

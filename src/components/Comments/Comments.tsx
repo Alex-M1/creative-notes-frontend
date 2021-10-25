@@ -1,5 +1,9 @@
 import React from 'react';
 import Image from '@common/Image';
+import { StFlex } from '@common/styled/Blocs';
+import { StCommentsContainer } from './styled';
+import CommentItem from './CommentItem';
+import CreateComment from './CreateComment';
 
 interface IProps {
   id: string;
@@ -8,12 +12,16 @@ interface IProps {
 
 export const Comments: React.FC<IProps> = ({
   id,
-  quantity,
 }) => {
+  const handleClickPost = () => {
+
+  };
   return (
-    <div >
-      <Image icon="comment.png" width="24px" />
-      comments
-    </div>
+    <>
+      <StCommentsContainer >
+        <CommentItem />
+        <CreateComment />
+      </StCommentsContainer>
+    </>
   );
 };

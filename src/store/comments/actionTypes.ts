@@ -1,0 +1,5 @@
+export enum ActionTypes {
+  CHANGE_COMMENT_VALUE = '@@comments/CHANGE_COMMENT_VALUE',
+  GET_COMMENTS_REQUEST = '@@comments/GET_COMMENTS_REQUEST',
+  SET_COMMENTS = '@@comments/SET_COMMENTS'
+}
