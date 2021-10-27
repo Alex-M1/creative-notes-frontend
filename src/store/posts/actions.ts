@@ -34,7 +34,7 @@ export const changeFilterTheme = (payload: T.TThemes): IReturnedAction<T.TThemes
 );
 
 export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
-export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
+export const likePost = (payload: string): IReturnedAction<string> => action(AT.LIKE_POST, payload);
 export const rejectPendingPost = (payload: string): IReturnedAction<string> => action(AT.REJECT_PENDING_POST, payload);
 export const resolvePendingPost = (
   payload: string,

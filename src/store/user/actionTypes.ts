@@ -10,7 +10,7 @@ export enum ActionTypes {
   // EMIT = '@@user/EMIT',
   SET_ERROR = '@@user/SET_ERROR',
   // DELETE_POST = '@@user/DELETE_POST',
-  // LIKE_POST = '@@user/LIKE_POST',
+  LIKE_POST = '@@user/LIKE_POST',
   SET_OLD_PASSWORD = '@@user/SET_OLD_PASSWORD',
   SET_NEW_PASSWORD = '@@user/SET_NEW_PASSWROD',
   CHANGE_PASSWORD = '@@user/CHANGE_PASSWORD',
