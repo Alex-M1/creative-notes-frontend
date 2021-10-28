@@ -13,8 +13,6 @@ export const LikesWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const LikeCount = styled.p``;
-
 export const LikeImageWrapper = styled.div<IStLike>`
   ${({ isNoliked }) => isNoliked && 'cursor: pointer'};
   height: 20px;

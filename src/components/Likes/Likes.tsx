@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Image from '@common/Image';
-import { LikesWrapper, LikeCount, LikeImageWrapper } from './styled';
+import { LikesWrapper, LikeImageWrapper } from './styled';
 
 interface ILikes{
   likes: string[] | [];
@@ -24,7 +24,7 @@ const Likes: FC<ILikes> = ({ id, likes, likePost, userLogin }) => {
           icon={isLiked ? 'like.png' : 'nolike.png'}
         />
       </LikeImageWrapper>
-      <LikeCount>{likes.length}</LikeCount>
+      <p>{likes.length}</p>
     </LikesWrapper>
   );
 };
