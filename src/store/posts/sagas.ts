@@ -12,8 +12,9 @@ import { ROLES } from '@constants/roles';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
 import { getUserLogin } from '../user/selectors';
 import { ActionTypes as AT } from './actionTypes';
-import { getCreatePostValue, getFilteredTheme, getPage, getPendingPosts, getPostTheme, getPublicPosts } from './selectors';
-import { changePage, emitAction, likePost, rejectPendingPost, resolvePendingPost, setIsSendPost, setPendingPosts, setPrivatePosts, setPublicPosts } from './actions';
+// eslint-disable-next-line import/no-cycle
+import { getCreatePostValue, getFilteredTheme, getPage, getPendingPosts, getPostTheme } from './selectors';
+import { changePage, emitAction, rejectPendingPost, resolvePendingPost, setIsSendPost, setPendingPosts, setPrivatePosts, setPublicPosts } from './actions';
 
 export function* watcherPosts(): SagaIterator {
   yield takeLatest(AT.EMIT, emitHandler);

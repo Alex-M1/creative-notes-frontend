@@ -14,6 +14,7 @@ export const initialState: IPostsState = {
     theme: ThemesKey.work,
     value: '',
     isSendPost: false,
+    isAnonim: false,
   },
   privatePosts: {
     posts: [],
@@ -47,6 +48,14 @@ export const postsReducer: TReducer<IPostsState, typeof actions> = (state = init
         createPost: {
           ...state.createPost,
           value: action.payload,
+        },
+      };
+    case AT.SET_POST_IS_ANONIM:
+      return {
+        ...state,
+        createPost: {
+          ...state.createPost,
+          isAnonim: action.payload,
         },
       };
     case AT.SET_IS_SEND_POST:

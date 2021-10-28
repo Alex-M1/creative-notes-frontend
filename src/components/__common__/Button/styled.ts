@@ -22,5 +22,6 @@ export const StButton = styled.button<BorderProps & SizesProps & PositionProps &
   &:disabled{
     background-color: ${({ colors, theme }) => colors[theme].disabled};
     cursor: not-allowed;
+    opacity: 0.6;
   }
 `;

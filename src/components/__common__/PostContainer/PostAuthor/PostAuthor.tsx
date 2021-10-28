@@ -12,10 +12,11 @@ interface IProps {
   author: IPostAuthor;
   theme: Omit<IUseTheme, 'changeTheme'>;
   userRole: string;
+  isAnonim: boolean;
   deletePost: () => void
 }
 
-export const PostAuthor: React.FC<IProps> = ({ author, theme, userRole, deletePost }) => {
+export const PostAuthor: React.FC<IProps> = ({ author, theme, userRole, deletePost, isAnonim }) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   return (
@@ -23,8 +24,8 @@ export const PostAuthor: React.FC<IProps> = ({ author, theme, userRole, deletePo
       ? (
         < StPostAuthor >
           <StPostAuthorName {...theme}>{t('author')}</StPostAuthorName>
-          <StPostAuthorImg src={author.img || 'assets/img/defaultAvatar.png'} />
-          <StPostAuthorText {...theme}>{author.login}</StPostAuthorText>
+          <StPostAuthorImg src={isAnonim ? 'assets/img/anonymous.png' : author.img || 'assets/img/defaultAvatar.png'} />
+          <StPostAuthorText {...theme}>{isAnonim ? t('anon') : author.login}</StPostAuthorText>
           {
             userRole === ROLES.SUPER_ADMIN && pathname === APP_ROUTES.MAIN
               ? <StPostDeleteBtn onClick={deletePost}><ReactSVG src="assets/img/deleteBtn.svg" /></StPostDeleteBtn>
