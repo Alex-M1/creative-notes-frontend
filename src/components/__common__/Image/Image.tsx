@@ -4,9 +4,9 @@ import { StImage } from './styled';
 
 interface IProps extends Partial<PositionProps> {
   icon: string;
+  onClick?: () => void
 }
 
-export const Image: React.FC<IProps> = (props) => {
-  const { icon, ...styledProps } = props;
-  return <StImage src={`../../../assets/img/${icon}`} {...styledProps} />;
-};
+export const Image: React.FC<IProps> = (
+  { icon, ...styledProps },
+) => (<StImage src={`../../../assets/img/${icon}`} {...styledProps} />);
