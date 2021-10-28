@@ -1,6 +1,6 @@
 import { IPost } from '@store/posts/types';
 import { Location } from 'history';
-import { emitAction } from '@store/user/actions';
+import { emitAction } from '@store/posts/actions';
 import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';

@@ -4,6 +4,7 @@ import { IUseTheme } from '@common/types/commonTypes';
 import moment from 'moment';
 import { useLocation } from 'react-router';
 import { APP_ROUTES } from '@constants/appRoutes';
+import Comments from '@src/components/Comments';
 import { StPostDate, StPostDateText, StPostFooter } from '../styled';
 import PendingButtons from '../PendingButtons';
 
@@ -24,6 +25,7 @@ export const PostFooter: React.FC<IProps> = ({ id, theme, createdAt, userRole })
           {prettyDate}
         </StPostDateText>
       </StPostDate>
+      {pathname !== APP_ROUTES.PRIVATE ? <Comments /> : null}
       {userRole !== ROLES.USER && pathname === APP_ROUTES.PENDING
         ? <PendingButtons id={id} />
         : null}

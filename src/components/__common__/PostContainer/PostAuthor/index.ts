@@ -1,4 +1,4 @@
-import { deletePost } from '@store/user/actions';
+import { deletePost } from '@store/posts/actions';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { PostAuthor } from './PostAuthor';
