@@ -23,7 +23,7 @@ export const setError = (
 ): IReturnedAction<string> => action(AT.SET_ERROR, payload.message);
 
 // export const deletePost = (): IReturnedAction => action(AT.DELETE_POST);
-// export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
+export const likePost = (): IReturnedAction => action(AT.LIKE_POST);
 
 export const setOldPassword = (payload: string): IReturnedAction<string> => action(AT.SET_OLD_PASSWORD, payload);
 export const setNewPassword = (payload: string): IReturnedAction<string> => action(AT.SET_NEW_PASSWORD, payload);
