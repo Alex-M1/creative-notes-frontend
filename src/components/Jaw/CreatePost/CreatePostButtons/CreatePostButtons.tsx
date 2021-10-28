@@ -6,6 +6,7 @@ import React from 'react';
 interface IProps {
   isSendPost: boolean;
   postValue: string;
+  isAnonymous: boolean;
   onClose: () => void;
   publishPostRequest: () => void
   privatePostRequest: () => void
@@ -13,8 +14,9 @@ interface IProps {
 
 export const CreatePostButtons: React.FC<IProps> = ({
   onClose,
-  isSendPost,
   postValue,
+  isSendPost,
+  isAnonymous,
   privatePostRequest,
   publishPostRequest,
 }) => {
@@ -30,7 +32,7 @@ export const CreatePostButtons: React.FC<IProps> = ({
   };
   return (
     <StFlex jc="space-between" margin="15px 0">
-      <Button disabled={isSendPost} translateKey="private_post" width="200px" fontSize="16px" onClick={sendPostPrivate} />
+      <Button disabled={isSendPost || isAnonymous} translateKey="private_post" width="200px" fontSize="16px" onClick={sendPostPrivate} />
       <Button disabled={isSendPost} translateKey="publish_post" width="200px" fontSize="16px" onClick={sendPostPublish} />
     </StFlex>
   );

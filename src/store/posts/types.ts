@@ -32,6 +32,7 @@ export interface IPost {
   theme: string;
   likes: string[];
   img?: string;
+  isAnonim?: boolean;
 }
 
 export interface IPostAuthor {
@@ -44,6 +45,7 @@ export interface ICreatePost {
   theme: TThemes;
   value: string,
   isSendPost: boolean;
+  isAnonim: boolean;
 }
 
 export type TThemes = ThemesKey.art

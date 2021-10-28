@@ -10,9 +10,10 @@ interface IProps {
   theme: Omit<IUseTheme, 'changeTheme'>;
   userRole: string;
   postTheme: string;
+  isAnonim: boolean;
 }
 
-export const PostHeader: React.FC<IProps> = ({ author, userRole, theme, postTheme }) => {
+export const PostHeader: React.FC<IProps> = ({ author, userRole, theme, postTheme, isAnonim }) => {
   const { t } = useTranslation();
   return (
     <StPostHeader {...theme}>
@@ -22,7 +23,7 @@ export const PostHeader: React.FC<IProps> = ({ author, userRole, theme, postThem
         </StPostThemeName>
         <span >{t(postTheme)}</span>
       </StPostTheme>
-      <PostAuthor theme={theme} author={author} userRole={userRole} />
+      <PostAuthor theme={theme} author={author} userRole={userRole} isAnonim={isAnonim}/>
     </StPostHeader>
   );
 };

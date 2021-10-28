@@ -11,6 +11,8 @@ import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
 import { ActionTypes as AT } from './actionTypes';
+
+// eslint-disable-next-line import/no-cycle
 import { getCreatePostValue, getFilteredTheme, getPage, getPendingPosts, getPostTheme } from './selectors';
 import { changePage, emitAction, rejectPendingPost, resolvePendingPost, setIsSendPost, setPendingPosts, setPrivatePosts, setPublicPosts } from './actions';
 
