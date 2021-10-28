@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { ITheme } from '../styled/types';
+import { ITheme, SizesProps } from '../styled/types';
+import * as mixins from '../styled/mixsins';
 
-export const StTextArea = styled.textarea<ITheme>`
+type TStTextArea = ITheme & SizesProps;
+export const StTextArea = styled.textarea<TStTextArea>`
+  ${mixins.sizeStyles}
   background: ${({ colors, theme }) => colors[theme].textAreaBg};
   color: ${({ colors, theme }) => colors[theme].color};
   font-size: 16px;
   resize: none;
-  height: 200px;
   border-radius: 6px;
-  padding: 15px 20px;
   &::placeholder{
     font-style: italic;
     color: ${({ colors, theme }) => colors[theme].color};

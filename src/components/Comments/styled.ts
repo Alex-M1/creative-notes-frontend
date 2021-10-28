@@ -1,22 +1,24 @@
-import styled, { css, keyframes } from 'styled-components';
-
-const openKeyframe = keyframes`
-  0% {
-    height:0;
-    transition-duration: 3s;
-  }
-  100% {
-    height: 500px;
-    transition-duration: 3s;
-  }
-`;
-
-const openAnimation = css`
-  animation: 1s linear ${openKeyframe} forwards;
-`;
+import styled from 'styled-components';
 
 export const StCommentsContainer = styled.div`
-  border-top: 1px solid #fff;
-  height:0;
-  ${openAnimation}
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 90%;
+  padding: 10px;
+  word-break: break-all;
+  margin-bottom: 10px;
+`;
+export const StCommentsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 53% ;
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+  &::-webkit-scrollbar-thumb {
+    width: 7px;
+    background-color: #E2E2E2
+  }
 `;

@@ -12,3 +12,7 @@ export interface IUseTheme {
   theme: string;
   changeTheme: () => void;
 }
+
+export interface IMatchParams {
+  postId: string;
+}

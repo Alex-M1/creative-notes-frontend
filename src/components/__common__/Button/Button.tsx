@@ -9,7 +9,7 @@ interface IProps extends SizesProps, BorderProps, FontProps, PositionProps {
   disabled?: boolean;
   backgroundColor?: string;
   borderRadius?: string;
-  translateKey?: string;
+  translateKey: string;
 }
 export const Button: React.FC<IProps> = ({
   width = '100px',

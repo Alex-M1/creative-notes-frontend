@@ -9,6 +9,7 @@ import { watcherAuth } from './auth/sagas';
 import { watcherUser } from './user/sagas';
 import { watcherPosts } from './posts/sagas';
 import commentsWatcher from './comments/sagas';
+import commentReducer from './comments/reducer';
 
 const sagas = [
   watcherUser,
@@ -26,4 +27,5 @@ export const rootReducer = combineReducers({
   user: userReducer,
   router: routerReducer,
   posts: postsReducer,
+  comments: commentReducer,
 });

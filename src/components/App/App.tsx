@@ -1,7 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import { Route } from 'react-router';
-import { APP_ROUTES } from '@constants/appRoutes';
+import { APP_ROUTES, ROUTE_PARAMETERS } from '@constants/appRoutes';
 import { AuthPages } from '@constants/auth';
 import { ToastContainer } from 'react-toastify';
 import { useTheme, withTheme } from '@hoc/withTheme';
@@ -13,6 +13,7 @@ import PersonalArea from '../PersonalArea';
 import PrivatePage from '../PrivatePage';
 import PendingPage from '../PendingPage';
 import PublicPage from '../PublicPage';
+import Comments from '../Comments';
 
 const App: React.FC = () => {
   const themeProps = useTheme();
@@ -36,6 +37,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={APP_ROUTES.PERSONAL_AREA} exact>
         <PersonalArea />
+      </Route>
+      <Route path={`${APP_ROUTES.COMMENT}/:${ROUTE_PARAMETERS.postId}`}>
+        <Comments />
       </Route>
       <ToastContainer />
       <StGlobalStyle {...themeProps} />

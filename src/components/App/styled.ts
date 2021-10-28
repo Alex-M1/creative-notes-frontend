@@ -1,6 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { PositionProps } from '@common/styled/types';
-import { positionStyles } from '@common/styled/mixsins';
+import { createGlobalStyle } from 'styled-components';
 
 export const StGlobalStyle = createGlobalStyle`
   *{
@@ -14,7 +12,7 @@ export const StGlobalStyle = createGlobalStyle`
     height: ${window.innerHeight}px;
     overflow: hidden;
     padding: 20px;
-  ${({ theme: myTheme = 'dark', colors = {} }) => `background: url(${colors[myTheme].backgroundUrl});`}
+    ${({ theme: myTheme = 'dark', colors = {} }) => `background: url(${colors[myTheme].backgroundUrl});`}
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff

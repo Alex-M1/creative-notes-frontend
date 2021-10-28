@@ -58,6 +58,7 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
 
 export function* contentInitHander(): SagaIterator {
   try {
+    // yield call(connect);
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
 
     if (!token) return yield put(disconnect());
