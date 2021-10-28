@@ -7,26 +7,29 @@ import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { MESSAGES } from '@constants/common';
+import { PER_PAGE } from '@constants/posts';
 import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { PER_PAGE } from '@constants/posts';
 import { putRequest } from '@helpers/requestHelpers';
 import { setComments } from '@store/comments/actions';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
+import { putRequest } from '../../helpers/requestHelpers';
 import {
+  setUsers,
   setError,
   checkAuth,
   setIsReady,
   disconnect,
   setUserInfo,
   setInitStatus,
+  getUsersRequest,
   setCurrentLanguage,
   cleanPasswordFields,
-  setUsers,
   changeUserRole,
-  getUsersRequest,
 } from './actions';
 import { ActionTypes as AT } from './actionTypes';
+// eslint-disable-next-line import/no-cycle
 import { getOldPassword, getNewPassword, getUserInfo } from './selectors';
 
 export function* watcherUser(): SagaIterator {
@@ -72,7 +75,7 @@ export function* contentInitHander(): SagaIterator {
       yield put(payload);
     }
   } catch (err) {
-    console.log(err);
+    yield call([console, 'error'], err);
   }
 }
 
@@ -140,7 +143,7 @@ export function* getUsersSaga({ payload }: ReturnType<typeof getUsersRequest>): 
         },
       },
     );
-    const users = yield call([res, res.json]);
+    const users = yield call([res, 'json']);
     yield put(setUsers(users.message));
   } catch {
     yield call(notifications, { message: 'error' });
@@ -150,7 +153,7 @@ export function* getUsersSaga({ payload }: ReturnType<typeof getUsersRequest>): 
 export function* changeUserRoleSaga({ payload }: ReturnType<typeof changeUserRole>): SagaIterator {
   try {
     yield call(putRequest, REQUEST_URLS.change_user_role, payload);
-    yield call(getUsersSaga, { payload: 1 });
+    yield put(getUsersRequest(1));
   } catch {
     yield call(notifications, { message: 'error' });
   }

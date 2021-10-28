@@ -6,9 +6,10 @@ import { WS_EVENTS } from '@constants/wsEvents';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { getUserRole } from '@store/user/selectors';
 import { notifications } from '@src/helpers/notifications';
-import { PER_PAGE, PostStatus } from '@constants/posts';
+import { PER_PAGE, PostStatus, ThemesKey } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
+import { getUserLogin } from '../user/selectors';
 import { ActionTypes as AT } from './actionTypes';
 import {
   getCreatePostValue,
@@ -112,8 +113,14 @@ export function* deletePostHandler(): SagaIterator {
   yield call([console, 'log'], 'deletepostLogic');
 }
 
-export function* likePostHandler(): SagaIterator {
-  yield call([console, 'log'], 'likeLogic');
+export function* likePostHandler({ payload }: ReturnType<typeof likePost>): SagaIterator {
+  if (socket) {
+    const userLogin = yield select(getUserLogin);
+    const { page, per_page } = yield select(getPublicPosts);
+    const theme = yield select(getFilteredTheme);
+
+    yield call([socket, 'emit'], 'upd_public_post', { postId: payload, per_page, page, login: userLogin, theme }); 
+  }
 }
 export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIterator {
   const theme = yield select(getFilteredTheme);

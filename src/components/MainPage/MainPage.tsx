@@ -35,6 +35,7 @@ const MainPage: React.FC<IProps> = ({
   const isNeeedToShowPosts = useMemo(() => posts.length > 0, [posts]);
   const postKey = chooseKeyByRoute(location.pathname as APP_ROUTES);
   const socketEvent = chooseWSEvent(postKey);
+  
   useEffect(() => {
     if (initStatus) {
       dispatch(emitAction(socketEvent));

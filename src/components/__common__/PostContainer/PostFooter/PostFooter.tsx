@@ -4,6 +4,7 @@ import { IUseTheme } from '@common/types/commonTypes';
 import moment from 'moment';
 import { useLocation } from 'react-router';
 import { APP_ROUTES } from '@constants/appRoutes';
+import Likes from '@src/components/Likes';
 import { StPostDate, StPostDateText, StPostFooter } from '../styled';
 import PendingButtons from '../PendingButtons';
 import CommentsBlock from '../CommentsBlock';
@@ -14,9 +15,10 @@ interface IProps {
   createdAt: number;
   userRole: string;
   comments: number;
+  likes: string[];
 }
 
-export const PostFooter: React.FC<IProps> = ({ id, theme, createdAt, userRole, comments }) => {
+export const PostFooter: React.FC<IProps> = ({ id, theme, createdAt, userRole, comments, likes }) => {
   const prettyDate = moment(createdAt).format('DD MM YYYY hh:mm:ss');
   const { pathname } = useLocation();
   return (
@@ -26,6 +28,7 @@ export const PostFooter: React.FC<IProps> = ({ id, theme, createdAt, userRole, c
           {prettyDate}
         </StPostDateText>
       </StPostDate>
+      {pathname !== APP_ROUTES.PRIVATE && <Likes id={id} likes={likes} />}
       {pathname !== APP_ROUTES.PRIVATE ? <CommentsBlock id={id} quantity={comments} /> : null}
       {userRole !== ROLES.USER && pathname === APP_ROUTES.PENDING
         ? <PendingButtons id={id} />
