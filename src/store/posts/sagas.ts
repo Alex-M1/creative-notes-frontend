@@ -19,6 +19,7 @@ import {
   getPendingPosts,
   getPublicPosts,
   getPostTheme,
+  getIsAnonymous,
 } from './selectors';
 import {
   changePage,
@@ -59,6 +60,7 @@ export function* publishPostRequest(): SagaIterator {
   try {
     const postTheme = yield select(getPostTheme);
     const postValue = yield select(getCreatePostValue);
+    const isAnonim = yield select(getIsAnonymous);
     const role = yield select(getUserRole);
     const page = yield select(getPage);
     if (!postValue.trim()) {
@@ -71,6 +73,7 @@ export function* publishPostRequest(): SagaIterator {
       status: role === ROLES.SUPER_ADMIN ? PostStatus.PUBLIC : PostStatus.PENDING,
       page,
       per_page: PER_PAGE,
+      isAnonim,
     });
     yield call(notifications, { type: 'success', message: role === ROLES.SUPER_ADMIN ? 'post_published' : 'pending_post' });
   } catch {

@@ -65,6 +65,7 @@ export const postsReducer: TReducer<IPostsState, typeof actions> = (state = init
           ...state.createPost,
           isSendPost: action.payload,
           value: action.payload ? state.createPost.value : '',
+          isAnonim: false,
         },
       };
     case AT.CHANGE_FILTER_THEME:
