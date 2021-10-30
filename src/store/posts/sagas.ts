@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { SagaIterator } from 'redux-saga';
 import { cookieMaster } from '@src/helpers/authHelpers';
 import { disconnect } from '@store/user/actions';
@@ -6,7 +7,7 @@ import { WS_EVENTS } from '@constants/wsEvents';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { getUserRole } from '@store/user/selectors';
 import { notifications } from '@src/helpers/notifications';
-import { PER_PAGE, PostStatus, ThemesKey } from '@constants/posts';
+import { PER_PAGE, PostStatus } from '@constants/posts';
 import { ROLES } from '@constants/roles';
 import { chooseWSEvent } from '@src/helpers/postsHelper';
 import { getUserLogin } from '../user/selectors';
@@ -16,9 +17,17 @@ import {
   getFilteredTheme,
   getPage,
   getPendingPosts,
+  getPublicPosts,
   getPostTheme,
 } from './selectors';
-import { changePage, emitAction, rejectPendingPost, resolvePendingPost, setIsSendPost, setPendingPosts, setPrivatePosts, setPublicPosts } from './actions';
+import {
+  changePage,
+  emitAction,
+  rejectPendingPost,
+  resolvePendingPost,
+  setIsSendPost,
+  likePost,
+} from './actions';
 
 export function* watcherPosts(): SagaIterator {
   yield takeLatest(AT.EMIT, emitHandler);

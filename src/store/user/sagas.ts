@@ -60,9 +60,7 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
 
 export function* contentInitHander(): SagaIterator {
   try {
-    // yield call(connect);
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
-    console.log(token);
 
     if (!token) return yield put(disconnect());
 
@@ -81,7 +79,7 @@ export function* contentInitHander(): SagaIterator {
 
 export function* disconnectHandler(): SagaIterator {
   if (socket) yield call([socket, 'disconnect']);
-  console.log('kek');
+
   yield call([cookieMaster, 'deleteTokenFromCookie']);
   yield call([localStorage, 'removeItem'], 'lang');
   yield put(setInitStatus(false));
