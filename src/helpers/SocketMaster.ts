@@ -1,5 +1,4 @@
 import { REQUEST_URLS } from '@constants/requestsUrls';
-import { connect } from 'react-redux';
 import { Socket, io } from 'socket.io-client';
 import { cookieMaster } from './authHelpers';
 
