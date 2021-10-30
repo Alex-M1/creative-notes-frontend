@@ -10,6 +10,8 @@ import { MESSAGES } from '@constants/common';
 import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { setComments } from '@store/comments/actions';
+import { putRequest } from '@src/helpers/requestHelpers';
+import { PER_PAGE } from '@constants/posts';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
 import {
   setUsers,

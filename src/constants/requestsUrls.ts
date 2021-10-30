@@ -1,5 +1,5 @@
 export const REQUEST_URLS = {
-  baseUrl: process.env.NODE_ENV === 'production' ? 'http://3.133.100.46' : 'http://localhost:3000',
+  baseUrl: process.env.NODE_ENV === 'production' ? 'http://3.144.199.135' : 'http://localhost:3000',
   registration: '/api/registration',
   autorization: '/api/authorization',
   password_change: '/api/change_password',
