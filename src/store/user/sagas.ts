@@ -7,14 +7,12 @@ import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { MESSAGES } from '@constants/common';
-import { PER_PAGE } from '@constants/posts';
 import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
 import { PER_PAGE } from '@constants/posts';
 import { putRequest } from '@helpers/requestHelpers';
 import { setComments } from '@store/comments/actions';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
-import { putRequest } from '../../helpers/requestHelpers';
 import {
   setUsers,
   setError,

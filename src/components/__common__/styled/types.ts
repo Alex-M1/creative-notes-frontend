@@ -105,4 +105,4 @@ export interface StFlexProps extends SizesProps, ColorsProps, PositionProps, Bor
   background?: string;
 }
 
-expor
+expor;
