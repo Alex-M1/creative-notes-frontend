@@ -10,8 +10,6 @@ import { MESSAGES } from '@constants/common';
 import { PER_PAGE } from '@constants/posts';
 import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
-import { PER_PAGE } from '@constants/posts';
-import { putRequest } from '@helpers/requestHelpers';
 import { setComments } from '@store/comments/actions';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
 import { putRequest } from '../../helpers/requestHelpers';
@@ -40,6 +38,7 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
   yield takeEvery(AT.GET_USERS, getUsersSaga);
+  yield takeEvery(AT.DISCONNECT, disconnectHandler);
   yield takeEvery(AT.CHANGE_USER_ROLE, changeUserRoleSaga);
 }
 
@@ -63,6 +62,7 @@ export function* contentInitHander(): SagaIterator {
   try {
     // yield call(connect);
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
+    console.log(token);
 
     if (!token) return yield put(disconnect());
 
@@ -81,6 +81,7 @@ export function* contentInitHander(): SagaIterator {
 
 export function* disconnectHandler(): SagaIterator {
   if (socket) yield call([socket, 'disconnect']);
+  console.log('kek');
   yield call([cookieMaster, 'deleteTokenFromCookie']);
   yield call([localStorage, 'removeItem'], 'lang');
   yield put(setInitStatus(false));
