@@ -1,7 +1,7 @@
 import { colors, DEFAULT_COLORS } from '@constants/colors';
 import { Property as CSS } from 'csstype';
 
-export interface ITheme{
+export interface ITheme {
   theme: 'dark' | 'light',
   colors: typeof colors,
 }
@@ -104,5 +104,3 @@ export interface StFlexProps extends SizesProps, ColorsProps, PositionProps, Bor
   overflowX?: CSS.OverflowY;
   background?: string;
 }
-
-expor;

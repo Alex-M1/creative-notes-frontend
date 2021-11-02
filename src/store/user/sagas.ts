@@ -42,8 +42,6 @@ export function* watcherUser(): SagaIterator {
   yield takeEvery(AT.CHANGE_USER_ROLE, changeUserRoleSaga);
 }
 
-const { socket } = SocketMaster;
-
 export const createSocketChannel = (socket: Socket): any => eventChannel((emit) => {
   socket.on(WS_EVENTS.CHECK_AUTH, authStatus => emit(checkAuth(authStatus)));
   socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
@@ -60,14 +58,12 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
 
 export function* contentInitHander(): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
 
     if (!token) return yield put(disconnect());
 
     const socketChannel = yield call(createSocketChannel, socket);
-
-    yield put(setInitStatus(true));
-
     while (socketChannel) {
       const payload = yield take(socketChannel);
       yield put(payload);
@@ -78,6 +74,7 @@ export function* contentInitHander(): SagaIterator {
 }
 
 export function* disconnectHandler(): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) yield call([socket, 'disconnect']);
 
   yield call([cookieMaster, 'deleteTokenFromCookie']);
@@ -125,6 +122,7 @@ export function* changePasswordHandler(): SagaIterator {
 }
 
 export function* freshUserInfoHandler(): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) {
     yield call([socket, 'emit'], WS_EVENTS.USER_INFO);
   }

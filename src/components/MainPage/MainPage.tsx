@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import { useTheme } from '@hoc/withTheme';
 import { chooseKeyByRoute, chooseWSEvent } from '@src/helpers/postsHelper';
 import { APP_ROUTES } from '@constants/appRoutes';
+import Pagination from '@common/Pagination';
 import { MainPageWrapper, PostsWrapper, NoContentLabel } from './styled';
-import Pagination from '../__common__/Pagination';
 import Jaw from '../Jaw';
 
 interface IProps {
@@ -35,7 +35,7 @@ const MainPage: React.FC<IProps> = ({
   const isNeeedToShowPosts = useMemo(() => posts.length > 0, [posts]);
   const postKey = chooseKeyByRoute(location.pathname as APP_ROUTES);
   const socketEvent = chooseWSEvent(postKey);
-  
+
   useEffect(() => {
     if (initStatus) {
       dispatch(emitAction(socketEvent));

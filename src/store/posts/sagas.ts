@@ -41,9 +41,8 @@ export function* watcherPosts(): SagaIterator {
   yield takeEvery(AT.RESOLVE_PENDING_POST, resolvePendingPostSaga);
 }
 
-const { socket } = SocketMaster;
-
 export function* rejectPendingPostSaga({ payload }: ReturnType<typeof rejectPendingPost>): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) {
     const { page, per_page } = yield select(getPendingPosts);
     yield call([socket, 'emit'], 'upd_pending_post', { postId: payload, status: 'reject', page, per_page });
@@ -51,6 +50,7 @@ export function* rejectPendingPostSaga({ payload }: ReturnType<typeof rejectPend
 }
 
 export function* resolvePendingPostSaga({ payload }: ReturnType<typeof resolvePendingPost>): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) {
     const { page, per_page } = yield select(getPendingPosts);
     yield call([socket, 'emit'], 'upd_pending_post', { postId: payload, status: 'public', page, per_page });
@@ -58,22 +58,25 @@ export function* resolvePendingPostSaga({ payload }: ReturnType<typeof resolvePe
 }
 export function* publishPostRequest(): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const postTheme = yield select(getPostTheme);
     const postValue = yield select(getCreatePostValue);
     const isAnonim = yield select(getIsAnonymous);
     const role = yield select(getUserRole);
     const page = yield select(getPage);
+    const theme = yield select(getFilteredTheme);
     if (!postValue.trim()) {
       return yield call(notifications, { message: 'empty_content' });
     }
     yield put(setIsSendPost(true));
     yield call([socket, 'emit'], WS_EVENTS.CREATE_POST, {
-      theme: postTheme,
+      postTheme,
       content: postValue,
       status: role === ROLES.SUPER_ADMIN ? PostStatus.PUBLIC : PostStatus.PENDING,
       page,
       per_page: PER_PAGE,
       isAnonim,
+      theme,
     });
     yield call(notifications, { type: 'success', message: role === ROLES.SUPER_ADMIN ? 'post_published' : 'pending_post' });
   } catch {
@@ -85,19 +88,22 @@ export function* publishPostRequest(): SagaIterator {
 
 export function* privatePostRequest(): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const postTheme = yield select(getPostTheme);
     const postValue = yield select(getCreatePostValue);
+    const theme = yield select(getFilteredTheme);
     const page = yield select(getPage);
     if (!postValue.trim()) {
       return yield call(notifications, { message: 'empty_content' });
     }
     yield put(setIsSendPost(true));
     yield call([socket, 'emit'], WS_EVENTS.CREATE_POST, {
-      theme: postTheme,
+      postTheme,
       content: postValue,
       status: PostStatus.PRIVATE,
       page,
       per_page: PER_PAGE,
+      theme,
     });
     yield call(notifications, { type: 'success', message: 'post_published' });
   } catch {
@@ -108,6 +114,7 @@ export function* privatePostRequest(): SagaIterator {
 }
 export function* changePageHandler({ payload }: ReturnType<typeof changePage>): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const wsEvent = yield call(chooseWSEvent, payload.postRequestName);
     const theme = yield select(getFilteredTheme);
     yield call([socket, 'emit'], wsEvent, {
@@ -126,15 +133,17 @@ export function* deletePostHandler(): SagaIterator {
 }
 
 export function* likePostHandler({ payload }: ReturnType<typeof likePost>): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) {
     const userLogin = yield select(getUserLogin);
     const { page, per_page } = yield select(getPublicPosts);
     const theme = yield select(getFilteredTheme);
 
-    yield call([socket, 'emit'], 'upd_public_post', { postId: payload, per_page, page, login: userLogin, theme }); 
+    yield call([socket, 'emit'], 'upd_public_post', { postId: payload, per_page, page, login: userLogin, theme });
   }
 }
 export function* emitHandler({ payload }: ReturnType<typeof emitAction>): SagaIterator {
+  const { socket } = SocketMaster;
   const theme = yield select(getFilteredTheme);
   const body = {
     page: 1,

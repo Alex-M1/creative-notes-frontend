@@ -7,8 +7,6 @@ import { createCommentRequest, getCommentsRequest, leaveRoomRequest } from './ac
 import { ActionTypes as AT } from './actionTypes';
 import { getCommentValue } from './selectors';
 
-const { socket } = SocketMaster;
-
 export default function* commentsWatcher(): SagaIterator {
   yield takeEvery(AT.GET_COMMENTS_REQUEST, getCommentsSaga);
   yield takeEvery(AT.CREATE_COMMENT_REQUEST, createCommentSaga);
@@ -17,6 +15,7 @@ export default function* commentsWatcher(): SagaIterator {
 
 export function* getCommentsSaga({ payload }: ReturnType<typeof getCommentsRequest>): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     yield call([socket, socket.emit], WS_EVENTS.GET_COMMENTS, { post: payload.postId });
     if (payload.isJoinRoom) {
       yield call(joinToRoom, payload.postId);
@@ -28,6 +27,7 @@ export function* getCommentsSaga({ payload }: ReturnType<typeof getCommentsReque
 
 export function* leaveRoomSaga({ payload }: ReturnType<typeof leaveRoomRequest>): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     yield call([socket, socket.emit], WS_EVENTS.LEAVE_ROOM, { room: payload });
   } catch {
     yield call(notifications, { message: 'error' });
@@ -36,6 +36,7 @@ export function* leaveRoomSaga({ payload }: ReturnType<typeof leaveRoomRequest>)
 
 export function* joinToRoom(postId: string): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     yield call([socket, socket.emit], WS_EVENTS.JOIN_TO_ROOM, { room: postId });
   } catch {
     yield call(notifications, { message: 'error' });
@@ -44,6 +45,7 @@ export function* joinToRoom(postId: string): SagaIterator {
 
 export function* createCommentSaga({ payload }: ReturnType<typeof createCommentRequest>): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const content = yield select(getCommentValue);
     yield call([socket, socket.emit], WS_EVENTS.CREATE_COMMENT, { post: payload, content });
   } catch {

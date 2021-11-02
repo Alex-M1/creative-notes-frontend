@@ -6,11 +6,12 @@ class SocketMaster {
   socket: Socket;
 
   constructor() {
-    this.socket = io(REQUEST_URLS.baseUrl, {
-      extraHeaders: {
-        Authorization: cookieMaster.getTokenFromCookie(),
-      },
-    });
+    this.socket = null;
+    // io(REQUEST_URLS.baseUrl, {
+    //   extraHeaders: {
+    //     Authorization: cookieMaster.getTokenFromCookie(),
+    //   },
+    // });
   }
 
   connect() {

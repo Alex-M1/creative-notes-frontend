@@ -15,7 +15,7 @@ const mapStateToProps = (state: ApplicationState, props: RouteComponentProps) =>
 });
 
 export default compose(
+  withContent,
   withRouter,
   connect(mapStateToProps),
-  withContent,
 )(MainPage);
