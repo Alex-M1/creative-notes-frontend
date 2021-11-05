@@ -8,6 +8,12 @@ interface IProps {
 
 export const PostInput: React.FC<IProps> = ({ createPostValue, setPostValue }) => {
   return (
-    <TextArea value={createPostValue} onChange={setPostValue} placeholderKey='create_post_plh' />
+    <TextArea
+      height='200px'
+      padding="15px 20px"
+      value={createPostValue}
+      onChange={setPostValue}
+      placeholderKey='create_post_plh'
+    />
   );
 };

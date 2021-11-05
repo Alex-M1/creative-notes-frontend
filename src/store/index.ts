@@ -8,11 +8,14 @@ import { postsReducer } from './posts/reducer';
 import { watcherAuth } from './auth/sagas';
 import { watcherUser } from './user/sagas';
 import { watcherPosts } from './posts/sagas';
+import commentsWatcher from './comments/sagas';
+import commentReducer from './comments/reducer';
 
 const sagas = [
   watcherUser,
   watcherAuth,
   watcherPosts,
+  commentsWatcher,
 ];
 
 export function* rootSaga(): SagaIterator {
@@ -24,4 +27,5 @@ export const rootReducer = combineReducers({
   user: userReducer,
   router: routerReducer,
   posts: postsReducer,
+  comments: commentReducer,
 });

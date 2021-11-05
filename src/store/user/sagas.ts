@@ -7,11 +7,12 @@ import { cookieMaster, newPasswordValidation, requestUpdateInfoValidation } from
 import { APP_ROUTES } from '@constants/appRoutes';
 import { WS_EVENTS } from '@constants/wsEvents';
 import { MESSAGES } from '@constants/common';
-import { PER_PAGE } from '@constants/posts';
 import { notifications } from '@src/helpers/notifications';
 import SocketMaster from '@src/helpers/SocketMaster';
+import { setComments } from '@store/comments/actions';
+import { putRequest } from '@src/helpers/requestHelpers';
+import { PER_PAGE } from '@constants/posts';
 import { setPublicPosts, setPrivatePosts, setPendingPosts } from '../posts/actions';
-import { putRequest } from '../../helpers/requestHelpers';
 import {
   setUsers,
   setError,
@@ -37,16 +38,17 @@ export function* watcherUser(): SagaIterator {
   yield takeLatest(AT.TAKE_FRESH_USER_INFO, freshUserInfoHandler);
   yield takeLatest(AT.SUBMIT_CHANGE_USER_INFO, submitChangeUserInfoHandler);
   yield takeEvery(AT.GET_USERS, getUsersSaga);
+  yield takeEvery(AT.DISCONNECT, disconnectHandler);
   yield takeEvery(AT.CHANGE_USER_ROLE, changeUserRoleSaga);
 }
 
-const { socket } = SocketMaster;
 export const createSocketChannel = (socket: Socket): any => eventChannel((emit) => {
   socket.on(WS_EVENTS.CHECK_AUTH, authStatus => emit(checkAuth(authStatus)));
   socket.on(WS_EVENTS.USER_INFO, userInfo => emit(setUserInfo(userInfo)));
   socket.on(WS_EVENTS.GET_PUBLIC_POSTS, (publicPosts) => emit(setPublicPosts(publicPosts.message)));
   socket.on(WS_EVENTS.GET_PRIVATE_POSTS, (privatePosts) => emit(setPrivatePosts(privatePosts.message)));
   socket.on(WS_EVENTS.GET_PENDING_POSTS, (pendingPosts) => emit(setPendingPosts(pendingPosts.message)));
+  socket.on(WS_EVENTS.GET_COMMENTS, (comments) => emit(setComments(comments.message)));
   socket.on(WS_EVENTS.EROR, (error) => emit(setError(error)));
   return () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -56,15 +58,12 @@ export const createSocketChannel = (socket: Socket): any => eventChannel((emit) 
 
 export function* contentInitHander(): SagaIterator {
   try {
+    const { socket } = SocketMaster;
     const token = yield call([cookieMaster, 'getTokenFromCookie']);
 
     if (!token) return yield put(disconnect());
-    // if (!socket) socket = yield call(connect, token);
 
     const socketChannel = yield call(createSocketChannel, socket);
-
-    yield put(setInitStatus(true));
-
     while (socketChannel) {
       const payload = yield take(socketChannel);
       yield put(payload);
@@ -75,7 +74,9 @@ export function* contentInitHander(): SagaIterator {
 }
 
 export function* disconnectHandler(): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) yield call([socket, 'disconnect']);
+
   yield call([cookieMaster, 'deleteTokenFromCookie']);
   yield call([localStorage, 'removeItem'], 'lang');
   yield put(setInitStatus(false));
@@ -121,6 +122,7 @@ export function* changePasswordHandler(): SagaIterator {
 }
 
 export function* freshUserInfoHandler(): SagaIterator {
+  const { socket } = SocketMaster;
   if (socket) {
     yield call([socket, 'emit'], WS_EVENTS.USER_INFO);
   }

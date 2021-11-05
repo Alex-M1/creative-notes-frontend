@@ -27,7 +27,11 @@ export const StPostFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 10px;
+  padding: 10px;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
 `;
 
 export const StPostTheme = styled.span`

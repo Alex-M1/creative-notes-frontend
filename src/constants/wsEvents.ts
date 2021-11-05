@@ -7,4 +7,9 @@ export enum WS_EVENTS {
   GET_PENDING_POSTS = 'get_pending_posts',
   EROR = 'error',
   CREATE_POST = 'create_post',
+  CREATE_COMMENT = 'create_comment',
+  POST_HAS_BEEN_UPDATE = 'post_has_been_update',
+  GET_COMMENTS = 'get_comments',
+  JOIN_TO_ROOM = 'join_to_room',
+  LEAVE_ROOM = 'leave_room'
 }

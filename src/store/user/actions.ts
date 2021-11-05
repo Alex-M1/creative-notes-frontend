@@ -53,3 +53,4 @@ export const changeUserRole = (
 ): IReturnedAction<TChangeRole> => action(AT.CHANGE_USER_ROLE, payload);
 
 export const setImg = (payload: ISetImg): IReturnedAction<ISetImg> => action(AT.SET_IMG, payload);
+//чтото изменил

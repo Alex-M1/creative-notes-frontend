@@ -5,6 +5,11 @@ export enum APP_ROUTES {
   PERSONAL_AREA = '/personal-area',
   PRIVATE = '/private',
   PENDING = '/pending',
+  COMMENT = '/comment'
+}
+
+export enum ROUTE_PARAMETERS {
+  postId = 'postId'
 }
 
 export enum SUB_APP_ROUTES {

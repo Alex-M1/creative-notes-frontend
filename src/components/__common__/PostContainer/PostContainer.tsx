@@ -15,6 +15,7 @@ export const PostContainer: React.FC<IProps> = ({
   theme,
   author,
   content,
+  comments,
   created_at,
   likes,
   currentUserRole,
@@ -24,9 +25,16 @@ export const PostContainer: React.FC<IProps> = ({
   delete themeProps.changeTheme;
   return (
     <StPostContainer {...themeProps}>
-      <PostHeader postTheme={theme} theme={themeProps} author={author} userRole={currentUserRole} isAnonim={isAnonim}/>
+      <PostHeader postTheme={theme} theme={themeProps} author={author} userRole={currentUserRole} isAnonim={isAnonim} />
       <PostContent content={content} />
-      <PostFooter id={_id} createdAt={created_at} userRole={currentUserRole} theme={themeProps} likes={likes} />
+      <PostFooter
+        id={_id}
+        comments={comments}
+        createdAt={created_at}
+        userRole={currentUserRole}
+        theme={themeProps}
+        likes={likes}
+      />
     </StPostContainer>
   );
 };
